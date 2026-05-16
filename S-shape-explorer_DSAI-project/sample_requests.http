@@ -1,0 +1,213 @@
+### =========================================================================
+### Place Recommendation Engine — Sample HTTP Requests & Responses
+### Use with VS Code REST Client, JetBrains HTTP Client, or curl.
+### Base URL: http://localhost:8000
+### =========================================================================
+
+
+### ── 1. Health Check ───────────────────────────────────────────────────────
+
+GET http://localhost:8000/health
+
+# Expected response (200 OK):
+# {
+#   "status": "ok",
+#   "places_loaded": 100
+# }
+
+
+### ── 2. Basic Recommendation ───────────────────────────────────────────────
+
+POST http://localhost:8000/recommend
+Content-Type: application/json
+
+{
+  "query": "I want a quiet cafe in Ho Chi Minh City for studying, cheap price, nice atmosphere.",
+  "user_id": "user_42",
+  "top_k": 5
+}
+
+# Expected response (200 OK):
+# {
+#   "query": "I want a quiet cafe in Ho Chi Minh City for studying, cheap price, nice atmosphere.",
+#   "parsed": {
+#     "category": "cafe",
+#     "mood": ["quiet", "cozy"],
+#     "budget": "cheap",
+#     "purpose": ["studying"],
+#     "location": "Ho Chi Minh City",
+#     "tags": []
+#   },
+#   "results": [
+#     {
+#       "place": {
+#         "id": "place_049",
+#         "name": "The Silent Library",
+#         "category": "cafe",
+#         "tags": ["silent", "library", "ultra-quiet", "study", "academic"],
+#         "description": "Strict no-talking policy enforced. Headphones encouraged...",
+#         "city": "Ho Chi Minh City",
+#         "price_level": "cheap",
+#         "rating": 4.4,
+#         "popularity": 58,
+#         "lat": 10.7768,
+#         "lon": 106.6998
+#       },
+#       "score": 0.8621,
+#       "similarity": 0.7843,
+#       "parsed_query": { ... }
+#     },
+#     ...
+#   ]
+# }
+
+
+### ── 3. Custom Weights ──────────────────────────────────────────────────────
+
+POST http://localhost:8000/recommend
+Content-Type: application/json
+
+{
+  "query": "best rooftop bar for a romantic evening with cocktails",
+  "user_id": "user_99",
+  "top_k": 3,
+  "weights": {
+    "semantic": 0.60,
+    "rating": 0.30,
+    "popularity": 0.05,
+    "distance": 0.05
+  }
+}
+
+# Expected response (200 OK):
+# Top results will include Saigon Sky Rooftop Bar, Secret Garden Rooftop,
+# The Urban Jungle Bar, ranked primarily by semantic match and rating.
+
+
+### ── 4. Budget Filtering ───────────────────────────────────────────────────
+
+POST http://localhost:8000/recommend
+Content-Type: application/json
+
+{
+  "query": "cheap street food with local vibe and lots of people",
+  "top_k": 5
+}
+
+# Expected response: Top results will be cheap street_food / restaurant places.
+# e.g. Banh Mi 25, Street Bites Alley, The Night Market, Ben Thanh Market
+
+
+### ── 5. Get Place by ID ─────────────────────────────────────────────────────
+
+GET http://localhost:8000/place/place_007
+
+# Expected response (200 OK):
+# {
+#   "id": "place_007",
+#   "name": "Bloom Garden Cafe",
+#   "category": "cafe",
+#   "tags": ["floral", "Instagram", "romantic", "peaceful", "garden"],
+#   "description": "Set inside a lush tropical garden, Bloom offers floral teas...",
+#   "city": "Ho Chi Minh City",
+#   "price_level": "moderate",
+#   "rating": 4.5,
+#   "popularity": 82,
+#   "lat": 10.784,
+#   "lon": 106.706
+# }
+
+
+### ── 6. Get Non-existent Place ──────────────────────────────────────────────
+
+GET http://localhost:8000/place/place_999
+
+# Expected response (404 Not Found):
+# {
+#   "detail": "Place 'place_999' not found."
+# }
+
+
+### ── 7. Submit Positive Feedback ────────────────────────────────────────────
+
+POST http://localhost:8000/feedback
+Content-Type: application/json
+
+{
+  "user_id": "user_42",
+  "place_id": "place_049",
+  "liked": true
+}
+
+# Expected response (200 OK):
+# {
+#   "message": "Feedback recorded. Preference vector updated.",
+#   "user_id": "user_42",
+#   "updated_tags": {
+#     "silent": 1,
+#     "library": 1,
+#     "ultra-quiet": 1,
+#     "study": 1,
+#     "academic": 1
+#   }
+# }
+
+
+### ── 8. Submit Negative Feedback ────────────────────────────────────────────
+
+POST http://localhost:8000/feedback
+Content-Type: application/json
+
+{
+  "user_id": "user_42",
+  "place_id": "place_002",
+  "liked": false
+}
+
+# Expected response (200 OK):
+# {
+#   "message": "Feedback recorded. Preference vector updated.",
+#   "user_id": "user_42",
+#   "updated_tags": {
+#     "silent": 1,
+#     "library": 1,
+#     "ultra-quiet": 1,
+#     "study": 1,
+#     "academic": 1,
+#     "rooftop": -1,
+#     "views": -1,
+#     "trendy": -1,
+#     "nightlife": -1,
+#     "cocktails": -1
+#   }
+# }
+
+
+### ── 9. Personalised Recommendation After Feedback ─────────────────────────
+
+POST http://localhost:8000/recommend
+Content-Type: application/json
+
+{
+  "query": "nice cafe to spend the afternoon",
+  "user_id": "user_42",
+  "top_k": 5
+}
+
+# After the feedback above, results will be boosted for places with
+# tags like "quiet", "study", "library" and penalised for "rooftop",
+# "nightlife", "trendy" etc. The preference vector persists in memory.
+
+
+### ── 10. Coworking / Focus Space Query ──────────────────────────────────────
+
+POST http://localhost:8000/recommend
+Content-Type: application/json
+
+{
+  "query": "coworking space with fast wifi for developers and tech startups",
+  "top_k": 3
+}
+
+# Expected top results: The Hacker Den (place_045), The Tech Cafe (place_075),
+# The Productivity Hub (place_017)
