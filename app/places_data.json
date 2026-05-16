@@ -1,0 +1,5138 @@
+[
+  {
+    "id": "place_001",
+    "name": "Cam Ranh Long Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach",
+      "swimming"
+    ],
+    "description": "Pristine beach with natural beauty, ideal for relaxing and swimming",
+    "city": "Khanh Hoa",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_002",
+    "name": "Ponagar Tower",
+    "category": "historical",
+    "tags": [
+      "urban",
+      "historical"
+    ],
+    "description": "Ancient Cham architectural work, where visitors can learn about Cham history and culture",
+    "city": "Khanh Hoa",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_003",
+    "name": "Dien Khanh ancient citadel",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "Historical site with unique ancient citadel architecture, built during the Nguyen Dynasty.",
+    "city": "Khanh Hoa",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_004",
+    "name": "VinWonders Nha Trang",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "park",
+      "island"
+    ],
+    "description": "The amusement park on Hon Tre Island, stands out with many attractive games and activities.",
+    "city": "Khanh Hoa",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_005",
+    "name": "Ba Ho Stream",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "mountain",
+      "nature",
+      "lake",
+      "trekking"
+    ],
+    "description": "Consists of three clear blue lakes located on the mountain, suitable for trekking and bathing in streams",
+    "city": "Khanh Hoa",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_006",
+    "name": "Phu Quoc Island",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach",
+      "island"
+    ],
+    "description": "Is the most famous tourist destination in Kien Giang, known as the \"Pearl Island\" with many beautiful beaches and high-class services.",
+    "city": "Kien Giang",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_007",
+    "name": "Mui Nai Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "Gentle beach, ideal place to relax and watch the sunset",
+    "city": "Kien Giang",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_008",
+    "name": "Lang Cat Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple"
+    ],
+    "description": "The ancient temple bears a strong Buddhist imprint.",
+    "city": "Kien Giang",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_009",
+    "name": "U Minh Thuong National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "forest"
+    ],
+    "description": "Mangrove forests with a rich ecosystem are an ideal place to explore wild nature and visit by boat",
+    "city": "Kien Giang",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_010",
+    "name": "Sister Su's grave",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "Famous historical site, associated with the resistance war against the French.",
+    "city": "Kien Giang",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_011",
+    "name": "Kon Tum Wooden Church",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "A symbol of Kon Tum with unique architecture blending Roman style and Central Highlands culture",
+    "city": "Kon Tum",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_012",
+    "name": "Kon Klor Suspension Bridge",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "urban",
+      "mountain",
+      "river"
+    ],
+    "description": "The largest and most beautiful suspension bridge in Kon Tum, spanning the Dak Bla River, surrounded by green rice fields and mountains",
+    "city": "Kon Tum",
+    "price_level": "moderate",
+    "rating": 4.1,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_013",
+    "name": "Chu Mom Ray National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "forest"
+    ],
+    "description": "It is the largest nature reserve in Vietnam, featuring a rich ecosystem, primeval forests and rare animals.",
+    "city": "Kon Tum",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_014",
+    "name": "Ngoc Linh Peak",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "The highest mountain in the Central Highlands, in the Truong Son range, is home to many rare flora and fauna species.",
+    "city": "Kon Tum",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_015",
+    "name": "Dak To Waterfall",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "waterfall"
+    ],
+    "description": "Located near Dak To town, this waterfall is wild and peaceful, an ideal place to relax in nature.",
+    "city": "Kon Tum",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_016",
+    "name": "O Quy Ho Pass",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "One of the \"Four Great Passes\" of the Northwest, O Quy Ho Pass connects Lao Cai and Lai Chau, famous for its beautiful scenery and majestic heights.",
+    "city": "Lai Chau",
+    "price_level": "cheap",
+    "rating": 3.6,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_017",
+    "name": "Pu Ta Leng peak",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "The second highest mountain peak in Vietnam (3,049m), belongs to the Hoang Lien Son range, known as the \"second roof\" of Indochina.",
+    "city": "Lai Chau",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_018",
+    "name": "Muong Than fields",
+    "category": "attraction",
+    "tags": [],
+    "description": "During the ripe rice season, Muong Than fields are brilliantly golden, creating a poetic natural picture",
+    "city": "Lai Chau",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_019",
+    "name": "Lai Chau Hydroelectric Lake",
+    "category": "nature",
+    "tags": [
+      "mountain",
+      "nature",
+      "lake"
+    ],
+    "description": "The giant artificial lake was created by the Lai Chau Hydroelectric project, located amidst the romantic mountain scenery.",
+    "city": "Lai Chau",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_020",
+    "name": "Sin Ho market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food"
+    ],
+    "description": "The place where bustling trading activities of the Thai, H'Mong, Dao, Lu ethnic groups take place...",
+    "city": "Lai Chau",
+    "price_level": "moderate",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_021",
+    "name": "Xuan Huong Lake",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "nature",
+      "forest",
+      "lake"
+    ],
+    "description": "A symbol of Da Lat, the lake is located right in the city center, surrounded by pine forests and flower gardens.",
+    "city": "Lam Dong",
+    "price_level": "moderate",
+    "rating": 4.4,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_022",
+    "name": "Truc Lam Zen Monastery",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "lake"
+    ],
+    "description": "A famous Zen monastery located near Tuyen Lam Lake, with pure architecture and peaceful space.",
+    "city": "Lam Dong",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_023",
+    "name": "Da Lat Night Market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food",
+      "market",
+      "night market"
+    ],
+    "description": "Da Lat Night Market is where you can enjoy specialties such as grilled rice paper, soy milk and buy souvenirs.",
+    "city": "Lam Dong",
+    "price_level": "moderate",
+    "rating": 3.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_024",
+    "name": "Bao Dai Palace",
+    "category": "attraction",
+    "tags": [],
+    "description": "One of the three palaces of King Bao Dai in Da Lat, with exquisite French architectural style.",
+    "city": "Lam Dong",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_025",
+    "name": "Elephant Falls",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "waterfall"
+    ],
+    "description": "Located in Nam Ban, Elephant Waterfall is majestic and wild, an ideal place for those who love to explore nature.",
+    "city": "Lam Dong",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_026",
+    "name": "Tam Thanh Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "historical"
+    ],
+    "description": "Dubbed the \"First Eight Scenes of Lang Land\", it has interesting stalactites and many ancient relics such as the 2m high Amitabha Buddha statue carved in the 15th century.",
+    "city": "Lang Son",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_027",
+    "name": "Dong Kinh Market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food"
+    ],
+    "description": "It is the largest commercial center in Lang Son, famous for its diverse products",
+    "city": "Lang Son",
+    "price_level": "moderate",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_028",
+    "name": "Huu Nghi border gate",
+    "category": "attraction",
+    "tags": [],
+    "description": "This is a major international border gate between Vietnam and China, located on National Highway 1A.",
+    "city": "Lang Son",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_029",
+    "name": "Bong Lau Pass",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "It is a beautiful pass with winding curves and breathtaking natural scenery.",
+    "city": "Lang Son",
+    "price_level": "cheap",
+    "rating": 3.5,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_030",
+    "name": "Tien Pagoda",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "mountain",
+      "pagoda"
+    ],
+    "description": "Tien Pagoda is located on Dai Tuong Mountain, associated with many legendary stories and imbued with Buddhism.",
+    "city": "Lang Son",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_031",
+    "name": "Fansipan Mountain Peak",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "Fansipan is known as the \"Roof of Indochina\" with an altitude of 3,147m.",
+    "city": "Lao Cai",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_032",
+    "name": "Heaven's Gate O Quy Ho",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "O Quy Ho Pass is one of the \"Four Great Passes\" of the Northwest, connecting Lao Cai and Lai Chau.",
+    "city": "Lao Cai",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_033",
+    "name": "Bac Ha market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food",
+      "market"
+    ],
+    "description": "Bac Ha market is famous for brocade items, agricultural products and typical dishes of the H'Mong and Dao ethnic people.",
+    "city": "Lao Cai",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_034",
+    "name": "Love Falls",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "forest"
+    ],
+    "description": "It is a romantic destination with clear blue water flowing through primeval forests.",
+    "city": "Lao Cai",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_035",
+    "name": "Thuong Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical"
+    ],
+    "description": "It is a place to worship Tran Hung Dao, a talented general in Vietnamese history.",
+    "city": "Lao Cai",
+    "price_level": "cheap",
+    "rating": 4.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_036",
+    "name": "Tan Lap floating village",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "nature",
+      "forest"
+    ],
+    "description": "It is a large flooded Melaleuca forest, famous for its nearly 5km long path through the forest.",
+    "city": "Long An",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_037",
+    "name": "Hundred Pillar Ancient House",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "It is a unique ancient house with 120 exquisitely carved precious wooden columns.",
+    "city": "Long An",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_038",
+    "name": "Ton Thanh Pagoda",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "pagoda"
+    ],
+    "description": "This pagoda is where Mr. Nguyen Dinh Chieu once lived and composed the oration \"Orientation for the martyr Can Giuoc\".",
+    "city": "Long An",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_039",
+    "name": "Vam Co River",
+    "category": "attraction",
+    "tags": [
+      "river"
+    ],
+    "description": "Two large rivers flow through Long An, creating a unique river beauty.",
+    "city": "Long An",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_040",
+    "name": "Tan An Night Market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food"
+    ],
+    "description": "It is the ideal place to enjoy local cuisine and shop for Long An specialties",
+    "city": "Long An",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_041",
+    "name": "Phu Nhai Church",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "It is one of the largest and most ancient churches in Vietnam, with a unique Gothic architectural style.",
+    "city": "Nam Dinh",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_042",
+    "name": "Tran Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "urban",
+      "historical",
+      "temple"
+    ],
+    "description": "Located in Loc Vuong ward, Nam Dinh city, Tran temple worships the Tran kings, associated with the heroic history of this dynasty.",
+    "city": "Nam Dinh",
+    "price_level": "moderate",
+    "rating": 4.6,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_043",
+    "name": "Xuan Thuy National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "river"
+    ],
+    "description": "This is a nature reserve located in Giao Thuy district, in the lower reaches of the Red River.",
+    "city": "Nam Dinh",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_044",
+    "name": "Vieng Market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food",
+      "market"
+    ],
+    "description": "This is a special market that only takes place once a year on the night of the 7th and early morning of the 8th of the first lunar month.",
+    "city": "Nam Dinh",
+    "price_level": "moderate",
+    "rating": 3.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_045",
+    "name": "Ho Vi Xuyen",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "urban",
+      "nature",
+      "lake"
+    ],
+    "description": "The lake is located in Nam Dinh city, is an ideal place to relax, take a walk, and enjoy the green and peaceful space.",
+    "city": "Nam Dinh",
+    "price_level": "moderate",
+    "rating": 4.2,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_046",
+    "name": "Lotus Village",
+    "category": "nature",
+    "tags": [
+      "rural"
+    ],
+    "description": "It is a simple thatched house, Coc well, and memorabilia associated with Uncle Ho's childhood.",
+    "city": "Nghe An",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_047",
+    "name": "Cua Lo Beach",
+    "category": "restaurant",
+    "tags": [
+      "relax",
+      "food",
+      "beach"
+    ],
+    "description": "One of the most beautiful beaches in the Central region, Cua Lo attracts tourists with fine white sand, clear blue sea water and fresh seafood.",
+    "city": "Nghe An",
+    "price_level": "moderate",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_048",
+    "name": "Truong Bon relic site",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "It is an important historical site, a place to commemorate the heroic martyrs who sacrificed their lives in the resistance war against the US.",
+    "city": "Nghe An",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_049",
+    "name": "Thanh Chuong tea hill",
+    "category": "nature",
+    "tags": [
+      "mountain",
+      "island"
+    ],
+    "description": "Dubbed the \"tea island\", Thanh Chuong tea hill is an ideal place to take photos and enjoy fresh air.",
+    "city": "Nghe An",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_050",
+    "name": "Tham Om Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "cave"
+    ],
+    "description": "It is a large cave, with many magical stalactites and unique shapes.",
+    "city": "Nghe An",
+    "price_level": "cheap",
+    "rating": 3.5,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_051",
+    "name": "Trang An",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "mountain",
+      "cave"
+    ],
+    "description": "As a World Cultural and Natural Heritage, Trang An stands out with its majestic mountain scenery and unique cave system.",
+    "city": "Ninh Binh",
+    "price_level": "cheap",
+    "rating": 3.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_052",
+    "name": "Tam Coc",
+    "category": "nature",
+    "tags": [
+      "mountain",
+      "river"
+    ],
+    "description": "Dubbed \"Ha Long Bay on land\", with beautiful natural scenery of limestone mountains, rice fields, and Ngo Dong river.",
+    "city": "Ninh Binh",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_053",
+    "name": "Hoa Lu ancient capital",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "As the capital of Dai Co Viet under the Dinh and Early Le dynasties, Hoa Lu preserves many important historical relics.",
+    "city": "Ninh Binh",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_054",
+    "name": "Cuc Phuong National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "cave",
+      "park"
+    ],
+    "description": "It is Vietnam's first national park with rich flora and fauna, thousand-year-old trees and prehistoric caves.",
+    "city": "Ninh Binh",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_055",
+    "name": "Ho Dong Chuong",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "forest",
+      "lake"
+    ],
+    "description": "Dong Chuong Lake is a natural lake located in the middle of a pine forest, very peaceful and poetic.",
+    "city": "Ninh Binh",
+    "price_level": "cheap",
+    "rating": 4.5,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_056",
+    "name": "Vinh Hy Bay",
+    "category": "attraction",
+    "tags": [],
+    "description": "One of the four most beautiful bays in Vietnam, Vinh Hy impresses with its clear blue sea, fine white sand, and brilliant coral reefs.",
+    "city": "Ninh Thuan",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_057",
+    "name": "Nui Chua National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "forest"
+    ],
+    "description": "It is a nature reserve with a unique dry forest ecosystem, recognized by UNESCO as a World Biosphere Reserve.",
+    "city": "Ninh Thuan",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_058",
+    "name": "Po Klong Garai Tower",
+    "category": "attraction",
+    "tags": [
+      "urban"
+    ],
+    "description": "This is the place to worship King Po Klong Garai, demonstrating the sophisticated architecture and sculpture of the Cham people.",
+    "city": "Ninh Thuan",
+    "price_level": "moderate",
+    "rating": 3.6,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_059",
+    "name": "Ninh Thuan vineyard",
+    "category": "attraction",
+    "tags": [],
+    "description": "These are famous vineyards with many grape products produced here",
+    "city": "Ninh Thuan",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_060",
+    "name": "Ba Be Lake",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "lake"
+    ],
+    "description": "This is a large saltwater lake in Ninh Thuan, home to many rare aquatic species",
+    "city": "Ninh Thuan",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_061",
+    "name": "Hung Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical"
+    ],
+    "description": "It is a special national historical relic site, where the Hung Kings - the first founders of the Vietnamese people are worshiped.",
+    "city": "Phu Tho",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_062",
+    "name": "Hung Lo ancient village",
+    "category": "historical",
+    "tags": [
+      "rural",
+      "historical"
+    ],
+    "description": "Famous for ancient houses hundreds of years old, and traditional crafts such as making banh chung and banh giay.",
+    "city": "Phu Tho",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_063",
+    "name": "Green Pearl Island",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "relax",
+      "nature",
+      "park"
+    ],
+    "description": "It is an eco-tourism area combined with a resort, with fresh natural landscapes, water parks, thrilling games and hot springs.",
+    "city": "Phu Tho",
+    "price_level": "cheap",
+    "rating": 4.6,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_064",
+    "name": "Xuan Son National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "forest"
+    ],
+    "description": "It is one of the largest nature reserves in the North, featuring a tropical forest ecosystem and rich flora and fauna.",
+    "city": "Phu Tho",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_065",
+    "name": "Thanh Thuy hot spring",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature"
+    ],
+    "description": "This is an area with modern resort and treatment services.",
+    "city": "Phu Tho",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_066",
+    "name": "Ganh Da Dia",
+    "category": "attraction",
+    "tags": [],
+    "description": "A unique natural wonder, Ganh Da Dia features basalt columns stacked like saucers.",
+    "city": "Phu Yen",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_067",
+    "name": "Hon Yen",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "nature",
+      "island"
+    ],
+    "description": "It is a small island with pristine landscape, highlighted by beautiful coral reefs.",
+    "city": "Phu Yen",
+    "price_level": "moderate",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_068",
+    "name": "Dai Lanh lighthouse",
+    "category": "attraction",
+    "tags": [],
+    "description": "It is the easternmost point of Vietnam, the place to welcome the first sunrise on the mainland",
+    "city": "Phu Yen",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_069",
+    "name": "Triem Duc hot spring",
+    "category": "historical",
+    "tags": [
+      "historical",
+      "nature"
+    ],
+    "description": "It is an interesting destination to relax and soak in warm mineral water.",
+    "city": "Phu Yen",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_070",
+    "name": "Nhan Tower",
+    "category": "historical",
+    "tags": [
+      "urban",
+      "mountain",
+      "historical"
+    ],
+    "description": "Nhan Tower, located on Nhan Mountain in Tuy Hoa city, is an ancient and sacred Cham architectural work.",
+    "city": "Phu Yen",
+    "price_level": "moderate",
+    "rating": 4.4,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_071",
+    "name": "Phong Nha Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure"
+    ],
+    "description": "Phong Nha - Ke Bang, recognized by UNESCO as a World Natural Heritage.",
+    "city": "Quang Binh",
+    "price_level": "cheap",
+    "rating": 3.5,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_072",
+    "name": "Da Nhay Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "It is a prominent place with uniquely shaped rocks on the beach.",
+    "city": "Quang Binh",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_073",
+    "name": "Temple of Holy Mother Lieu Hanh",
+    "category": "attraction",
+    "tags": [
+      "relax"
+    ],
+    "description": "It is a sacred place to worship saints in Vietnamese folk beliefs.",
+    "city": "Quang Binh",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_074",
+    "name": "Memorial house of General Vo Nguyen Giap",
+    "category": "attraction",
+    "tags": [],
+    "description": "It is a place to store memorabilia associated with General Vo Nguyen Giap's childhood.",
+    "city": "Quang Binh",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_075",
+    "name": "Chay River",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "river",
+      "cave"
+    ],
+    "description": "An ideal destination for adventure lovers, Chay River combines the beauty of rivers and caves.",
+    "city": "Quang Binh",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_076",
+    "name": "Hoi An ancient town",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "rural",
+      "historical",
+      "river"
+    ],
+    "description": "The houses are ancient and have unique architecture such as: houses with stone roofs, but the golden walls bring beauty.\npeaceful. In particular, you can relax and walk along the narrow paths around the Hoai River",
+    "city": "Quang Nam",
+    "price_level": "cheap",
+    "rating": 4.5,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_077",
+    "name": "An Bang Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "Possessing a peaceful, pristine beauty with golden beaches, blue sea, extremely cool and fresh climate.",
+    "city": "Quang Nam",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_078",
+    "name": "Chien Dan Tower",
+    "category": "attraction",
+    "tags": [
+      "urban"
+    ],
+    "description": "Understand more about Champa culture, own a house displaying typical sculptures, countless rare items",
+    "city": "Quang Nam",
+    "price_level": "moderate",
+    "rating": 3.5,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_079",
+    "name": "Cinnamon Peak",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "mountain",
+      "nature",
+      "waterfall"
+    ],
+    "description": "With an altitude of 1400km, considered the most beautiful mountain of the majestic Truong Son, you can immerse yourself in the majestic landscape.\nbeautiful nature. You feel like you are lost in a fairyland, extremely peaceful and romantic. Especially along the way to reach Que Peak, you will in turn own beautiful pictures at Azut heaven gate, Ra-ai waterfall or Co Tu community.",
+    "city": "Quang Nam",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_080",
+    "name": "My Son Sanctuary",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "A valley with a diameter of 2km, this place is surrounded by mountains and hills, extremely hidden. This location used to be a place for worshiping \nChampa dynasty. Discover so many precious heritages when coming here.",
+    "city": "Quang Nam",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_081",
+    "name": "Thien An Mountain",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "It is a mountain that has long been famous for its majestic scenery and brings an extremely great historical value, with poetic beauty.\nThe dreaminess and gentleness it brings is a special feature that attracts tourists every year.",
+    "city": "Quang Ngai",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_082",
+    "name": "My Khe Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "One of the most attractive beaches on the planet, there are many beautiful sea view hotels suitable for enjoying your vacation.",
+    "city": "Quang Ngai",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_083",
+    "name": "Sa Huynh salt field",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "forest"
+    ],
+    "description": "The most important salt pan in our beloved Central region, white salt flats, coming here you will experience daily activities.\nof the people here, promises to bring you experiences very different from tourist activities such as going to the forest or going to the sea.",
+    "city": "Quang Ngai",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_084",
+    "name": "White Falls",
+    "category": "nature",
+    "tags": [
+      "mountain",
+      "nature",
+      "forest",
+      "river",
+      "waterfall"
+    ],
+    "description": "The scenery here is impressive with pristine, fresh mountains and forests, waterfalls pouring down in the middle of a landscape surrounded by countless trees, rivers and streams with white foam.",
+    "city": "Quang Ngai",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_085",
+    "name": "Vi O Lach Pass",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "Located more than 1,300m above sea level, the winding roads along with the poetic atmosphere always bring beautiful beauty and the rows of green grass growing on both sides of the road when visitors go up the pass are the most impressive and interesting features.",
+    "city": "Quang Ngai",
+    "price_level": "cheap",
+    "rating": 3.5,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_086",
+    "name": "Ha Long Bay",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "urban",
+      "cave",
+      "island"
+    ],
+    "description": "It is one of the world natural heritage sites recognized by UNESCO. With an area of 1553km2, nearly 2000 large and small islands, \nHa Long Bay is blessed by nature with a system of caves and rocky islands that are both diverse and beautiful.",
+    "city": "Quang Ninh",
+    "price_level": "moderate",
+    "rating": 3.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_087",
+    "name": "Bai Chay Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "Bai Chay always attracts many tourists to visit, experience and swim. The beach also has additional sea sports activities such as canoeing, parasailing or inflatable houses so that visitors can enjoy more advanced services.",
+    "city": "Quang Ninh",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_088",
+    "name": "Ha Long Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "park"
+    ],
+    "description": "When traveling to Ha Long, you definitely should not miss Sun World Halong Park - a famous entertainment complex for all ages. If you have ever been to VinWonders, Ha Long Park is also a similar paradise, but much more bustling.",
+    "city": "Quang Ninh",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_089",
+    "name": "Cua Van fishing village",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "rural",
+      "mountain"
+    ],
+    "description": "Not only can visitors enjoy the quiet and peaceful space here, visitors also have more knowledge about the cultural and daily life of fishermen. The fishermen here are extremely friendly and hospitable. Passengers can row basket boats, fish, squid fishing... to better understand the life of fishermen.",
+    "city": "Quang Ninh",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_090",
+    "name": "Thien Cung Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "cave"
+    ],
+    "description": "With a complex, multi-layered structure, the stalactites here have many strange shapes. This cave has been invested\n Full lighting system. Images of birds, flowers, and images of people's daily activities are carved inside the cave. Many archaeological vestiges have been found that demonstrate important historical values ​​through the ages.",
+    "city": "Quang Ninh",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_091",
+    "name": "Truong Son National Martyrs Cemetery",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "The place marks the losses, demonstrating the most brutal things of foreign invaders. This place has gone down in history, a symbol of tragedy and heroism of patriots who put independence and national destiny first.",
+    "city": "Quang Tri",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_092",
+    "name": "Vinh Moc Tunnels",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "This project is deep underground, dug by people during the resistance war against the US. The tunnels include many areas such as schools, logistics warehouses, hospitals, military areas and family areas.",
+    "city": "Quang Tri",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_093",
+    "name": "Cua Tung Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "Coming to this beach in the summer, you will see the peaceful beauty of blue sea and white sand. The quiet scene at sunset makes many hearts fascinated.",
+    "city": "Quang Tri",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_094",
+    "name": "Vien Thao Mien flower hill",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "Stands out with its brilliant flower fields that bloom all year round. The weather here is extremely cool so growing flowers is quite convenient. Quang Tri tourist destination has enough roses, daisies, and yellow mustard flowers. In particular, if you love buckwheat flowers, you cannot miss Mien Vien Thao flowers.",
+    "city": "Quang Tri",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_095",
+    "name": "Cu Vo Peak",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "Very suitable for groups of friends going on trips. Extremely attractive to young people who come to hunt clouds. In the early morning, standing at the mountain, white clouds open before your eyes. The moment the sunlight shines down is truly beautiful.",
+    "city": "Quang Tri",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_096",
+    "name": "Nga Nam floating market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food"
+    ],
+    "description": "Selling all kinds of items from food to necessities. Most special of all, we cannot help but mention the boats/boats filled with tropical fruits \ntypical zones depending on the season.",
+    "city": "Soc Trang",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_097",
+    "name": "Bat Pagoda",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "temple",
+      "pagoda"
+    ],
+    "description": "The architecture of this pagoda is considered typical of Khmer Theravada Buddhism. The pagoda was built in the 16th century but up to now the entire building is still in good condition and is still an important religious place for people in the region. The special thing when coming here is that visitors will see thousands of quite large bats hanging on trees in the temple grounds as if they were familiar with this place.",
+    "city": "Soc Trang",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_098",
+    "name": "Tan Long stork garden",
+    "category": "nature",
+    "tags": [
+      "nature"
+    ],
+    "description": "With pristine natural scenery and diverse flora and fauna ecosystem. Especially rare stork species.",
+    "city": "Soc Trang",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_099",
+    "name": "Lake Be Beach",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "beach",
+      "lake"
+    ],
+    "description": "This area was formed by alluvial deposits and seawater intrusion, creating a large low-lying lake. Beach\n This lake is also blessed by nature with a kilometer long white sand bank. Because tourism has not been exploited yet, the beach still retains its wild and natural features, bringing peace and freedom to visitors.",
+    "city": "Soc Trang",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_100",
+    "name": "Som Rong Pagoda",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "temple",
+      "pagoda"
+    ],
+    "description": "It is a particularly important place not only due to religious beliefs, but also because this temple has a large library with more than 1,500 books, serving children and relatives in this place. The stupa is covered in a mysterious gray color instead of the usual yellow; The reclining Buddha statue is more than 63 meters long, about 28 meters above the ground, plus a height of 22 meters, making the statue extremely majestic; Som Rong Pagoda is often chosen by many tourists to visit",
+    "city": "Soc Trang",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_101",
+    "name": "Moc Chau",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "trekking"
+    ],
+    "description": "with specialties being the seasons of banyan flowers, cherry blossoms, plum blossoms, yellow mustard flowers... filled with fragrance. Moc Chau is also the most classic name when it comes to tourism in the Northwest region with its picturesque trekking routes",
+    "city": "Son La",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_102",
+    "name": "Ngu Dong Ban Ong",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "cave"
+    ],
+    "description": "This is a system of 5 caves that was first discovered by local people in 2006. Because there are not many tourist services here, the caves still retain their wild and mysterious beauty. The inside of the cave is dotted with giant stalactites with unique shapes.",
+    "city": "Son La",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_103",
+    "name": "Pine forest in Ang village",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "nature",
+      "forest",
+      "village"
+    ],
+    "description": "The forest has a total area of ​​up to 43 hectares with fresh air and rolling green pine scenery that looks very cool. \nYou can experience camping overnight in the pine forest of Ang village to enjoy the cold air and enjoy peace.",
+    "city": "Son La",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_104",
+    "name": "Dai Yem Waterfall",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "waterfall"
+    ],
+    "description": "The waterfall is more than 100m high, divided into 2 main floors. The first floor has a total of 9 steps, the second floor has 5 steps. From April to October every year, when a lot of water flows in, it creates strong streams, creating beautiful white foam.",
+    "city": "Son La",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_105",
+    "name": "Ta Xua peak",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "From the top, you can admire the surrounding majestic scenery with strips of green terraced fields, looming in the distance is the roof of kitchen smoke leaves, your hands can touch the clouds and sky.",
+    "city": "Son La",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_106",
+    "name": "Ba Den Mountain",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "Ba Den Mountain is also known as the \"roof\" of the South with the highest peak of 986 m, an area of ​​24 km². If you love the immense beauty of heaven and earth and want to admire the beautiful scenery from above, you can choose to travel by cable car from the foot of the mountain to the top of the mountain.",
+    "city": "Tay Ninh",
+    "price_level": "cheap",
+    "rating": 3.5,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_107",
+    "name": "Tay Ninh Holy See",
+    "category": "attraction",
+    "tags": [],
+    "description": "The Holy See is a tourist destination in Tay Ninh for backpackers who want to learn about the typical culture and architecture here. The design style of the building is extremely unique, the details are intricately carved and bring many symbols to the culture of this land.",
+    "city": "Tay Ninh",
+    "price_level": "cheap",
+    "rating": 3.6,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_108",
+    "name": "Dau Tieng Lake",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "mountain",
+      "nature",
+      "lake"
+    ],
+    "description": "Dau Tieng Lake was built with the purpose of providing water for daily life. In addition, this place is also an extremely hot tourist destination with a peaceful, poetic landscape like in a fairy tale. You will be immersed in the beautiful natural scenery with charming mountains, gentle clouds and sky, and the immense blue of the water and sky. The undulating rocky rapids around the oasis on the lake are a stopping point and also a beautiful background for you to live virtually.",
+    "city": "Tay Ninh",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_109",
+    "name": "Chop Mat Tower",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "urban",
+      "historical"
+    ],
+    "description": "This tower has a very special architecture that is built gradually smaller upwards but does not have a top. The Oc Eo people are very skillful and intelligent when building projects; they do not use any cement as a binding material. When coming here to visit, visitors can comfortably check in in an extremely peaceful and nostalgic space of this Tay Ninh tourist destination.",
+    "city": "Tay Ninh",
+    "price_level": "moderate",
+    "rating": 4.3,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_110",
+    "name": "Lo Go - Xa Mat National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "forest",
+      "river"
+    ],
+    "description": "Coming here, visitors can see rare species of animals and plants that you rarely have the opportunity to see in real life. There are many rare animal species listed in the red book. In addition, visitors can also experience many activities such as cycling through the forest, exploring the forest by river,...",
+    "city": "Tay Ninh",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_111",
+    "name": "Keo Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "pagoda"
+    ],
+    "description": "Keo Pagoda in Thai Binh is ranked as the most beautiful ancient pagoda in Vietnam. The pagoda was built according to ancient architecture from the Le Dynasty. For that reason, Keo Pagoda is considered one of the check-in places in Thai Binh that you must definitely visit.",
+    "city": "Hoa Binh",
+    "price_level": "cheap",
+    "rating": 4.5,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_112",
+    "name": "Dong Chau Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "urban",
+      "beach"
+    ],
+    "description": "If you want to keep the wild beauty intact, come to Dong Chau beach. With a 5km stretch of sandy beach embracing the vast, green sea, it has become a unique tourist destination in the North Central region. The watchtowers undulating on the water create a truly charming scene.",
+    "city": "Hoa Binh",
+    "price_level": "moderate",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_113",
+    "name": "Con Den Beach",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "forest"
+    ],
+    "description": "The most beautiful image of the sea and the wildness of the primeval forest. In particular, at dawn and dusk, the beauty here becomes strangely charming, this is also the moment most sought after by many people. With the fresh beauty from the air to the clear blue sea and white sand, this is truly a great background.",
+    "city": "Hoa Binh",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_114",
+    "name": "Bac Trach Church",
+    "category": "attraction",
+    "tags": [],
+    "description": "This is one of the largest churches in Vietnam today with ornate patterns following Roman architecture. \nWith this beauty, Bac Trach Church is definitely a unique Thai Binh check-in place for you.",
+    "city": "Hoa Binh",
+    "price_level": "cheap",
+    "rating": 3.6,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_115",
+    "name": "Hoi mat weaving village",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "village"
+    ],
+    "description": "Famous for traditional craft villages nearly hundreds of years old.  You will also learn more about the simple life of the people in the village. And you will be introduced to the process of creating a traditional mat, from harvesting and processing sedge to the finished product. These experiences will be an unforgettable memory of your trip.",
+    "city": "Hoa Binh",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_116",
+    "name": "Nui Coc Lake",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "relax",
+      "nature",
+      "temple",
+      "cave",
+      "pagoda"
+    ],
+    "description": "Visitors can experience riding a basket boat, explore the Fairy World and Underworld cave, Ba Cay Pine cave, visit the Causal Theory complex - Golden Thac Thieng Pagoda, the largest Buddhist temple in the North with a Guniess record.",
+    "city": "Thai Nguyen",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_117",
+    "name": "Tan Cuong tea hill",
+    "category": "nature",
+    "tags": [
+      "mountain",
+      "nature"
+    ],
+    "description": "One of the famous Thai Nguyen tourist destinations that certainly cannot be forgotten is Tan Cuong tea hill. This is a place that attracts the attention of many tourists thanks to its beautiful natural landscape, covered with a cool green color. Anyone who comes to Tan Cuong tea hill to travel can feel the freshness deep within their soul, helping you feel more comfortable than ever.",
+    "city": "Thai Nguyen",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_118",
+    "name": "Ho Mai Mieu",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "mountain",
+      "nature",
+      "temple",
+      "lake"
+    ],
+    "description": "This place is likened to an extremely impressive watercolor painting with charming mountain scenery that captivates people's hearts. Temple of Literature Lake stands out with its wide lake surface, clear lake water combined with the surrounding majestic landscape, creating a more poetic and attractive scene than ever. Just because there has not been a strong focus on tourism exploitation, Vai Mieu Lake has kept its wild and lyrical beauty intact, making many people fascinated.",
+    "city": "Thai Nguyen",
+    "price_level": "cheap",
+    "rating": 4.5,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_119",
+    "name": "Linh Son Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "relax",
+      "mountain",
+      "historical",
+      "temple",
+      "cave"
+    ],
+    "description": "Linh Son Cave in Thai Nguyen province has a spacious area, in the summer it is very cool and in the winter it will be extremely warm. The cave is located in the middle of a large rocky mountain, so the people here chose to build a Buddhist temple. Every full moon and first day, people from Thai Nguyen and many other neighboring provinces will come here to offer incense to Buddha very bustlingly.",
+    "city": "Thai Nguyen",
+    "price_level": "cheap",
+    "rating": 4.6,
+    "popularity": 90,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_120",
+    "name": "Bitter Dat Waterfall",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "urban",
+      "mountain",
+      "nature",
+      "forest"
+    ],
+    "description": "You will feel like you are stepping into a new space, completely away from the hustle and bustle of the city. The majestic mountains and forests, the cool blue water are impressive things that make you feel truly relaxed and want to enjoy this rare peace forever.",
+    "city": "Thai Nguyen",
+    "price_level": "moderate",
+    "rating": 4.0,
+    "popularity": 90,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_121",
+    "name": "Suoi Hieu",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "forest"
+    ],
+    "description": "Located between the lush green forest and peaceful rice fields, Hieu stream flows quietly every day, creating an extremely poetic check-in location in Thanh Hoa. Like a rose with thorns, the stream has a captivating beauty but has the ability to temporarily petrify whatever falls down due to its very high lime content.",
+    "city": "Thanh Hoa",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_122",
+    "name": "Pu Luong terraced fields",
+    "category": "attraction",
+    "tags": [],
+    "description": "Coming to Thanh Hoa without setting foot in the Pu Luong terraced fields to check-in is a huge mistake. Pu Luong terraced fields are both the pride of our people and a super hot check-in location in Thanh Hoa.",
+    "city": "Thanh Hoa",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_123",
+    "name": "Cam Thuy God Fish Stream",
+    "category": "attraction",
+    "tags": [],
+    "description": "Suoi Ca Than is a place associated with the beliefs of the Muong ethnic people, because this place has a particularly dense population. Currently, Fish Stream has also become one of the unique and famous check-in locations in Thanh Hoa that you can add to your itinerary.",
+    "city": "Thanh Hoa",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_124",
+    "name": "Ben En National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "mountain",
+      "nature",
+      "forest",
+      "cave",
+      "park"
+    ],
+    "description": "is home to many rare species of flora and fauna such as green lim, incense burner, cypress... black bear, land phoenix... Ben En National Park is considered the green lung of Thanh Hoa because of its endless green forests. And mixed in with that green color are caves and rugged high rocky mountains that have created the most unique and poised check-in locations in Thanh Hoa.",
+    "city": "Thanh Hoa",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_125",
+    "name": "Ho Dynasty Citadel",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "urban",
+      "nature",
+      "lake",
+      "cave"
+    ],
+    "description": "Peach and is made up of countless stalactite shapes. Deep inside the cave there is also a small lake creating an extremely poetic picture.",
+    "city": "Thanh Hoa",
+    "price_level": "moderate",
+    "rating": 4.3,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_126",
+    "name": "Hue Citadel",
+    "category": "historical",
+    "tags": [
+      "historical",
+      "river"
+    ],
+    "description": "Located on the North bank of the romantic and lyrical Perfume River, Hue Citadel has unique royal art architecture and moat gardens. It is also the administrative and political center of the Nguyen Dynasty and the royal king's living place in the past.",
+    "city": "Thua Thien Hue",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_127",
+    "name": "Thien Mu Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "urban",
+      "mountain",
+      "historical",
+      "river",
+      "pagoda"
+    ],
+    "description": "This pagoda is a famous Hue attraction and indispensable in every tourist's journey to explore Hue. About 5km west of Hue city center, with another name is Linh Mu pagoda, the pagoda is located on Ha Khe hill, overlooking the romantic Perfume River. The pagoda has a long-standing ancient beauty with spacious grounds, peaceful scenery and especially the 7-storey Phuoc Duyen tower in the front yard of the pagoda, which is considered a typical symbol of Hue city.",
+    "city": "Thua Thien Hue",
+    "price_level": "moderate",
+    "rating": 4.0,
+    "popularity": 90,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_128",
+    "name": "Tomb of Khai Dinh",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "When talking about Hue, people cannot help but mention the mausoleums of the Nguyen Dynasty. Your tour will be more interesting if you do not visit the Tomb of Khai Dinh. Visitors will be able to admire the pinnacle of the art of creating very sophisticated porcelain and glass by the hands of ancient artisans, because. It can be said that Khai Dinh mausoleum is a unique combination of sophisticated East and West architecture.",
+    "city": "Thua Thien Hue",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_129",
+    "name": "Minh Mang Tomb",
+    "category": "historical",
+    "tags": [
+      "mountain",
+      "historical",
+      "river"
+    ],
+    "description": "Minh Mang Tomb, also known as Hieu Lang, is located on Cam Khe mountain, near Bang Lang junction, where the Huu Trach and Ta Trach streams converge to form the Perfume River, 12 km from the ancient capital of Hue. Minh Mang Tomb was built from 1840 to 1843 when it was completed, mobilizing up to ten thousand workers and soldiers.",
+    "city": "Thua Thien Hue",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_130",
+    "name": "Trang Tien Bridge",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "urban",
+      "river"
+    ],
+    "description": "One of the oldest bridges in Hue and has become a tourism symbol of Hue is none other than the Trang Tien Bridge spanning the romantic Perfume River and is also a beautiful \"muse\" of many domestic writers and artists.",
+    "city": "Thua Thien Hue",
+    "price_level": "moderate",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_131",
+    "name": "Tan Thanh Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "With clear blue water and white sand, Tan Thanh beach possesses a very unique beauty with a black sand beach more than 7km long. Along the beach is a typical blue wharf and nets set up by people to catch fish, clams...",
+    "city": "Tien Giang",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_132",
+    "name": "My Thuan Bridge",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "mountain"
+    ],
+    "description": "After 3 years of construction, My Thuan Bridge was inaugurated in 2000 and is the first cable-stayed bridge in Vietnam. With its massive and unique architecture, the bridge has become a check-in location for many generations. Whether you travel by motorbike or car, you can arrange a schedule to pass by here and admire the beauty of the bridge. In particular, when night falls, the bridge will become more prominent with its lighting and decoration system!",
+    "city": "Tien Giang",
+    "price_level": "moderate",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_133",
+    "name": "Cai Be Church",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "nature",
+      "river"
+    ],
+    "description": "Possessing typical Roman architecture, Cai Be church not only plays an important role in the religious life of the people here but is also an attractive tourist destination in Tien Giang. The most prominent feature of Cai Be church is the bell tower, considered the tallest in the Mekong Delta region. In addition, the front of the church faces the confluence of Cai Be River as if embracing the whole world. The campus is arranged with many trees, providing a beautiful landscape",
+    "city": "Tien Giang",
+    "price_level": "moderate",
+    "rating": 4.4,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_134",
+    "name": "Linh Vu Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "mountain",
+      "historical",
+      "pagoda"
+    ],
+    "description": "This is one of the pagodas with the oldest history in Tien Giang province. More specifically, this place is associated with the story of King Gia Long's escape from death that has been passed down through many generations. This is one of the pagodas with the oldest history in Tien Giang province. More specifically, this place is associated with the story of King Gia Long's escape from death that has been passed down through many generations.",
+    "city": "Tien Giang",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_135",
+    "name": "Holy See Church",
+    "category": "historical",
+    "tags": [
+      "urban",
+      "historical"
+    ],
+    "description": "The church is located at 32 Hung Vuong Street, Ward 7, City. My Tho. More than 100 years old and undergoing many restorations, Tien Giang Cathedral still retains its ancient beauty with sophisticated motifs and typical Greek revival architecture.",
+    "city": "Tien Giang",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_136",
+    "name": "Ben Thanh Market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food",
+      "market"
+    ],
+    "description": "This is one of the most famous tourist destinations in Ho Chi Minh City, located right in the city center and is always bustling with people coming in and out to buy and sell, with tourists checking in every day. Ben Thanh Market sells all kinds of items from food, fabrics, clothes, household appliances, Saigon specialties,... and most importantly, the extremely attractive food court at the market and impressive check-in corners will make you always want to stay here for a long time.",
+    "city": "Ho Chi Minh City",
+    "price_level": "moderate",
+    "rating": 3.7,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_137",
+    "name": "Doc Lap Palace",
+    "category": "attraction",
+    "tags": [],
+    "description": "This place was recognized as one of Vietnam's 10 special national monuments in 2009. Independence Palace is a place to display and store valuable images and artifacts from the 19th century according to different themes. In particular, this place still retains the original interior of important rooms such as the stateroom, cabinet room,...",
+    "city": "Ho Chi Minh City",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_138",
+    "name": "Notre Dame Cathedral",
+    "category": "attraction",
+    "tags": [
+      "urban"
+    ],
+    "description": "Also located right in the center of District 1, Notre Dame Cathedral is a tourist destination in Ho Chi Minh City that you must definitely visit. Notre Dame Cathedral is a unique architectural work with European style, a place to live and organize Masses for Catholics in Saigon.",
+    "city": "Ho Chi Minh City",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_139",
+    "name": "Vietnam History Museum",
+    "category": "historical",
+    "tags": [
+      "urban",
+      "historical",
+      "museum"
+    ],
+    "description": "The Vietnam History Museum was built and operated since the early 20th century, and is a place to store and preserve images and antiques from early times to the present. The Vietnam History Museum attracts most tourists who love history and architecture that blend two unique Asian and European styles.",
+    "city": "Ho Chi Minh City",
+    "price_level": "moderate",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_140",
+    "name": "Cu Chi Tunnels",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "This place is a special national monument, associated with the history of the Vietnam War, used to be an important base and also a common living place including infirmary, kitchen, workplace, etc. of our army in the resistance war against invaders, to regain territorial integrity. Besides, inside the Cu Chi tunnels, their lives are also recreated through very realistic and impressive models of people and animals. This place is one of the attractive destinations of Ho Chi Minh tours that you should not miss on your trip.",
+    "city": "Ho Chi Minh City",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_141",
+    "name": "Tra Su Melaleuca Forest",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "forest"
+    ],
+    "description": "The most beautiful and famous Melaleuca forest in Vietnam",
+    "city": "An Giang",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_142",
+    "name": "Ho Soai So",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "lake"
+    ],
+    "description": "The largest artificial lake in An Giang",
+    "city": "An Giang",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_143",
+    "name": "Lau Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple"
+    ],
+    "description": "It is a temple with a history of more than 130 years",
+    "city": "An Giang",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_144",
+    "name": "Ba Chua Xu Temple",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "temple"
+    ],
+    "description": "Ba Chua Xu Temple is one of the most famous spiritual places in An Giang",
+    "city": "An Giang",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_145",
+    "name": "Truc Lam Zen Monastery",
+    "category": "attraction",
+    "tags": [],
+    "description": "It is an extremely attractive spiritual and tourist destination in the West",
+    "city": "An Giang",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_146",
+    "name": "Dinh Mountain Vung Tau",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "Dinh Mountain stands out with steep cliffs, creating a majestic natural picture",
+    "city": "Ba Ria - Vung Tau",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_147",
+    "name": "Back Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "Back Beach is known as one of the largest and most beautiful beaches in Vietnam",
+    "city": "Ba Ria - Vung Tau",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_148",
+    "name": "Ho Tram",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "It is one of the most beautiful beaches in the Southern region",
+    "city": "Ba Ria - Vung Tau",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_149",
+    "name": "Suoi Oh",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "beach"
+    ],
+    "description": "This place is famous for its rare beauty, with both freshwater springs and saltwater beaches blending together in the same area.",
+    "city": "Ba Ria - Vung Tau",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_150",
+    "name": "Con Dao Vung Tau",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "An archipelago famous for its pristine natural beauty, but also rich in history with relics associated with the war period.",
+    "city": "Ba Ria - Vung Tau",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_151",
+    "name": "Bo Da ancient pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "pagoda"
+    ],
+    "description": "It is one of the most famous and unique ancient pagodas in the Kinh Bac region",
+    "city": "Bac Giang",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_152",
+    "name": "Thum Thum Waterfall",
+    "category": "nature",
+    "tags": [
+      "nature"
+    ],
+    "description": "It is a wild and beautiful destination in the heart of nature",
+    "city": "Bac Giang",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_153",
+    "name": "Cam Son Lake",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "lake"
+    ],
+    "description": "It is one of the largest freshwater lakes in Northern Vietnam",
+    "city": "Bac Giang",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_154",
+    "name": "Trung Temple",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "temple"
+    ],
+    "description": "This is one of the three main temples worshiping the Hung Kings and is associated with the Vietnamese nation's founding legend",
+    "city": "Bac Giang",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_155",
+    "name": "Ho Khuon Than",
+    "category": "attraction",
+    "tags": [],
+    "description": "It is an ideal destination with poetic natural beauty and fresh air",
+    "city": "Bac Giang",
+    "price_level": "cheap",
+    "rating": 3.5,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_156",
+    "name": "Ba Be Lake",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "lake"
+    ],
+    "description": "Ba Be Lake is the largest freshwater lake in Vietnam",
+    "city": "Bac Kan",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_157",
+    "name": "Puong Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "cave"
+    ],
+    "description": "It is a beautiful cave with magnificent stalactites",
+    "city": "Bac Kan",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_158",
+    "name": "Dau Dang Waterfall",
+    "category": "nature",
+    "tags": [
+      "nature"
+    ],
+    "description": "This is an ideal eco-tourism destination.",
+    "city": "Bac Kan",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_159",
+    "name": "Pac Ngoi village",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "village"
+    ],
+    "description": "This is a village of the Tay people, outstanding with its traditional culture",
+    "city": "Bac Kan",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_160",
+    "name": "Fairy Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "cave"
+    ],
+    "description": "This is a magnificent cave with stalactites of diverse shapes, associated with the legend of a beautiful fairy.",
+    "city": "Bac Kan",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_161",
+    "name": "Quan De Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple"
+    ],
+    "description": "It is an ancient temple, worshiping Quan Cong - a famous general in Chinese history",
+    "city": "Bac Lieu",
+    "price_level": "cheap",
+    "rating": 4.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_162",
+    "name": "Bac Lieu Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "Bac Lieu Beach has a long coastline and is a wonderful tourist resort destination in the Southwest region",
+    "city": "Bac Lieu",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_163",
+    "name": "Ancient Mango Tree",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "This is an old mango tree, considered a symbol of longevity and prosperity.",
+    "city": "Bac Lieu",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_164",
+    "name": "Bac Lieu Prince's House",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "This house used to be the residence of the Prince of Bac Lieu, a famous figure in history.",
+    "city": "Bac Lieu",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_165",
+    "name": "Thai Duong Clock",
+    "category": "attraction",
+    "tags": [],
+    "description": "Thai Duong Clock is a special architectural work in Hanoi, carrying symbolic meanings of time and the universe.",
+    "city": "Bac Lieu",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_166",
+    "name": "Phat Tich Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple"
+    ],
+    "description": "This is one of the ancient temples, associated with the history of Vietnamese Buddhism.",
+    "city": "Bac Ninh",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_167",
+    "name": "But Thap Pagoda",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "pagoda"
+    ],
+    "description": "But Thap Pagoda located in Bac Ninh, is a famous pagoda with unique architecture and Guanyin Buddha statue.",
+    "city": "Bac Ninh",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_168",
+    "name": "Dong Ho painting village",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "village"
+    ],
+    "description": "Dong Ho Painting Village in Bac Ninh is a famous place for producing folk paintings, with paintings reflecting Vietnamese rural life.",
+    "city": "Bac Ninh",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_169",
+    "name": "Temple of Lady Kho",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "temple"
+    ],
+    "description": "Ba Chua Kho Temple in Bac Ninh is a place to worship Ba Chua Kho, one of the most sacred worshiped deities in Vietnam.",
+    "city": "Bac Ninh",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_170",
+    "name": "Ninh Hiep Market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food",
+      "market"
+    ],
+    "description": "Ninh Hiep Market is one of the most famous markets in the North, specializing in trading fabric and clothing items.",
+    "city": "Bac Ninh",
+    "price_level": "moderate",
+    "rating": 3.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_171",
+    "name": "Con Phung tourist area",
+    "category": "attraction",
+    "tags": [
+      "river"
+    ],
+    "description": "Con Phung is located in Ben Tre, notable for its lush river scenery, coconut gardens and eco-tourism activities.",
+    "city": "Ben Tre",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_172",
+    "name": "Nguyen Dinh Chieu's mausoleum area",
+    "category": "attraction",
+    "tags": [],
+    "description": "Nguyen Dinh Chieu's mausoleum in Ben Tre is the resting place of the famous poet and writer.",
+    "city": "Ben Tre",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_173",
+    "name": "Tuyen Linh Pagoda",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "pagoda"
+    ],
+    "description": "Tuyen Linh Pagoda in Quang Ninh is a famous pagoda with peaceful landscape and unique architecture.",
+    "city": "Ben Tre",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_174",
+    "name": "Roman Church",
+    "category": "nature",
+    "tags": [
+      "rural"
+    ],
+    "description": "The Roman Church in Hanoi is a Western architectural work, outstanding with its characteristic Gothic style.",
+    "city": "Ben Tre",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_175",
+    "name": "Ba Ngoi garden eco-tourism area",
+    "category": "attraction",
+    "tags": [
+      "relax"
+    ],
+    "description": "It is a prominent eco-tourism area in Ben Tre, attracting tourists with its green space, pristine nature and attractive entertainment activities.",
+    "city": "Ben Tre",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_176",
+    "name": "Quy Nhon beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "Quy Nhon beach is one of the beautiful beaches of the Central region, famous for its fine white sand and clear blue sea water.",
+    "city": "Binh Dinh",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_177",
+    "name": "Bien Ky Co",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "Ky Co Beach belongs to Quy Nhon, famous for its pristine beach, clear blue water and beautiful coral reefs",
+    "city": "Binh Dinh",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_178",
+    "name": "Cu Lao Xanh",
+    "category": "attraction",
+    "tags": [
+      "island"
+    ],
+    "description": "Cu Lao Xanh is a beautiful and pristine island in Binh Dinh, with clear blue water and nature that has not been exploited much.",
+    "city": "Binh Dinh",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_179",
+    "name": "Dam Thi Nai",
+    "category": "attraction",
+    "tags": [
+      "relax"
+    ],
+    "description": "Thi Nai Lagoon in Binh Dinh is one of the largest lagoons in the Central region, standing out with its quiet natural scenery",
+    "city": "Binh Dinh",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_180",
+    "name": "Hon Kho",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "urban",
+      "beach",
+      "island"
+    ],
+    "description": "Hon Kho is a small island located near Quy Nhon, famous for its beautiful beaches and clear water, attracting tourists to visit and swim.",
+    "city": "Binh Dinh",
+    "price_level": "moderate",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_181",
+    "name": "Tibetan Temple",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "temple"
+    ],
+    "description": "Tibetan Temple is a famous temple in Binh Duong, attracting tourists with its unique architecture and pure space.",
+    "city": "Binh Duong",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_182",
+    "name": "Dai Nam tourist area",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "park"
+    ],
+    "description": "Dai Nam tourist area is a complex including parks, amusement parks, and other attractions, prominent in Binh Duong, attracting many tourists to visit and entertain.",
+    "city": "Binh Duong",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_183",
+    "name": "Dau Tieng Lake",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "lake"
+    ],
+    "description": "Dau Tieng Lake is the largest artificial lake in Binh Duong, famous for its pristine natural landscape and is an ideal place for fishing and yachting activities.",
+    "city": "Binh Duong",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_184",
+    "name": "Binh Duong New City Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "relax",
+      "urban",
+      "park"
+    ],
+    "description": "Binh Duong New City Park is a green space, an ideal place for sports activities, walking and relaxation.",
+    "city": "Binh Duong",
+    "price_level": "moderate",
+    "rating": 3.8,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_185",
+    "name": "Chau Thoi Pagoda",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "pagoda"
+    ],
+    "description": "Chau Thoi Pagoda is a famous pagoda in Binh Duong, imbued with Buddhist culture and a peaceful setting, suitable for spiritual sightseeing activities.",
+    "city": "Binh Duong",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_186",
+    "name": "Ba Ra Mountain",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "The highest mountain in Binh Phuoc, there is a cable car leading to the top",
+    "city": "Binh Phuoc",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_187",
+    "name": "Bu Lach grassland",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "forest",
+      "lake"
+    ],
+    "description": "A large, green grassland, surrounded by primeval forests and lakes",
+    "city": "Binh Phuoc",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_188",
+    "name": "Ta Thiet relic area",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "The place preserves many historical marks of the Vietnam War, with relics such as command bunkers and military warehouses",
+    "city": "Binh Phuoc",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_189",
+    "name": "Thac Mo Lake",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "lake"
+    ],
+    "description": "Large artificial lake with beautiful natural landscape",
+    "city": "Binh Phuoc",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_190",
+    "name": "Binh Phuoc cashew craft village",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "village"
+    ],
+    "description": "Binh Phuoc is famous as the cashew capital, where visitors can visit traditional cashew processing villages and learn about the production process.",
+    "city": "Binh Phuoc",
+    "price_level": "cheap",
+    "rating": 3.5,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_191",
+    "name": "Poshanu Cham Tower",
+    "category": "historical",
+    "tags": [
+      "urban",
+      "historical"
+    ],
+    "description": "Ancient architectural works of the Cham people, with unique historical and cultural value",
+    "city": "Binh Thuan",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_192",
+    "name": "Ke Ga Lighthouse",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "island"
+    ],
+    "description": "One of the oldest lighthouses in Vietnam, located on a small island in the middle of the sea",
+    "city": "Binh Thuan",
+    "price_level": "moderate",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_193",
+    "name": "Bau Trang",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "lake"
+    ],
+    "description": "Large freshwater lake in the middle of white sand, also known as the \"sub-Saharan desert\" of Vietnam.",
+    "city": "Binh Thuan",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_194",
+    "name": "Mui Ne Fishing Village",
+    "category": "restaurant",
+    "tags": [
+      "rural",
+      "food",
+      "village"
+    ],
+    "description": "Traditional coastal fishing village area, where you can admire the bustling boats and experience buying fresh seafood directly from fishermen.",
+    "city": "Binh Thuan",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_195",
+    "name": "Hon Rom",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "The beach is famous for its clear blue water, long smooth sand and peaceful atmosphere",
+    "city": "Binh Thuan",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_196",
+    "name": "Ca Mau Cape",
+    "category": "nature",
+    "tags": [
+      "nature"
+    ],
+    "description": "The southernmost point of Vietnam, home to a national landmark symbol and a unique mangrove ecosystem",
+    "city": "Ca Mau",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_197",
+    "name": "U Minh Ha National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "forest"
+    ],
+    "description": "The flooded Melaleuca forest is famous for its diverse ecosystem. This is the habitat of many rare species of animals and plants",
+    "city": "Ca Mau",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_198",
+    "name": "Silver Stone",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "island"
+    ],
+    "description": "The island cluster is located close to the coast, featuring naturally stacked rocks and a rich marine ecosystem",
+    "city": "Ca Mau",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_199",
+    "name": "Dam Thi Tuong",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "lake"
+    ],
+    "description": "Dubbed the \"sea and lake in the middle of the plain\", this is the largest natural lagoon in the West",
+    "city": "Ca Mau",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_200",
+    "name": "Uncle Ho Temple",
+    "category": "attraction",
+    "tags": [
+      "relax"
+    ],
+    "description": "Important spiritual place, where Ca Mau people pay their respects to President Ho Chi Minh",
+    "city": "Ca Mau",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_201",
+    "name": "Cai Rang Floating Market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food",
+      "market",
+      "river"
+    ],
+    "description": "The largest and most famous floating market in the Southwest region, a bustling trading place on the river. Visitors can experience river culture, shop for specialties and enjoy cuisine on the boat.",
+    "city": "Can Tho",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_202",
+    "name": "Can Tho Bridge",
+    "category": "attraction",
+    "tags": [
+      "urban"
+    ],
+    "description": "The largest cable-stayed bridge in Southeast Asia, connecting Can Tho and Vinh Long. This is a famous and iconic check-in point of the Southwest region.",
+    "city": "Can Tho",
+    "price_level": "moderate",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_203",
+    "name": "Ong De Ecotourism Village",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "nature"
+    ],
+    "description": "Attractive destination with green landscape, folk games, boating, and enjoying Western specialties.",
+    "city": "Can Tho",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_204",
+    "name": "Ong Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple"
+    ],
+    "description": "The ancient temple has Chinese architecture, is famous for its sacredness and is the place to worship Quan Cong. This is a unique cultural sightseeing and beautiful check-in location.",
+    "city": "Can Tho",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_205",
+    "name": "Con Son",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "river",
+      "village"
+    ],
+    "description": "Famous river ecological area, where visitors can visit raft fishing villages, learn to make folk cakes and experience the garden lifestyle.",
+    "city": "Can Tho",
+    "price_level": "cheap",
+    "rating": 3.6,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_206",
+    "name": "Ban Gioc Waterfall",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "waterfall"
+    ],
+    "description": "One of the most beautiful and largest waterfalls in Southeast Asia, located on the Vietnam - China border. The waterfall is divided into many levels with clear blue water, creating a majestic scene.",
+    "city": "Cao Bang",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_207",
+    "name": "Nguom Ngao Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "cave",
+      "waterfall"
+    ],
+    "description": "The cave is more than 2.1km long, featuring a unique stalactite system and magical landscape. The cave is located near Ban Gioc waterfall, which is an ideal destination to explore.",
+    "city": "Cao Bang",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_208",
+    "name": "Magic Eye Mountain",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "The unique mountain with a large hole in the middle, is called \"God's Eye.\" This is a famous check-in point with beautiful mountain views.",
+    "city": "Cao Bang",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_209",
+    "name": "Tran Hung Dao forest relic",
+    "category": "historical",
+    "tags": [
+      "historical",
+      "nature"
+    ],
+    "description": "Place where the Vietnam Liberation Army Propaganda Team was founded in 1944, the origin of the Vietnam People's Army. The relic site has great historical value.",
+    "city": "Cao Bang",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_210",
+    "name": "Phuc Sen forging village",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "village"
+    ],
+    "description": "The traditional craft village is famous for its high quality cutlery products. Visitors can tour the blacksmithing process and shop for handmade products.",
+    "city": "Cao Bang",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_211",
+    "name": "Ba Na Hills",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "relax",
+      "rural",
+      "urban",
+      "mountain",
+      "park",
+      "village"
+    ],
+    "description": "A mountaintop resort with a cool climate, famous for its unique Golden Bridge, classic French village and Fantasy Park indoor amusement park.",
+    "city": "Da Nang",
+    "price_level": "moderate",
+    "rating": 3.7,
+    "popularity": 95,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_212",
+    "name": "Dragon Bridge",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "river"
+    ],
+    "description": "A symbol of Da Nang city, the bridge has a dragon design that breathes fire and water on weekends. This is a check-in point and a beautiful view of the Han River.",
+    "city": "Da Nang",
+    "price_level": "moderate",
+    "rating": 3.6,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_213",
+    "name": "Ngu Hanh Son",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "relax",
+      "mountain",
+      "cave",
+      "pagoda"
+    ],
+    "description": "Limestone mountain cluster includes 5 mountains with caves, pagodas, and beautiful natural scenery. Highlights are Huyen Khong cave and Tam Thai pagoda.",
+    "city": "Da Nang",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_214",
+    "name": "My Khe Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach",
+      "swimming"
+    ],
+    "description": "One of the most beautiful beaches on the planet, famous for its fine white sand and clear blue sea, an ideal place for swimming and water sports activities.",
+    "city": "Da Nang",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_215",
+    "name": "Love Bridge",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "river"
+    ],
+    "description": "A small bridge on the Han River with a romantic design, where couples often hang love keychains. From here, you can see the Dragon Carp statue.",
+    "city": "Da Nang",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_216",
+    "name": "Ao Ba braised",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "lake"
+    ],
+    "description": "Ba Om Pond is a natural lake, surrounded by hundreds of years old trees with roots emerging into interesting shapes. This is a peaceful tourist destination, associated with Khmer legends and culture.",
+    "city": "Tra Vinh",
+    "price_level": "cheap",
+    "rating": 4.5,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_217",
+    "name": "Hang Pagoda",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "temple",
+      "pagoda"
+    ],
+    "description": "Hang Pagoda is famous not only for its unique architecture but also for its exquisite wood sculptures by Khmer artisans. This temple is an ideal stop for those who want to explore Khmer art and culture.",
+    "city": "Tra Vinh",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_218",
+    "name": "Ba Dong Beach",
+    "category": "restaurant",
+    "tags": [
+      "relax",
+      "food",
+      "beach"
+    ],
+    "description": "Pristine beach with fine sand and gentle waves, Ba Dong is a suitable place to relax and enjoy fresh seafood dishes. This is one of the rare beaches in the Southwest region.",
+    "city": "Tra Vinh",
+    "price_level": "moderate",
+    "rating": 3.7,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_219",
+    "name": "Khmer Culture Museum",
+    "category": "historical",
+    "tags": [
+      "urban",
+      "historical",
+      "museum"
+    ],
+    "description": "The museum displays artifacts and documents about the life, culture, art and history of the Southern Khmer people, helping visitors understand more about this ethnic community.",
+    "city": "Tra Vinh",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_220",
+    "name": "Vam Ray Pagoda",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "pagoda"
+    ],
+    "description": "As the largest Khmer pagoda in Vietnam, Vam Ray Pagoda impresses with its brilliant golden architecture, giant reclining Buddha statue and quiet space.",
+    "city": "Tra Vinh",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_221",
+    "name": "Ban Ba ​​Waterfall",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "forest",
+      "waterfall"
+    ],
+    "description": "Ban Ba ​​Waterfall in Trung Ha commune, Chiem Hoa district, is a cluster of waterfalls with 3 main levels falling from a height of about 40 m. The waterfall is surrounded by pristine forests, clear blue water and cool climate all year round. This is the ideal destination to immerse yourself in nature.",
+    "city": "Tuyen Quang",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_222",
+    "name": "Tuyen Quang Hydroelectric Lake",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "mountain",
+      "nature",
+      "temple",
+      "forest",
+      "lake",
+      "waterfall",
+      "island"
+    ],
+    "description": "Na Hang Lake is likened to \"Ha Long in the mountains\", featuring a clear blue lake surface, rolling limestone islands, and surrounding primeval forests. Visitors can explore landmarks such as Khuoi Nhi waterfall, Pac Ta temple, and join a sightseeing cruise.",
+    "city": "Tuyen Quang",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_223",
+    "name": "Lower Temple - Upper Temple - Y La Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "urban",
+      "historical",
+      "temple"
+    ],
+    "description": "These are three sacred temples in Tuyen Quang city, associated with the Vietnamese belief in Mother Goddess worship. The temples are famous for their ancient architecture and solemn space, attracting many pilgrims.",
+    "city": "Tuyen Quang",
+    "price_level": "moderate",
+    "rating": 4.5,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_224",
+    "name": "My Lam mineral spring",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature"
+    ],
+    "description": "My Lam mineral spring is famous for its natural hot mineral water, which has healing and relaxing effects. This is an attractive resort, combining health therapy and beautiful natural scenery.",
+    "city": "Tuyen Quang",
+    "price_level": "cheap",
+    "rating": 4.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_225",
+    "name": "Khuoi Nhi Waterfall",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "waterfall"
+    ],
+    "description": "Khuoi Nhi waterfall in Na Hang area is one of the most beautiful waterfalls in Tuyen Quang. White waterfall water falls from a great height, blending with majestic nature to create a poetic scene.",
+    "city": "Tuyen Quang",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_226",
+    "name": "Cu Lao An Binh",
+    "category": "restaurant",
+    "tags": [
+      "rural",
+      "food",
+      "village"
+    ],
+    "description": "Cu Lao An Binh is a typical horticultural area of ​​the Southwest region, famous for fruit orchards such as rambutan, durian, and mangosteen. Visitors can participate in canoeing, visit traditional craft villages and enjoy rustic cuisine.",
+    "city": "Vinh Long",
+    "price_level": "moderate",
+    "rating": 3.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_227",
+    "name": "Tien Chau Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple",
+      "pagoda",
+      "island"
+    ],
+    "description": "Tien Chau Pagoda is located on An Binh island, is an ancient pagoda with bold Buddhist architecture. The temple has a quiet, peaceful space, attracting many Buddhists and tourists to worship.",
+    "city": "Vinh Long",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_228",
+    "name": "My Thuan Bridge",
+    "category": "attraction",
+    "tags": [
+      "urban"
+    ],
+    "description": "My Thuan Bridge is a prominent symbol of the West, connecting Vinh Long and Tien Giang. This modern cable-stayed bridge is an ideal check-in point, especially at night with bright lights.",
+    "city": "Vinh Long",
+    "price_level": "moderate",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_229",
+    "name": "Vinh Sang tourist area",
+    "category": "attraction",
+    "tags": [
+      "island"
+    ],
+    "description": "Vinh Sang tourist area is located on An Binh island, an ideal place to experience folk games, participate in crocodile fishing, canoeing, or explore fruit gardens.",
+    "city": "Vinh Long",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_230",
+    "name": "Van Thanh Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple"
+    ],
+    "description": "Van Thanh Temple is an ancient building, meaning to honor Confucianism and talented people. The temple grounds have many trees, creating a quiet and peaceful space.",
+    "city": "Vinh Long",
+    "price_level": "cheap",
+    "rating": 4.5,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_231",
+    "name": "Tam Dao",
+    "category": "restaurant",
+    "tags": [
+      "relax",
+      "urban",
+      "mountain",
+      "food",
+      "market",
+      "night market"
+    ],
+    "description": "Tam Dao is a famous resort with a cool climate all year round, located on the Tam Dao mountain range. It has many attractions such as the TV Tower, Stone Church, and Tam Dao night market. Guests can enjoy beautiful mountain views and local cuisine.",
+    "city": "Vinh Phuc",
+    "price_level": "moderate",
+    "rating": 4.3,
+    "popularity": 90,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_232",
+    "name": "Ho Dai Lai",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "mountain",
+      "nature",
+      "forest",
+      "lake"
+    ],
+    "description": "Dai Lai Lake is a large artificial lake, surrounded by pine forests and mountains. This is an ideal destination to participate in activities such as boating, camping, fishing or relaxing at lakeside resorts.",
+    "city": "Vinh Phuc",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_233",
+    "name": "Huong Canh Pottery Village",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "village"
+    ],
+    "description": "Huong Canh Pottery Village is a traditional craft village famous for its sophisticated handmade ceramic products, especially household and artistic ceramic products. Visitors can visit and experience pottery making here.",
+    "city": "Vinh Phuc",
+    "price_level": "cheap",
+    "rating": 3.6,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_234",
+    "name": "FLC Vinh Thinh tourist area",
+    "category": "restaurant",
+    "tags": [
+      "relax",
+      "food",
+      "swimming"
+    ],
+    "description": "FLC Vinh Thinh is a high-class resort with luxurious and comfortable space. It has diverse services such as swimming pools, spas, golf courses, and restaurants, suitable for family vacations.",
+    "city": "Vinh Phuc",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_235",
+    "name": "Dam Vac eco-tourism area",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature"
+    ],
+    "description": "Dam Vac is one of the largest natural lagoons in Vinh Phuc, with a diverse ecosystem. Visitors can participate in activities such as boating, sightseeing, fishing, or rest at resorts along the lagoon.",
+    "city": "Vinh Phuc",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_236",
+    "name": "Mu Cang Chai terraced fields",
+    "category": "attraction",
+    "tags": [],
+    "description": "Mu Cang Chai stairs are a masterpiece of nature and labor of the H'Mong ethnic people, famous for their majestic beauty, especially in the ripe rice season (September - October). This is a National Heritage and one of the most attractive destinations in Vietnam.",
+    "city": "Yen Bai",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_237",
+    "name": "Thac Ba Lake",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "urban",
+      "mountain",
+      "nature",
+      "lake",
+      "cave",
+      "island"
+    ],
+    "description": "Thac Ba Lake is one of the largest artificial lakes in Vietnam, surrounded by hundreds of small islands and beautiful mountain landscapes. Visitors can participate in activities such as boating, camping, or exploring caves around the lake.",
+    "city": "Yen Bai",
+    "price_level": "moderate",
+    "rating": 4.3,
+    "popularity": 90,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_238",
+    "name": "Suoi Giang",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "Suoi Giang is famous for its ancient Shan Tuyet tea trees hundreds of years old and its cool climate all year round. This is the ideal place to enjoy tea, enjoy fresh air and learn about the culture of the Mong people.",
+    "city": "Yen Bai",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_239",
+    "name": "Lim Mong village",
+    "category": "attraction",
+    "tags": [
+      "rural",
+      "urban",
+      "mountain",
+      "village"
+    ],
+    "description": "Lim Mong village is a small village located among beautiful mountains and terraced fields. This is where visitors can experience the life of the H'Mong people, enjoy peace and fresh air.",
+    "city": "Yen Bai",
+    "price_level": "moderate",
+    "rating": 3.5,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_240",
+    "name": "Thien Cung Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "lake",
+      "cave"
+    ],
+    "description": "Thien Cung Cave is located in the Thac Ba Lake area, famous for its shimmering stalactite system and magical scenery inside the cave. This is an attractive attraction for those who love exploring caves.",
+    "city": "Yen Bai",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_241",
+    "name": "Buon Don",
+    "category": "attraction",
+    "tags": [],
+    "description": "Buon Don, located in Dak Lak province, Vietnam, is a land famous for its unique culture and majestic natural scenery. This is the land of the Ede and Mnong ethnic people, where you can discover unique cultures and interesting activities",
+    "city": "Dak Lak",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_242",
+    "name": "Lak Lake",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "lake"
+    ],
+    "description": "Lak Lake is a large lake in Vietnam, located in the northwest of Lam Dong province. This lake is known for its beautiful natural landscape and rich biodiversity. Lak Lake is also a destination that attracts tourists with activities such as scuba diving, fishing, and yachting",
+    "city": "Dak Lak",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_243",
+    "name": "Dray Nur Waterfall",
+    "category": "nature",
+    "tags": [
+      "mountain",
+      "nature",
+      "river",
+      "waterfall"
+    ],
+    "description": "Dray Nur Waterfall, located in Dak Lak province, is one of the most beautiful and majestic waterfalls of the Central Highlands. This waterfall is located on the Serepok river, famous for its wild and mysterious beauty",
+    "city": "Dak Lak",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_244",
+    "name": "World Coffee Museum",
+    "category": "historical",
+    "tags": [
+      "urban",
+      "historical",
+      "museum"
+    ],
+    "description": "World Coffee Museum, located in Buon Ma Thuot, Dak Lak, is an attractive destination for those who love coffee and want to learn about global coffee culture.",
+    "city": "Dak Lak",
+    "price_level": "moderate",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_245",
+    "name": "Ko Tam tourist area",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "mountain"
+    ],
+    "description": "Ko Tam tourist area, located in Buon Ma Thuot, Dak Lak, is an outstanding ecological and cultural destination of the Central Highlands. With an area of ​​about 13 hectares, Ko Tam offers visitors a wild and peaceful natural space, along with the unique cultural features of the Ede ethnic people.",
+    "city": "Dak Lak",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_246",
+    "name": "Dak Nong Geopark",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "cave",
+      "park"
+    ],
+    "description": "Dak Nong Geopark is famous for its unique volcanic cave system, including nearly 50 caves with a total length of more than 10,000 meters. Dak Nong Geopark is not only a place to preserve geological values, but also a place to preserve and introduce the culture of indigenous ethnic groups such as the Ma, Mnong and Ede people.",
+    "city": "Dak Nong",
+    "price_level": "cheap",
+    "rating": 3.5,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_247",
+    "name": "Dray Sap Waterfall",
+    "category": "nature",
+    "tags": [
+      "mountain",
+      "nature",
+      "waterfall"
+    ],
+    "description": "Dray Sap Waterfall, also known as Smoke Waterfall, is one of the most beautiful and majestic waterfalls of the Central Highlands",
+    "city": "Dak Nong",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_248",
+    "name": "Chu Bluk Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "cave"
+    ],
+    "description": "Chu Bluk Cave, located in Krong No district, Dak Nong province, is the longest volcanic cave system in Southeast Asia. Chu Bluk Cave stands out for its wild and mysterious beauty, with unique basalt structures and a rich ecosystem. This is an ideal destination for those who love exploration and adventure, because accessing the cave is not easy and requires guidance from local people.",
+    "city": "Dak Nong",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_249",
+    "name": "Ea Sno Lake",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "lake"
+    ],
+    "description": "Ea Sno Lake is surrounded by a rich and diverse plant ecosystem, and is home to many indigenous ethnic communities. The scenery here brings a feeling of peace and relaxation",
+    "city": "Dak Nong",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_250",
+    "name": "Nam Nung Nature Reserve",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "forest",
+      "waterfall",
+      "trekking"
+    ],
+    "description": "The reserve is located in Dak Nong province, famous for its diverse ecosystem including primeval forests, majestic waterfalls and many rare flora and fauna species. This is an ideal location for nature exploration, trekking, and ecological research activities.",
+    "city": "Dak Nong",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_251",
+    "name": "Hill A1",
+    "category": "historical",
+    "tags": [
+      "mountain",
+      "historical"
+    ],
+    "description": "Hill A1 is one of the important historical relics in the Dien Bien Phu campaign, where fierce battles took place. Currently, this place has become a tourist attraction with a fighting bunker, a trench system and the preservation of many historical artifacts.",
+    "city": "Dien Bien",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_252",
+    "name": "De Castries Tunnel",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "This was the residence and command of General De Castries during the Dien Bien Phu campaign. The tunnel was built solidly and is now a historical relic preserved to recreate the battlefield of the past.",
+    "city": "Dien Bien",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_253",
+    "name": "Dien Bien Phu Victory Museum",
+    "category": "historical",
+    "tags": [
+      "urban",
+      "historical",
+      "museum"
+    ],
+    "description": "The museum preserves artifacts, documents and images of the Dien Bien Phu campaign, recreating the heroic history of the Vietnamese people. This is a destination not to be missed when visiting Dien Bien.",
+    "city": "Dien Bien",
+    "price_level": "moderate",
+    "rating": 3.8,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_254",
+    "name": "Muong Thanh fields",
+    "category": "historical",
+    "tags": [
+      "historical",
+      "nature"
+    ],
+    "description": "The largest rice field in the Northwest region, famous for its poetic beauty and important role in the history of the Dien Bien Phu campaign. The landscape here changes with the seasons, attracting many tourists to admire.",
+    "city": "Dien Bien",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_255",
+    "name": "Dien Bien Phu Victory Monument",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "mountain"
+    ],
+    "description": "The monument is located on hill D1, a symbol of the historic victory of Dien Bien Phu. This is a place to honor the sacrifices and victories of Vietnamese soldiers, and is also a panoramic view of Dien Bien city.",
+    "city": "Dien Bien",
+    "price_level": "moderate",
+    "rating": 3.7,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_256",
+    "name": "Cat Tien National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "forest",
+      "park"
+    ],
+    "description": "One of the most famous national parks in Vietnam, located in Dong Nai province. This place possesses a rich ecosystem with many rare flora and fauna species, along with activities such as forest exploration, bird watching and picnics.",
+    "city": "Dong Nai",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_257",
+    "name": "Buu Long tourist area",
+    "category": "nature",
+    "tags": [
+      "mountain",
+      "nature",
+      "lake"
+    ],
+    "description": "Considered a \"miniature Ha Long Bay\" in Dong Nai, Buu Long stands out with its clear blue lake, rocky mountains and poetic landscape. This is an ideal place for picnics, camping and photography.",
+    "city": "Dong Nai",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_258",
+    "name": "Tri An Lake",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "nature",
+      "lake",
+      "river",
+      "island"
+    ],
+    "description": "Tri An Lake with over 70 large and small islands, many of which are inhabited, plus a few large islands that have been exploited for tourism in the past ten years have become the highlight of Tri An river and water.",
+    "city": "Dong Nai",
+    "price_level": "moderate",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_259",
+    "name": "Eagle Island",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "lake",
+      "island"
+    ],
+    "description": "An island located in the middle of Tri An lake, possessing a green and fresh space. Eagle Island is an attractive destination for picnicking, camping, and enjoying nature.",
+    "city": "Dong Nai",
+    "price_level": "cheap",
+    "rating": 4.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_260",
+    "name": "Giang Dien Waterfall",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "forest",
+      "waterfall"
+    ],
+    "description": "A beautiful waterfall in Dong Nai, surrounded by cool green forests. Giang Dien Waterfall is an attractive eco-tourism destination for relaxation activities, picnics and commemorative photos.",
+    "city": "Dong Nai",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_261",
+    "name": "Tram Chim National Park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "nature",
+      "park"
+    ],
+    "description": "National park in Dong Thap, which preserves the typical wetland ecosystem of the Mekong Delta. Tram Chim is home to many rare bird species, especially red-crowned cranes.",
+    "city": "Dong Thap",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_262",
+    "name": "Sa Dec flower village",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "village"
+    ],
+    "description": "Famous traditional craft village in Dong Thap, where hundreds of beautiful and precious flower species are grown. The flower village attracts tourists with brilliant flower gardens all year round.",
+    "city": "Dong Thap",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_263",
+    "name": "Xeo Quyt relic site",
+    "category": "historical",
+    "tags": [
+      "historical",
+      "nature",
+      "forest"
+    ],
+    "description": "A historical relic combined with eco-tourism in Dong Thap, where revolutionary bases are recreated in the Melaleuca forest during the resistance war.",
+    "city": "Dong Thap",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_264",
+    "name": "Mausoleum of Nguyen Sinh Sac",
+    "category": "nature",
+    "tags": [
+      "nature"
+    ],
+    "description": "The resting place of Mr. Nguyen Sinh Sac, father of President Ho Chi Minh. The mausoleum is designed in harmony between architecture and natural landscape.",
+    "city": "Dong Thap",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_265",
+    "name": "Cao Lanh Market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food",
+      "market"
+    ],
+    "description": "A bustling market in Cao Lanh city, where visitors can explore culinary culture and local people's lives.",
+    "city": "Dong Thap",
+    "price_level": "moderate",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_266",
+    "name": "Tonle Sap Lake",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food",
+      "nature",
+      "market"
+    ],
+    "description": "A bustling market in Cao Lanh city, where visitors can explore culinary culture and local people's lives.",
+    "city": "Gia Lai",
+    "price_level": "moderate",
+    "rating": 4.4,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_267",
+    "name": "Phu Cuong Waterfall",
+    "category": "nature",
+    "tags": [
+      "nature",
+      "forest",
+      "waterfall"
+    ],
+    "description": "A beautiful waterfall in Gia Lai, located in the middle of a primeval forest. The waterfall stands out with its white water flowing from a height of more than 45m.",
+    "city": "Gia Lai",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_268",
+    "name": "Minh Thanh Pagoda",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "temple"
+    ],
+    "description": "Famous temple in Gia Lai, built in Japanese Buddhist style, with unique architecture and pure space.",
+    "city": "Gia Lai",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_269",
+    "name": "Great Solidarity Square",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "The largest square in the Central Highlands, located in Pleiku, Gia Lai. This is where major events are held and is also a symbol of national unity.",
+    "city": "Gia Lai",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_270",
+    "name": "Bau Can tea hill",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "mountain"
+    ],
+    "description": "Bau Can tea hill in Gia Lai is one of the oldest tea hills in Vietnam, outstanding with long green tea beds, bringing peaceful beauty. This is the ideal destination to relax and take photos amidst the fresh natural space.",
+    "city": "Gia Lai",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_271",
+    "name": "Lung Cu flagpole",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "Lung Cu flagpole, located in the northernmost part of Vietnam (Ha Giang), is a sacred symbol of national sovereignty. Visitors conquer nearly 800 steps to admire the red flag with yellow star flying on the majestic mountain top.",
+    "city": "Ha Giang",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_272",
+    "name": "Ma Pi Leng Pass",
+    "category": "nature",
+    "tags": [
+      "mountain",
+      "river"
+    ],
+    "description": "Ma Pi Leng Pass is a majestic road in Ha Giang, with the emerald Nho Que River winding below. This is an attraction for backpackers and tourists who love wild natural beauty.",
+    "city": "Ha Giang",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_273",
+    "name": "Dong Van ancient town",
+    "category": "restaurant",
+    "tags": [
+      "rural",
+      "urban",
+      "historical",
+      "food",
+      "market"
+    ],
+    "description": "Dong Van ancient town (Ha Giang) preserves ancient architecture with houses with earthen walls and yin-yang tile roofs. The bustling weekend market is an attractive cultural highlight.",
+    "city": "Ha Giang",
+    "price_level": "moderate",
+    "rating": 4.4,
+    "popularity": 90,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_274",
+    "name": "Tu San Alley",
+    "category": "attraction",
+    "tags": [
+      "river"
+    ],
+    "description": "Tu San Alley, the deepest place in Southeast Asia, stands out with 800m high cliffs and the blue Nho Que river. Visitors can row boats to explore this magnificent scenery.",
+    "city": "Ha Giang",
+    "price_level": "cheap",
+    "rating": 3.5,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_275",
+    "name": "Cat King's Palace",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "King Meo Palace (Ha Giang) is an ancient mansion of the Vuong family, with a unique architectural combination of Chinese, French and H'Mong ethnic culture, attracting many tourists.",
+    "city": "Ha Giang",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_276",
+    "name": "Tam Chuc Pagoda",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "mountain",
+      "nature",
+      "lake",
+      "pagoda"
+    ],
+    "description": "Tam Chuc Pagoda (Ha Nam) is one of the largest pagoda complexes in Vietnam, standing out with its majestic architecture and beautiful natural landscape. Surrounded by mountains and clear blue lakes, this is a place that attracts Buddhists and tourists.",
+    "city": "Ha Nam",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_277",
+    "name": "Tran Thuong Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple",
+      "festival"
+    ],
+    "description": "Tran Thuong Temple (Ha Nam) worships the Tran kings, standing out with its ancient architecture and pure space. The temple is a cultural and spiritual destination, attracting tourists during the festival season.",
+    "city": "Ha Nam",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_278",
+    "name": "Luon Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "historical",
+      "cave"
+    ],
+    "description": "Luon Cave, located in the Ha Long relic area, Quang Ninh, is famous for its magnificent cave system. Visitors can row boats into the cave and explore the wild beauty of nature.",
+    "city": "Ha Nam",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_279",
+    "name": "Lanh Giang Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple"
+    ],
+    "description": "Lanh Giang Temple (Hung Yen) is a historical relic worshiping heroic kings, rich in cultural and historical value. This is a prominent spiritual tourist destination in the North.",
+    "city": "Ha Nam",
+    "price_level": "cheap",
+    "rating": 4.5,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_280",
+    "name": "Vu Dai Village",
+    "category": "historical",
+    "tags": [
+      "rural",
+      "historical",
+      "village"
+    ],
+    "description": "Vu Dai village (Ha Nam) is famous for its association with the work \"Chi Pheo\" by writer Nam Cao. This place has ancient houses, is a cultural tourist destination, where traditional cultural beauty is preserved.",
+    "city": "Ha Nam",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_281",
+    "name": "Ho Chi Minh Mausoleum",
+    "category": "attraction",
+    "tags": [],
+    "description": "President Ho Chi Minh Mausoleum (Hanoi) is where the body of President Ho Chi Minh is kept, becoming a symbol of respect and gratitude of the Vietnamese people.",
+    "city": "Hanoi",
+    "price_level": "cheap",
+    "rating": 3.5,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_282",
+    "name": "Sword Lake",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "nature",
+      "lake"
+    ],
+    "description": "Sword Lake (Hanoi) is the center of the capital, notable for its Turtle Tower and The Huc Bridge. This is an attractive tourist destination, where people relax and is a symbol of Hanoi.",
+    "city": "Hanoi",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_283",
+    "name": "Temple of Literature - National Tu Giam",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple"
+    ],
+    "description": "Temple of Literature - Quoc Tu Giam (Hanoi) is a historical and cultural relic, a place of worship for Confucius and the first university in Vietnam. This is an educational and cultural attraction.",
+    "city": "Hanoi",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_284",
+    "name": "Imperial Citadel of Thang Long",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "The Imperial Citadel of Thang Long (Hanoi) is an important historical site in Vietnam, once the center of power for many dynasties. This relic bears a strong mark of national history and culture.",
+    "city": "Hanoi",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_285",
+    "name": "Long Bien Bridge",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "river"
+    ],
+    "description": "Long Bien Bridge (Hanoi) is one of the oldest bridges, imbued with historical value. The bridge connects the two banks of the Red River and is a symbol of the capital.",
+    "city": "Hanoi",
+    "price_level": "moderate",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_286",
+    "name": "Dong Loc intersection",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "Dong Loc intersection (Ha Tinh) is a famous historical site associated with the resistance war against the US. This is a place to commemorate the martyrs who died in the war.",
+    "city": "Ha Tinh",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_287",
+    "name": "Huong Tich Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical"
+    ],
+    "description": "Dong Loc intersection (Ha Tinh) is a famous historical site associated with the resistance war against the US. This is a place to commemorate the martyrs who died in the war.",
+    "city": "Ha Tinh",
+    "price_level": "cheap",
+    "rating": 4.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_288",
+    "name": "Thien Cam Beach",
+    "category": "attraction",
+    "tags": [
+      "relax",
+      "beach"
+    ],
+    "description": "Thien Cam Beach (Ha Tinh) is a beautiful beach with long sandy beaches and clear blue sea water, where visitors can relax and participate in marine sports activities.",
+    "city": "Ha Tinh",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_289",
+    "name": "Nguyen Du relic site",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "Nguyen Du relic site (Ha Tinh) is a place to commemorate the great poet Nguyen Du, author of \"The Tale of Kieu\". This monument preserves the cultural and historical values ​​of his life and career.",
+    "city": "Ha Tinh",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_290",
+    "name": "Ngang Pass",
+    "category": "nature",
+    "tags": [
+      "mountain"
+    ],
+    "description": "Ngang Pass (Quang Binh) is one of the most beautiful passes in Vietnam, connecting the two provinces of Quang Binh and Ha Tinh. The pass has majestic and poetic scenery.",
+    "city": "Ha Tinh",
+    "price_level": "cheap",
+    "rating": 3.7,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_291",
+    "name": "Chi Lang Nam Stork Island",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "island"
+    ],
+    "description": "Chi Lang Nam Stork Island (Hai Duong) is an outstanding nature reserve area with thousands of storks living. This is an ideal eco-tourism destination, with a peaceful space and beautiful landscape.",
+    "city": "Hai Duong",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_292",
+    "name": "Con Son Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "pagoda"
+    ],
+    "description": "Con Son Pagoda (Hai Duong) is a historical and cultural relic, outstanding with ancient architecture and pure space. This place is one of the famous spiritual tourist destinations in the North.",
+    "city": "Hai Duong",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_293",
+    "name": "Qinghai Water Puppet Village",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "rural",
+      "village"
+    ],
+    "description": "Thanh Hai Water Puppet Village (Hai Duong) is a place to preserve and develop traditional water puppetry art. Visitors can enjoy unique puppet shows in a rich folk culture space.",
+    "city": "Hai Duong",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_294",
+    "name": "Kiep Bac Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple"
+    ],
+    "description": "Kiep Bac Temple (Hai Duong) is the place to worship Hung Dao Dai Vuong Tran Quoc Tuan, who had great contributions in the war against Nguyen. The temple is rich in historical and cultural value.",
+    "city": "Hai Duong",
+    "price_level": "cheap",
+    "rating": 4.6,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_295",
+    "name": "Dong Ngo Quyen Market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food",
+      "market"
+    ],
+    "description": "Dong Ngo Quyen Market (Hai Phong) is a famous traditional market with a variety of products and bustling atmosphere. The market is a trading place for locals and tourists.",
+    "city": "Hai Duong",
+    "price_level": "moderate",
+    "rating": 3.5,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_296",
+    "name": "Do Son",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "mountain",
+      "beach"
+    ],
+    "description": "Do Son (Hai Phong) is a beautiful beach famous for its mountains and blue sea. This is a beach resort with water sports activities and relaxation under the sun.",
+    "city": "Hai Phong",
+    "price_level": "cheap",
+    "rating": 3.8,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_297",
+    "name": "Cat Ba",
+    "category": "nature",
+    "tags": [
+      "relax",
+      "nature",
+      "beach",
+      "island"
+    ],
+    "description": "Cat Ba (Hai Phong) is a famous island with beautiful beaches and diverse ecosystems. This place is an ideal destination for those who love eco-tourism and the sea.",
+    "city": "Hai Phong",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_298",
+    "name": "Ben Nghieng - Wharf K15",
+    "category": "historical",
+    "tags": [
+      "historical"
+    ],
+    "description": "Ben Nghieng (Bent K15) (Quang Ninh) is a famous port, associated with war history. This is one of the important historical sites of the North.",
+    "city": "Hai Phong",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_299",
+    "name": "Hon Dau Lighthouse",
+    "category": "historical",
+    "tags": [
+      "historical",
+      "island"
+    ],
+    "description": "Hon Dau Lighthouse (Hai Phong) is an ancient lighthouse, located on Hon Dau Island. This is one of the important lighthouses in the Gulf of Tonkin region.",
+    "city": "Hai Phong",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_300",
+    "name": "Hoang Van Thu Bridge",
+    "category": "attraction",
+    "tags": [
+      "urban"
+    ],
+    "description": "Hoang Van Thu Bridge (Hai Phong) is a vital bridge connecting areas in the city. The bridge stands out with its modern architecture and is the main tourist destination for tourists.",
+    "city": "Hai Phong",
+    "price_level": "moderate",
+    "rating": 4.0,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_301",
+    "name": "Lung Ngoc Hoang tourist area",
+    "category": "nature",
+    "tags": [
+      "nature"
+    ],
+    "description": "Lung Ngoc Hoang tourist area (Hau Giang) is an outstanding nature reserve with a mangrove ecosystem. This is an ideal destination for those who love eco-tourism and plant and animal research.",
+    "city": "Hau Giang",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_302",
+    "name": "Nga Bay floating market",
+    "category": "restaurant",
+    "tags": [
+      "urban",
+      "food",
+      "market",
+      "river"
+    ],
+    "description": "Nga Bay floating market (Hau Giang) is one of the famous floating markets in the West. Visitors can experience shopping on the river and explore the unique floating market culture.",
+    "city": "Hau Giang",
+    "price_level": "moderate",
+    "rating": 3.5,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_303",
+    "name": "Vinpearl Hau Giang amusement park",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "park"
+    ],
+    "description": "Vinpearl Hau Giang Amusement Park is a modern entertainment area, with many attractive games for the whole family. This is an ideal destination for travelers looking for entertainment and relaxation.",
+    "city": "Hau Giang",
+    "price_level": "cheap",
+    "rating": 3.6,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_304",
+    "name": "Tan Long stork garden",
+    "category": "attraction",
+    "tags": [
+      "relax"
+    ],
+    "description": "Tan Long Stork Garden (Vinh Long) is an ecological conservation area, where thousands of storks live. Visitors can watch flocks of storks flying in a peaceful space.",
+    "city": "Hau Giang",
+    "price_level": "cheap",
+    "rating": 3.9,
+    "popularity": 60,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_305",
+    "name": "Cai Lon River",
+    "category": "nature",
+    "tags": [
+      "rural",
+      "nature",
+      "river"
+    ],
+    "description": "Cai Lon River (Ca Mau) is a long river, flowing through the Western provinces. This place has a rich ecosystem and is an outstanding eco-tourism destination of the Mekong Delta.",
+    "city": "Hau Giang",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_306",
+    "name": "Thung Nai",
+    "category": "nature",
+    "tags": [
+      "mountain",
+      "nature",
+      "lake"
+    ],
+    "description": "Thung Nai (Hoa Binh) is a famous tourist area with majestic natural scenery, including a large lake and surrounding mountains. This is an ideal place for tourists who love eco-tourism and participating in outdoor activities such as boating.",
+    "city": "Hoa Binh",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_307",
+    "name": "Mai Chau",
+    "category": "attraction",
+    "tags": [],
+    "description": "Mai Chau (Hoa Binh) is a beautiful valley, famous for its stilt houses and pristine natural scenery. Mai Chau attracts tourists because of its fresh air, plus the unique culture of the Thai ethnic people.",
+    "city": "Hoa Binh",
+    "price_level": "cheap",
+    "rating": 4.0,
+    "popularity": 50,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_308",
+    "name": "Silver Stone Cave",
+    "category": "outdoor",
+    "tags": [
+      "adventure",
+      "relax",
+      "cave"
+    ],
+    "description": "Da Bac Cave (Quang Ninh) is an outstanding natural cave with strange limestone blocks and mysterious beauty. Visitors can explore the stalactite system and unique rock formations in the quiet space of the cave.",
+    "city": "Hoa Binh",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_309",
+    "name": "Nine waterfalls Tu Son",
+    "category": "attraction",
+    "tags": [
+      "urban",
+      "mountain",
+      "nature",
+      "forest",
+      "waterfall"
+    ],
+    "description": "Nine waterfalls Tu Son (Ha Giang) is a system of 9 large and small waterfalls located in the middle of pristine nature. This is an ideal destination for those who love to explore and learn about waterfalls amidst the mountains and forests.",
+    "city": "Hoa Binh",
+    "price_level": "moderate",
+    "rating": 3.8,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_310",
+    "name": "Thac Bo Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "nature",
+      "temple",
+      "waterfall"
+    ],
+    "description": "Thac Bo Temple (Hoa Binh) is a historical relic, worshiping female general Cao Thi Lich. The temple is located near Bo waterfall, has a mysterious scenery and is a sacred place, attracting tourists to visit and pray.",
+    "city": "Hoa Binh",
+    "price_level": "cheap",
+    "rating": 4.1,
+    "popularity": 80,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_311",
+    "name": "Pho Hien",
+    "category": "restaurant",
+    "tags": [
+      "historical",
+      "food"
+    ],
+    "description": "Pho Hien (Hung Yen) is a famous old town with historical architectural works. This is an attractive destination for tourists who want to learn about history, culture and enjoy local cuisine.",
+    "city": "Hung Yen",
+    "price_level": "moderate",
+    "rating": 4.0,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_312",
+    "name": "Chuong Pagoda",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple",
+      "pagoda"
+    ],
+    "description": "Chuong Pagoda (Hanoi) is an ancient temple with unique architecture, located in a spacious and peaceful campus. This is a famous pilgrimage site, attracting many Buddhists and tourists to visit.",
+    "city": "Hung Yen",
+    "price_level": "cheap",
+    "rating": 4.3,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_313",
+    "name": "Long Thuong bronze casting village",
+    "category": "historical",
+    "tags": [
+      "rural",
+      "historical",
+      "village"
+    ],
+    "description": "Long Thuong bronze casting village (Hanoi) is famous for its long-standing traditional bronze casting craft. Visitors can visit the production process of handicraft copper products and learn about the history of the craft village.",
+    "city": "Hung Yen",
+    "price_level": "cheap",
+    "rating": 4.2,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_314",
+    "name": "Phu Ung Temple",
+    "category": "historical",
+    "tags": [
+      "relax",
+      "historical",
+      "temple"
+    ],
+    "description": "Phu Ung Temple (Hung Yen) is a historical relic, worshiping Saint Phu Ung, who helped King Hung in the wars. The temple is located in a large campus, with a pure and sacred space.",
+    "city": "Hung Yen",
+    "price_level": "cheap",
+    "rating": 4.5,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  },
+  {
+    "id": "place_315",
+    "name": "Nom village communal house",
+    "category": "historical",
+    "tags": [
+      "rural",
+      "historical",
+      "village",
+      "festival"
+    ],
+    "description": "Nom village communal house (Hung Yen) is a unique cultural relic, outstanding with traditional architecture and folk festival activities. This is a destination that attracts tourists to explore traditional cultural values.",
+    "city": "Hung Yen",
+    "price_level": "cheap",
+    "rating": 4.4,
+    "popularity": 70,
+    "lat": null,
+    "lon": null
+  }
+]
