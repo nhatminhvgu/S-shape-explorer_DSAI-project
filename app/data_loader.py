@@ -1,39 +1,114 @@
 """
-data_loader.py — Loads the mock place dataset from JSON and provides lookup helpers.
+data_loader.py — Loads the real Vietnam tourism dataset from CSV + XLSX.
+
+Sources:
+  - Vietnam_Tourism_Final_8Labels.csv  → place names, descriptions, locations, 8 labels
+  - Full_Translated_DataSet_V2.xlsx    → ratings (4.8/5 format), keywords, image URLs
+
+Both files have 315 rows aligned by row index.
 """
 
-import json
+import logging
 import os
+import re
+import warnings
 from typing import Dict, List, Optional
-from app.models import Place
 
-# ---------------------------------------------------------------------------
-# Resolve the path relative to this file so it works from any working dir
-# ---------------------------------------------------------------------------
-_DATA_PATH = os.path.join(os.path.dirname(__file__), "places_data.json")
+logger = logging.getLogger(__name__)
 
-
-def load_places() -> List[Place]:
-    """
-    Read all places from the JSON dataset and return as validated Pydantic models.
-    """
-    with open(_DATA_PATH, "r", encoding="utf-8") as fh:
-        raw: List[dict] = json.load(fh)
-    return [Place(**item) for item in raw]
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CSV_PATH = os.path.join(ROOT_DIR, "Vietnam_Tourism_Final_8Labels.csv")
+XLSX_PATH = os.path.join(ROOT_DIR, "Full_Translated_DataSet_V2.xlsx")
 
 
-def build_place_index(places: List[Place]) -> Dict[str, Place]:
-    """
-    Build a dictionary keyed by place ID for O(1) lookups.
-    """
+def load_places() -> list:
+    from app.models import Place
+
+    try:
+        import pandas as pd
+    except ImportError:
+        raise RuntimeError(
+            "pandas is required. Run: pip install pandas openpyxl"
+        )
+
+    if not os.path.exists(CSV_PATH):
+        raise FileNotFoundError(f"CSV dataset not found: {CSV_PATH}")
+    if not os.path.exists(XLSX_PATH):
+        raise FileNotFoundError(f"XLSX dataset not found: {XLSX_PATH}")
+
+    logger.info("Loading CSV: %s", CSV_PATH)
+    csv_df = pd.read_csv(CSV_PATH)
+
+    logger.info("Loading XLSX: %s", XLSX_PATH)
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        xlsx_df = pd.read_excel(XLSX_PATH)
+
+    logger.info("CSV rows: %d | XLSX rows: %d", len(csv_df), len(xlsx_df))
+
+    places: List[Place] = []
+    for idx in range(len(csv_df)):
+        csv_row = csv_df.iloc[idx]
+        xlsx_row = xlsx_df.iloc[idx] if idx < len(xlsx_df) else None
+
+        # ── Rating: parse "4.8/5" → 4.8 ──────────────────────────────────
+        rating = 0.0
+        if xlsx_row is not None:
+            raw_rating = xlsx_row.get("Rating", "")
+            if pd.notna(raw_rating):
+                m = re.search(r"(\d+\.?\d*)", str(raw_rating))
+                if m:
+                    rating = min(5.0, float(m.group(1)))
+
+        # ── Keywords: '"sea", "relax", "swim"' → ['sea', 'relax', 'swim'] ──
+        keywords: List[str] = []
+        if xlsx_row is not None:
+            raw_kw = xlsx_row.get("Keywords", "")
+            if pd.notna(raw_kw):
+                keywords = [
+                    k.strip().strip('"\'')
+                    for k in str(raw_kw).split(",")
+                    if k.strip().strip('"\'')
+                ]
+
+        # ── Image URL ──────────────────────────────────────────────────────
+        image_url = ""
+        if xlsx_row is not None:
+            raw_img = xlsx_row.get("Image_URL", "")
+            if pd.notna(raw_img):
+                image_url = str(raw_img).strip()
+
+        place = Place(
+            id=f"place_{idx + 1:03d}",
+            name=str(csv_row["Place_Name"]).strip(),
+            location=str(csv_row["Location"]).strip(),
+            description=str(csv_row["Description"]).strip(),
+            rating=rating,
+            keywords=keywords,
+            image_url=image_url,
+            adventure=int(csv_row["Adventure"]),
+            relax=int(csv_row["Relax"]),
+            rural=int(csv_row["Rural"]),
+            urban=int(csv_row["Urban"]),
+            mountain=int(csv_row["Mountain"]),
+            historical=int(csv_row["Historical"]),
+            food=int(csv_row["Food"]),
+            nature=int(csv_row["Nature"]),
+        )
+        places.append(place)
+
+    logger.info("Dataset loaded: %d places from real CSV/XLSX files.", len(places))
+    return places
+
+
+def build_place_index(places: list) -> Dict[str, object]:
     return {p.id: p for p in places}
 
 
 # Module-level singletons — loaded once at import time.
-PLACES: List[Place] = load_places()
-PLACE_INDEX: Dict[str, Place] = build_place_index(PLACES)
+PLACES = load_places()
+PLACE_INDEX = build_place_index(PLACES)
 
 
-def get_place_by_id(place_id: str) -> Optional[Place]:
-    """Return a single Place or None if the ID is not found."""
+def get_place_by_id(place_id: str) -> Optional[object]:
     return PLACE_INDEX.get(place_id)

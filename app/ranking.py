@@ -1,135 +1,116 @@
 """
-ranking.py — Multi-signal weighted ranker.
+ranking.py — Multi-signal ranker combining TF-IDF similarity, 8-label matching,
+             rating, and location boost.
 
-Takes the raw similarity candidates from the recommender and re-ranks them
-using a configurable weighted combination of:
-  - semantic similarity  (embedding cosine score)
-  - rating               (normalised 1-5 star rating)
-  - distance             (if user lat/lon provided, else skipped)
-  - popularity           (normalised 1-100 score)
-  - preference boost     (learned from user feedback, per-tag weights)
+Scoring formula (weights vary by what the user provided):
 
-The weights dict must sum to 1.0; if 'distance' has weight > 0 but no
-user coordinates are provided, its weight is redistributed proportionally
-to the remaining signals.
+  Case A  — query + preferences:   0.35·sem + 0.45·label + 0.20·rating
+  Case B  — preferences only:      0.60·label + 0.40·rating
+  Case C  — query only:            0.65·sem  + 0.35·rating
+  Case D  — nothing provided:      0.50·rating + 0.50·sem  (fallback)
+
+Location boost multipliers:
+  exact match   ×1.50
+  partial match ×1.25
+  no match      ×0.70  (soft penalty to push off-location results down)
 """
 
 from __future__ import annotations
 
-import math
-from typing import Dict, List, Optional, Tuple
+import logging
+from typing import List, Optional, Tuple
 
-from app.models import ParsedQuery, Place, PlaceResult
+from app.models import Place, PlaceResult
+from app.recommender import LABEL_MAP
 
-# ---------------------------------------------------------------------------
-# Default weights
-# ---------------------------------------------------------------------------
-DEFAULT_WEIGHTS: Dict[str, float] = {
-    "semantic":    0.50,
-    "rating":      0.20,
-    "popularity":  0.20,
-    "distance":    0.10,
-}
-
-# Rating scale constants
-_RATING_MIN = 1.0
-_RATING_MAX = 5.0
-
-# Popularity scale constants
-_POP_MIN = 0.0
-_POP_MAX = 100.0
-
-# Budget compatibility: query budget → acceptable place price levels
-_BUDGET_COMPAT: Dict[str, List[str]] = {
-    "cheap":     ["cheap"],
-    "moderate":  ["cheap", "moderate"],
-    "expensive": ["cheap", "moderate", "expensive"],
-}
-
-# How much to penalise incompatible budget (multiplied onto final score)
-_BUDGET_PENALTY = 0.60
+logger = logging.getLogger(__name__)
 
 
 # ---------------------------------------------------------------------------
-# Normalisation helpers
+# Helpers
 # ---------------------------------------------------------------------------
 
-def _norm(value: float, min_val: float, max_val: float) -> float:
-    """Min-max normalise value to [0, 1]."""
-    span = max_val - min_val
-    if span == 0:
-        return 0.5
-    return max(0.0, min(1.0, (value - min_val) / span))
-
-
-def _haversine_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-    """Return great-circle distance in km between two (lat, lon) points."""
-    R = 6371.0
-    phi1, phi2 = math.radians(lat1), math.radians(lat2)
-    dphi = math.radians(lat2 - lat1)
-    dlambda = math.radians(lon2 - lon1)
-    a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlambda / 2) ** 2
-    return 2 * R * math.asin(math.sqrt(a))
-
-
-def _distance_score(place: Place, user_lat: Optional[float], user_lon: Optional[float]) -> float:
+def _label_score(place: Place, preferences: List[str]) -> Tuple[float, List[str]]:
     """
-    Return a proximity score in [0, 1] where 1 = very close, 0 = far away.
-    Returns 0.5 (neutral) when no user coordinates or place coordinates are available.
+    Returns (score ∈ [0,1], matched_label_names).
+
+    score = (# preferences matched by this place) / (# total preferences).
     """
-    if user_lat is None or user_lon is None:
-        return 0.5
-    if place.lat is None or place.lon is None:
-        return 0.5
-    dist_km = _haversine_km(user_lat, user_lon, place.lat, place.lon)
-    # Assume anything ≤ 0.5 km is "very close" (score=1) and ≥ 10 km is "far" (score=0)
-    return max(0.0, 1.0 - dist_km / 10.0)
+    if not preferences:
+        return 0.0, []
+
+    matched: List[str] = []
+    for pref in preferences:
+        field = LABEL_MAP.get(pref)
+        if field and getattr(place, field, 0) == 1:
+            matched.append(pref)
+
+    return len(matched) / len(preferences), matched
 
 
-def _preference_boost(
+def _location_boost(place: Place, query_location: str) -> float:
+    """Return a multiplier based on how well place.location matches the query location."""
+    if not query_location:
+        return 1.0
+
+    p_loc = place.location.lower().strip()
+    q_loc = query_location.lower().strip()
+
+    if p_loc == q_loc:
+        return 1.50
+    if q_loc in p_loc or p_loc in q_loc:
+        return 1.25
+    return 0.70
+
+
+def _generate_explanation(
     place: Place,
-    user_prefs: Dict[str, int],
-) -> float:
+    preferences: List[str],
+    matched_labels: List[str],
+    query_location: str,
+) -> str:
     """
-    Return an additive boost in [-0.15, +0.15] based on liked/disliked tags.
+    Build a chatbot-style sentence explaining why this place is recommended.
 
-    user_prefs maps tag → cumulative weight (+N liked, -N disliked).
+    Example:
+      "Based on your preference for Relax and Nature, I recommend Cam Ranh Long
+       Beach in Khanh Hoa because it matches your Relax interest: Pristine beach
+       with natural beauty, ideal for relaxing and swimming. (Rating: 4.8/5)"
     """
-    if not user_prefs:
-        return 0.0
-    total = 0.0
-    for tag in place.tags:
-        total += user_prefs.get(tag, 0)
-    # Clamp to avoid dominating the score
-    return max(-0.15, min(0.15, total * 0.02))
+    # ── Opening ───────────────────────────────────────────────────────────
+    if preferences and matched_labels:
+        pref_str  = " and ".join(preferences)
+        match_str = " and ".join(matched_labels)
+        opening = (
+            f"Based on your preference for {pref_str}, I recommend "
+            f"{place.name} in {place.location} "
+            f"because it matches your {match_str} interest"
+        )
+    elif preferences:
+        pref_str = " and ".join(preferences)
+        opening = (
+            f"Based on your preference for {pref_str}, I recommend "
+            f"{place.name} in {place.location}"
+        )
+    elif query_location and query_location.lower() in place.location.lower():
+        opening = (
+            f"I recommend {place.name} in {place.location}, "
+            f"which matches your location preference"
+        )
+    else:
+        opening = f"I recommend {place.name} in {place.location}"
 
+    # ── Description ───────────────────────────────────────────────────────
+    desc = place.description.strip()
+    if desc:
+        body = f": {desc}"
+    else:
+        body = ""
 
-def _resolve_weights(
-    weights: Optional[Dict[str, float]],
-    has_distance: bool,
-) -> Dict[str, float]:
-    """
-    Validate and normalise the weight dict.
-    If distance weight > 0 but no user location is available, redistribute
-    that weight proportionally among the other signals.
-    """
-    w = dict(weights) if weights else dict(DEFAULT_WEIGHTS)
+    # ── Rating ────────────────────────────────────────────────────────────
+    rating_str = f" (Rating: {place.rating}/5)" if place.rating > 0 else ""
 
-    # Fill missing keys with 0
-    for key in DEFAULT_WEIGHTS:
-        w.setdefault(key, 0.0)
-
-    if not has_distance and w.get("distance", 0) > 0:
-        extra = w.pop("distance")
-        others = {k: v for k, v in w.items() if k != "distance"}
-        total_others = sum(others.values()) or 1.0
-        for k in others:
-            w[k] += extra * (others[k] / total_others)
-        w["distance"] = 0.0
-
-    # Normalise so weights sum to 1
-    total = sum(w.values()) or 1.0
-    return {k: v / total for k, v in w.items()}
+    return opening + body + rating_str + "."
 
 
 # ---------------------------------------------------------------------------
@@ -138,83 +119,50 @@ def _resolve_weights(
 
 def rank(
     candidates: List[Tuple[Place, float]],
-    parsed: ParsedQuery,
-    weights: Optional[Dict[str, float]] = None,
-    user_lat: Optional[float] = None,
-    user_lon: Optional[float] = None,
-    user_prefs: Optional[Dict[str, int]] = None,
+    preferences: List[str],
+    query_location: str = "",
     top_k: int = 5,
+    has_query: bool = True,
 ) -> List[PlaceResult]:
     """
-    Re-rank similarity candidates using multi-signal weighted scoring.
+    Re-rank TF-IDF candidates using label matching, rating, and location boost.
 
     Parameters
     ----------
-    candidates  : list of (Place, cosine_similarity) from the recommender
-    parsed      : structured query intent from the NLP parser
-    weights     : optional override for signal weights (must approximately sum to 1)
-    user_lat/lon: optional user GPS coordinates for distance scoring
-    user_prefs  : per-tag feedback weights accumulated from past feedback
-    top_k       : number of results to return
-
-    Returns
-    -------
-    List of PlaceResult sorted by descending final score, length ≤ top_k.
+    candidates     : (place, sem_score) from PlaceIndex.top_k_similar()
+    preferences    : validated preference labels, e.g. ["Relax", "Nature"]
+    query_location : extracted or user-provided location string
+    top_k          : number of results to return
+    has_query      : True if the user typed a text query (affects weights)
     """
-    has_distance = user_lat is not None and user_lon is not None
-    w = _resolve_weights(weights, has_distance)
-    prefs = user_prefs or {}
-
     results: List[PlaceResult] = []
 
-    for place, similarity in candidates:
-        # --- Individual normalised signal scores ---
-        sem_score  = float(similarity)                                          # already in [0,1]
-        rat_score  = _norm(place.rating, _RATING_MIN, _RATING_MAX)
-        pop_score  = _norm(float(place.popularity), _POP_MIN, _POP_MAX)
-        dist_score = _distance_score(place, user_lat, user_lon)
+    for place, sem_score in candidates:
+        label_score, matched = _label_score(place, preferences)
+        rating_score = (place.rating / 5.0) if place.rating > 0 else 0.3
 
-        # --- Weighted combination ---
-        combined = (
-            w["semantic"]   * sem_score +
-            w["rating"]     * rat_score +
-            w["popularity"] * pop_score +
-            w["distance"]   * dist_score
-        )
+        # ── Weighted combination ──────────────────────────────────────────
+        has_prefs = bool(preferences)
+        if has_prefs and has_query:
+            combined = 0.35 * sem_score + 0.45 * label_score + 0.20 * rating_score
+        elif has_prefs:
+            combined = 0.60 * label_score + 0.40 * rating_score
+        elif has_query:
+            combined = 0.65 * sem_score + 0.35 * rating_score
+        else:
+            combined = 0.50 * sem_score + 0.50 * rating_score
 
-        # --- Category hard filter (soft penalty, not hard remove) ---
-        if parsed.category and place.category != parsed.category:
-            combined *= 0.80
+        # ── Location boost ────────────────────────────────────────────────
+        combined = min(1.0, combined * _location_boost(place, query_location))
 
-        # --- Location boost — prioritise places in the queried city/province ---
-        if parsed.location:
-            place_city = place.city.lower().strip()
-            query_loc  = parsed.location.lower().strip()
-            if place_city == query_loc:
-                combined *= 1.40       # exact province/city match: big boost
-            elif query_loc in place_city or place_city in query_loc:
-                combined *= 1.20       # partial match: moderate boost
-            else:
-                combined *= 0.70       # wrong location: penalise
-
-        # --- Budget compatibility penalty ---
-        if parsed.budget:
-            acceptable = _BUDGET_COMPAT.get(parsed.budget, [place.price_level])
-            if place.price_level not in acceptable:
-                combined *= _BUDGET_PENALTY
-
-        # --- Preference boost from feedback history ---
-        combined += _preference_boost(place, prefs)
-
-        # Clamp final score to [0, 1]
-        final_score = max(0.0, min(1.0, combined))
+        explanation = _generate_explanation(place, preferences, matched, query_location)
 
         results.append(PlaceResult(
             place=place,
-            score=round(final_score, 4),
-            similarity=round(sem_score, 4),
+            score=round(combined, 4),
+            matched_labels=matched,
+            explanation=explanation,
         ))
 
-    # Sort descending by final score, then return top_k
     results.sort(key=lambda r: r.score, reverse=True)
     return results[:top_k]

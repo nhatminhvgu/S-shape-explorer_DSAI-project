@@ -9,7 +9,6 @@ Tuned for Vietnam tourism dataset with 8 labels:
 """
 
 import re
-from app.models import ParsedQuery
 
 # ---------------------------------------------------------------------------
 # Lookup tables
@@ -156,10 +155,10 @@ def _extract_location(text: str) -> str:
 # Public API
 # ---------------------------------------------------------------------------
 
-def parse_query(raw_query: str) -> ParsedQuery:
+def parse_query(raw_query: str) -> dict:
     """
     Extract structured intent from a natural-language Vietnam tourism query.
-    Returns a ParsedQuery with best-effort values.
+    Returns a dict with keys: category, mood, budget, purpose, location, tags.
     """
     text = _normalise(raw_query)
 
@@ -195,18 +194,13 @@ def parse_query(raw_query: str) -> ParsedQuery:
         if re.search(r"\b" + re.escape(tag) + r"\b", text):
             tags.append(tag)
 
-    seen: set[str] = set()
-    unique_tags = []
-    for t in tags:
-        if t not in seen:
-            seen.add(t)
-            unique_tags.append(t)
+    unique_tags = list(dict.fromkeys(tags))
 
-    return ParsedQuery(
-        category=category,
-        mood=mood,
-        budget=budget,
-        purpose=purpose,
-        location=location,
-        tags=unique_tags,
-    )
+    return {
+        "category": category,
+        "mood": mood,
+        "budget": budget,
+        "purpose": purpose,
+        "location": location,
+        "tags": unique_tags,
+    }

@@ -1,11 +1,14 @@
-# Core ML & NLP
-sentence-transformers>=2.7.0     # all-MiniLM-L6-v2 embedding model
-scikit-learn>=1.3.0              # cosine_similarity
-numpy>=1.24.0                    # array ops
+# Data loading (real CSV + XLSX datasets)
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# ML / recommendation
+scikit-learn>=1.3.0              # TF-IDF + cosine_similarity
+numpy>=1.24.0
 
 # Web framework
 fastapi>=0.110.0
-uvicorn[standard]>=0.29.0        # ASGI server with hot-reload
+uvicorn[standard]>=0.29.0
 
 # Data validation
 pydantic>=2.6.0

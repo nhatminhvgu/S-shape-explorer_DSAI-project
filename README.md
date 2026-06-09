@@ -1,131 +1,136 @@
-# 🗺️ Place Recommendation Engine
+# S-Shape Explorer — Vietnam Travel Recommender
 
-A production-ready Python backend for NLP-powered place recommendations using sentence-transformer embeddings, cosine similarity, and configurable multi-signal ranking.
+AI-powered Vietnam tourism chatbot that recommends real destinations based on user preferences and free-text queries.
 
 ---
 
-## Architecture
+## Project Structure
 
 ```
-POST /recommend
-      │
-      ▼
-┌─────────────┐    ┌──────────────┐    ┌──────────────────┐    ┌──────────┐
-│ nlp_parser  │───▶│ recommender  │───▶│    ranking       │───▶│ FastAPI  │
-│ (regex NLP) │    │ (MiniLM-L6)  │    │ (weighted score) │    │ response │
-└─────────────┘    └──────────────┘    └──────────────────┘    └──────────┘
-      │                    │                    ▲
-      ▼                    ▼                    │
-  ParsedQuery        cosine sim on         feedback prefs
-  { category,        100 place             (per-user tag
-    mood, budget,    embeddings            weights)
-    purpose, ... }
-```
-
-## File Structure
-
-```
-place_recommender/
-├── app/
+S-shape-explorer_DSAI-project/
+│
+├── app/                          ← FastAPI backend
+│   ├── main.py                   ← Entry point, API endpoints
+│   ├── models.py                 ← Pydantic schemas (Place, RecommendRequest, …)
+│   ├── data_loader.py            ← Loads CSV + XLSX into Place objects
+│   ├── recommender.py            ← TF-IDF similarity retrieval (uses pkl files)
+│   ├── ranking.py                ← Multi-signal scorer + explanation generator
+│   ├── nlp_parser.py             ← Location extractor for free-text queries
 │   ├── __init__.py
-│   ├── main.py           # FastAPI app, endpoints
-│   ├── models.py         # Pydantic schemas
-│   ├── nlp_parser.py     # Regex-based NLP extractor
-│   ├── recommender.py    # Embedding + similarity engine
-│   ├── ranking.py        # Multi-signal weighted ranker
-│   ├── data_loader.py    # JSON dataset loader
-│   └── places_data.json  # 100 mock places (HCMC)
+│   └── static/
+│       └── index.html            ← Main chat UI (served at /)
+│
+│
+├── Full_Translated_DataSet_V2.xlsx   ← 315 places: ratings, image URLs, keywords
+├── Vietnam_Tourism_Final_8Labels.csv ← 315 places: descriptions + 8 category labels
+├── tfidf_model.pkl               ← Fitted TF-IDF vectorizer (315 descriptions)
+├── tfidf_matrix (1).pkl          ← Pre-computed TF-IDF matrix (315 x 1000)
+│
 ├── requirements.txt
-├── sample_requests.http
-└── README.md
-```
-
-## Quick Start
-
-```bash
-# 1. Create virtual environment
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-
-# 2. Install dependencies (downloads ~90MB MiniLM model on first run)
-pip install -r requirements.txt
-
-# 3. Run the server
-uvicorn app.main:app --reload --port 8000
-
-# 4. Open interactive API docs
-open http://localhost:8000/docs
+└── .gitignore
 ```
 
 ---
 
-## Endpoints
+## Dataset
 
-### `POST /recommend`
-NLP-parse the query, embed it, retrieve candidates, and re-rank.
+| File | Rows | Key columns |
+|------|------|-------------|
+| `Vietnam_Tourism_Final_8Labels.csv` | 315 | Place_Name, Description, Location, Adventure, Relax, Rural, Urban, Mountain, Historical, Food, Nature |
+| `Full_Translated_DataSet_V2.xlsx` | 315 | ID, Place_Name, Location, Description, Rating, Image_URL, Keywords |
 
-**Body:**
+Both files are row-aligned (row 0 = same place in both).
+
+---
+
+## API Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/` | Main travel UI |
+| `GET` | `/health` | Readiness probe |
+| `POST` | `/recommend` | Get destination recommendations |
+| `GET` | `/place/{id}` | Fetch a single place by ID |
+| `POST` | `/feedback` | Submit like/dislike for a place |
+
+### POST /recommend
+
+**Request:**
 ```json
 {
-  "query": "I want a quiet cafe in Ho Chi Minh City for studying, cheap price.",
-  "user_id": "user_42",
-  "top_k": 5,
-  "weights": {
-    "semantic": 0.50,
-    "rating": 0.20,
-    "popularity": 0.20,
-    "distance": 0.10
-  }
+  "query": "I want a relaxing beach in Khanh Hoa",
+  "preferences": ["Relax", "Nature"],
+  "location": "Khanh Hoa",
+  "top_k": 5
 }
 ```
 
-### `GET /place/{id}`
-Fetch full place details by ID (e.g. `place_001`).
-
-### `POST /feedback`
-Record a like/dislike to update the user's preference vector.
-
+**Response:**
 ```json
-{ "user_id": "user_42", "place_id": "place_007", "liked": true }
+{
+  "query": "I want a relaxing beach in Khanh Hoa",
+  "selected_preferences": ["Relax", "Nature"],
+  "recommendations": [
+    {
+      "place": {
+        "id": "place_001",
+        "name": "Cam Ranh Long Beach",
+        "location": "Khanh Hoa",
+        "description": "Pristine beach with natural beauty, ideal for relaxing and swimming",
+        "rating": 4.8,
+        "keywords": ["sea", "play", "take photos", "relax"],
+        "adventure": 0, "relax": 1, "rural": 0, "urban": 0,
+        "mountain": 0, "historical": 0, "food": 0, "nature": 0
+      },
+      "score": 0.977,
+      "matched_labels": ["Relax"],
+      "explanation": "Based on your preference for Relax and Nature, I recommend Cam Ranh Long Beach in Khanh Hoa because it matches your Relax interest: Pristine beach with natural beauty, ideal for relaxing and swimming. (Rating: 4.8/5)."
+    }
+  ]
+}
+```
+
+Valid preference values: `Adventure`, `Relax`, `Rural`, `Urban`, `Mountain`, `Historical`, `Food`, `Nature`
+
+---
+
+## Recommendation Logic
+
+**Scoring formula** (weights adjust based on what the user provides):
+
+| Case | TF-IDF | Label match | Rating |
+|------|--------|-------------|--------|
+| Query + Preferences | 35% | 45% | 20% |
+| Preferences only | 0% | 60% | 40% |
+| Query only | 65% | 0% | 35% |
+| Empty (fallback) | 50% | 0% | 50% |
+
+**Location boost:**
+- Exact province match: x1.50
+- Partial match: x1.25
+- Different location: x0.70
+
+---
+
+## How to Run
+
+```bash
+# 1. Install dependencies (first time only)
+pip install -r requirements.txt
+
+# 2. Start the server
+uvicorn app.main:app --reload
+
+# 3. Open in browser
+# http://127.0.0.1:8000          <- Main UI
+# http://127.0.0.1:8000/docs     <- Interactive API docs
 ```
 
 ---
 
-## Ranking Signals
+## Tech Stack
 
-| Signal | Description | Default weight |
-|--------|-------------|----------------|
-| `semantic` | Cosine similarity between query and place embeddings | 0.50 |
-| `rating` | Normalised 1–5 star rating | 0.20 |
-| `popularity` | Normalised 1–100 popularity score | 0.20 |
-| `distance` | Proximity to user GPS (if provided) | 0.10 |
-
-Plus:
-- **Budget penalty** (×0.60) if the place price level is incompatible with the parsed budget
-- **Category penalty** (×0.80) for category mismatches (soft, not hard filter)
-- **Preference boost** (±0.15) derived from cumulative liked/disliked tags
-
----
-
-## NLP Parser
-
-Extracts these fields using regex keyword matching:
-
-| Field | Example values |
-|-------|---------------|
-| `category` | `cafe`, `restaurant`, `bar`, `park`, `coworking` |
-| `mood` | `["quiet", "romantic"]` |
-| `budget` | `cheap` / `moderate` / `expensive` |
-| `purpose` | `["studying", "dining"]` |
-| `location` | `Ho Chi Minh City` |
-| `tags` | `["wifi", "rooftop"]` |
-
----
-
-## Extending to Production
-
-- **FAISS index**: Replace `cosine_similarity` in `recommender.py` with `faiss.IndexFlatIP` for 10k+ places
-- **Persistent feedback**: Swap `_user_prefs` dict in `main.py` with Redis or PostgreSQL
-- **Authentication**: Add `Depends(get_current_user)` to protected endpoints
-- **User coordinates**: Pass `user_lat`/`user_lon` from client to enable distance ranking
-- **Async embeddings**: Move embedding computation to a background task or pre-warm on startup
+- **Backend:** FastAPI + Uvicorn
+- **Recommendation:** scikit-learn TF-IDF, cosine similarity, 8-label matching
+- **Data:** pandas (CSV + XLSX loading)
+- **Frontend:** Vanilla HTML/CSS/JS (no framework)
