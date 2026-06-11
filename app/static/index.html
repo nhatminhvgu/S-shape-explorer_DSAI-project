@@ -325,7 +325,7 @@
     .dest-card-desc {
       font-size: 0.855rem; color: var(--text-m); line-height: 1.55;
       flex: 1; margin-bottom: 11px;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      display: -webkit-box; line-clamp: 3; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
     }
     .dest-card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 13px; }
     .dest-tag {
@@ -452,7 +452,7 @@
     .feat-desc {
       font-size: 0.84rem; color: var(--text-mu); line-height: 1.55;
       flex: 1; margin-bottom: 13px;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+      display: -webkit-box; line-clamp: 2; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
     .feat-foot {
       display: flex; align-items: center; justify-content: space-between;
@@ -1270,7 +1270,7 @@ function openModal(placeId) {
       <div class="modal-body">
         <div class="modal-top">
           <h3 class="modal-title">${esc(p.name)}</h3>
-          <button class="modal-close" id="mc-btn" aria-label="Close">✕</button>
+          <button class="modal-close" type="button" aria-label="Close">✕</button>
         </div>
         <div class="modal-badge">${esc(cat)}</div>
         <div class="modal-meta">
@@ -1281,17 +1281,17 @@ function openModal(placeId) {
         <p class="modal-desc">${esc(p.description)}</p>
         ${tags ? `<div class="modal-tags">${tags}</div>` : ''}
       </div>`;
-    $('mc-btn').addEventListener('click', closeModal);
+    cnt.onclick = e => { if (e.target.closest('.modal-close')) closeModal(); };
   }).catch(() => {
     cnt.innerHTML = `
       <div class="modal-body">
         <div class="modal-top">
           <h3 class="modal-title">Place Details</h3>
-          <button class="modal-close" id="mc-btn">✕</button>
+          <button class="modal-close" type="button" aria-label="Close">✕</button>
         </div>
         <p style="color:var(--text-mu);padding:18px 0;">Could not load details — server may be unavailable.</p>
       </div>`;
-    $('mc-btn').addEventListener('click', closeModal);
+    cnt.onclick = e => { if (e.target.closest('.modal-close')) closeModal(); };
   });
 }
 
@@ -1311,18 +1311,18 @@ function openFeaturedModal(name) {
     } else {
       cnt.innerHTML = `<div class="modal-body">
         <div class="modal-top"><h3 class="modal-title">${esc(name)}</h3>
-        <button class="modal-close" id="mc-btn">✕</button></div>
+        <button class="modal-close" type="button" aria-label="Close">✕</button></div>
         <p style="color:var(--text-mu);padding:18px 0;">This destination wasn't found in the current dataset.</p>
       </div>`;
-      $('mc-btn').addEventListener('click', closeModal);
+      cnt.onclick = e => { if (e.target.closest('.modal-close')) closeModal(); };
     }
   }).catch(() => {
     cnt.innerHTML = `<div class="modal-body">
       <div class="modal-top"><h3 class="modal-title">${esc(name)}</h3>
-      <button class="modal-close" id="mc-btn">✕</button></div>
+      <button class="modal-close" type="button" aria-label="Close">✕</button></div>
       <p style="color:var(--text-mu);padding:18px 0;">Could not load details. Please start the FastAPI server on port 8000.</p>
     </div>`;
-    $('mc-btn').addEventListener('click', closeModal);
+    cnt.onclick = e => { if (e.target.closest('.modal-close')) closeModal(); };
   });
 }
 

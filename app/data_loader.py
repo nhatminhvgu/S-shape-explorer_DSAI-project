@@ -13,6 +13,7 @@ import os
 import re
 import warnings
 from typing import Dict, List, Optional
+import pandas as pd
 
 logger = logging.getLogger(__name__)
 
@@ -24,12 +25,11 @@ XLSX_PATH = os.path.join(ROOT_DIR, "Full_Translated_DataSet_V2.xlsx")
 def load_places() -> list:
     from app.models import Place
 
-    try:
-        import pandas as pd
-    except ImportError:
-        raise RuntimeError(
-            "pandas is required. Run: pip install pandas openpyxl"
-        )
+    #try:
+    #except ImportError:
+    #    raise RuntimeError(
+    #        "pandas is required. Run: pip install pandas openpyxl"
+    #    )
 
     if not os.path.exists(CSV_PATH):
         raise FileNotFoundError(f"CSV dataset not found: {CSV_PATH}")

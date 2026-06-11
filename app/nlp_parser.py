@@ -126,6 +126,10 @@ GENERIC_TAGS: list[str] = [
 # Helpers
 # ---------------------------------------------------------------------------
 
+# what is normalisation doing? 
+# It converts the text to lowercase and removes extra whitespace.
+# What is lowercase? 
+# Lowercase is the conversion of all characters in a string to their lowercase equivalents.
 def _normalise(text: str) -> str:
     return re.sub(r"\s+", " ", text.lower().strip())
 
