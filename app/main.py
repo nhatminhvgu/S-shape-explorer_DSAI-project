@@ -24,6 +24,7 @@ from pydantic import BaseModel
 
 from app.data_loader import PLACES, get_place_by_id
 from app.models import Place, RecommendRequest, RecommendResponse
+from app.nlp_parser import parse_query
 from app.ranking import rank
 from app.recommender import PlaceIndex, VALID_LABELS
 
@@ -81,21 +82,30 @@ def health() -> dict:
 def recommend(body: RecommendRequest) -> RecommendResponse:
     query = (body.query or "").strip()
 
-    # Validate and normalise preference labels
+    # Parse the free-text query into structured intent.
+    parsed_query = parse_query(query) if query else {
+        "category": "",
+        "mood": [],
+        "budget": "",
+        "purpose": [],
+        "location": "",
+        "tags": [],
+    }
+
+    # Validate and normalise preference labels.
     preferences = [
         p for p in (body.preferences or [])
         if p in VALID_LABELS
     ]
 
-    # Explicit location wins; otherwise try to extract from the query text
+    # Prefer explicit location from request, otherwise use parser output.
     location = (body.location or "").strip()
-    if not location and query:
-        from app.nlp_parser import _extract_location, _normalise
-        location = _extract_location(_normalise(query))
+    if not location:
+        location = parsed_query.get("location", "")
 
     logger.info(
-        "POST /recommend | query=%r | preferences=%s | location=%r | top_k=%d",
-        query, preferences, location, body.top_k,
+        "POST /recommend | query=%r | preferences=%s | location=%r | parsed=%s | top_k=%d",
+        query, preferences, location, parsed_query, body.top_k,
     )
 
     # Pool size: use all places when there's no text query so label matching
