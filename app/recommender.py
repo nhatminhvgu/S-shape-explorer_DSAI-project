@@ -13,8 +13,9 @@ from __future__ import annotations
 import logging
 import os
 import pickle
+import re
 import warnings
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -38,6 +39,30 @@ LABEL_MAP: dict[str, str] = {
 }
 
 VALID_LABELS: List[str] = list(LABEL_MAP.keys())
+
+
+def _normalize_text(text: str) -> str:
+    return re.sub(r"\s+", " ", text.casefold()).strip()
+
+
+def _find_exact_place_match(
+    query: str,
+    places: List[Place],
+) -> Optional[Tuple[Place, float]]:
+    cleaned_query = _normalize_text(query)
+    if not cleaned_query:
+        return None
+
+    for place in places:
+        place_name = _normalize_text(place.name)
+        if (
+            cleaned_query == place_name
+            or cleaned_query in place_name
+            or place_name in cleaned_query
+        ):
+            return place, 1.0
+
+    return None
 
 
 def _load_pkl(filename: str):
@@ -78,6 +103,9 @@ class PlaceIndex:
 
         If query is empty (preference-only request), every place gets a neutral
         score of 0.5 so the ranking stage can differentiate by label match.
+
+        If the search text matches a destination name exactly (or nearly so),
+        that place is returned first before the semantic fallback runs.
         """
         n = len(self.places)
         k = min(k, n)
@@ -85,6 +113,25 @@ class PlaceIndex:
         if not query.strip():
             return [(p, 0.5) for p in self.places]
 
+        exact_match = _find_exact_place_match(query, self.places)
+        if exact_match is not None:
+            exact_place, exact_score = exact_match
+            # Keep the exact match at the top, then fill the rest with semantic results.
+            exact_results = [(exact_place, exact_score)]
+            remaining = [
+                (place, score)
+                for place, score in self._semantic_candidates(query, k + 1)
+                if place.id != exact_place.id
+            ]
+            return exact_results + remaining[: k - 1]
+
+        return self._semantic_candidates(query, k)
+
+    def _semantic_candidates(
+        self,
+        query: str,
+        k: int,
+    ) -> List[Tuple[Place, float]]:
         q_vec = _tfidf_model.transform([query.lower()])
         sims: np.ndarray = cosine_similarity(q_vec, _tfidf_matrix)[0]
 
@@ -92,5 +139,5 @@ class PlaceIndex:
         return [
             (self.places[i], float(sims[i]))
             for i in top_indices
-            if i < n
+            if i < len(self.places)
         ]
