@@ -359,60 +359,58 @@
       /* Search bar */
       .hero-search-wrap {
         display: flex;
-        flex-direction: column;
-        gap: 12px;
+        align-items: center;
         margin-bottom: 28px;
-        padding: 24px;
-        background: linear-gradient(135deg, rgba(201, 160, 68, 0.06) 0%, rgba(201, 160, 68, 0.02) 100%);
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        backdrop-filter: blur(4px);
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 14px;
+        border: 1.5px solid rgba(201, 160, 68, 0.28);
+        box-shadow: 0 4px 24px rgba(201, 160, 68, 0.14), 0 1px 4px rgba(30, 22, 12, 0.07);
+        overflow: hidden;
+        transition: box-shadow 0.25s ease, border-color 0.25s ease;
       }
+      .hero-search-wrap:focus-within {
+        border-color: rgba(201, 160, 68, 0.55);
+        box-shadow: 0 6px 32px rgba(201, 160, 68, 0.22);
+      }
+      .hero-search-icon {
+        padding: 0 14px 0 18px;
+        font-size: 1.05rem;
+        flex-shrink: 0;
+        opacity: 0.55;
       }
       .hero-search-input {
-        width: 100%;
-        background: rgba(255, 255, 255, 0.95);
+        flex: 1;
+        background: transparent;
         border: none;
-        border-radius: 16px;
         color: var(--text);
-        font-size: 1rem;
-        padding: 18px 20px;
-        min-height: 120px;
-        max-height: 200px;
-        resize: vertical;
-        font-family: inherit;
-        line-height: 1.6;
+        font-size: 0.97rem;
+        padding: 18px 8px;
         outline: none;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 16px rgba(30, 22, 12, 0.08);
-      }
-      .hero-search-input:focus {
-        background: rgba(255, 255, 255, 0.99);
-        box-shadow: 0 8px 24px rgba(201, 160, 68, 0.15), inset 0 0 0 2px rgba(201, 160, 68, 0.2);
+        min-width: 0;
+        font-family: inherit;
+        line-height: 1.5;
       }
       .hero-search-input::placeholder {
-        color: rgba(74, 55, 40, 0.32);
+        color: rgba(74, 55, 40, 0.35);
       }
       .hero-search-btn {
         background: var(--orange);
         color: white;
-        padding: 14px 32px;
-        border-radius: 8px;
-        font-size: 0.95rem;
+        padding: 12px 26px;
+        margin: 6px;
+        border-radius: 10px;
+        font-size: 0.92rem;
         font-weight: 600;
-        transition:
-          background var(--ease),
-          transform var(--ease),
-          box-shadow var(--ease);
-        align-self: flex-start;
         border: none;
         cursor: pointer;
-        box-shadow: 0 4px 12px rgba(200, 86, 26, 0.25);
+        flex-shrink: 0;
+        font-family: inherit;
+        transition: background var(--ease), transform var(--ease);
+        white-space: nowrap;
       }
       .hero-search-btn:hover {
         background: var(--orange-h);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(200, 86, 26, 0.35);
+        transform: translateY(-1px);
       }
       .hero-search-btn:active {
         transform: translateY(0);
@@ -714,36 +712,6 @@
       .btn-detail:hover {
         background: var(--g700);
       }
-      .btn-react {
-        width: 33px;
-        height: 33px;
-        border-radius: var(--r-sm);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.95rem;
-        border: 1.5px solid var(--border);
-        transition: all var(--ease);
-      }
-      .btn-react.like:hover {
-        background: rgba(45, 97, 71, 0.1);
-        border-color: var(--g600);
-      }
-      .btn-react.dislike:hover {
-        background: var(--orange-pale);
-        border-color: var(--orange);
-      }
-      .btn-react.voted {
-        opacity: 0.55;
-        pointer-events: none;
-      }
-      .feedback-note {
-        font-size: 0.72rem;
-        color: var(--text-mu);
-        font-style: italic;
-        line-height: 1.35;
-      }
-
       /* Loading / Error / Empty */
       .state-box {
         grid-column: 1 / -1;
@@ -1650,14 +1618,14 @@
           </p>
 
           <div class="hero-search-wrap">
-            <textarea
+            <span class="hero-search-icon">🔍</span>
+            <input
+              type="text"
               id="hero-search"
               class="hero-search-input"
-              placeholder="e.g. A 3-day peaceful nature trip away from crowds, ideally near a river or jungle, with local food options nearby…"
-            ></textarea>
-            <button class="hero-search-btn" id="hero-search-btn">
-              Get Recommendations
-            </button>
+              placeholder="e.g. 5 days in Northern Vietnam, trekking and local food…"
+            />
+            <button class="hero-search-btn" id="hero-search-btn">Explore</button>
           </div>
 
           <div
@@ -1984,10 +1952,10 @@
           <div class="how-step">
             <div class="how-num">04</div>
             <div class="how-icon">♻️</div>
-            <h4>Learns From Feedback</h4>
+            <h4>Review the Match</h4>
             <p>
-              Like or dislike results and the system continuously adjusts to
-              match your travel taste more accurately each time.
+              Check the match score, category fit, average rating, and details
+              before choosing the destination that fits your trip.
             </p>
           </div>
         </div>
@@ -2068,7 +2036,6 @@
       /* ─── App state ──────────────────────────────────────────────────────── */
       const S = {
         activeCat: "All",
-        feedbackDone: new Set(),
         weights: { semantic: 0.5, rating: 0.2, popularity: 0.2, distance: 0.1 },
         topK: 6,
       };
@@ -2224,20 +2191,6 @@
         return resp.json();
       }
 
-      async function apiFeedback(placeId, type) {
-        const resp = await fetch(`${API_BASE}/feedback`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            place_id: placeId,
-            feedback: type,
-            user_id: GUEST_ID,
-          }),
-        });
-        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-        return resp.json();
-      }
-
       /* ─── Card rendering ─────────────────────────────────────────────────── */
       function cardHtml(result) {
         const p = result.place;
@@ -2254,12 +2207,7 @@
           .map((t) => `<span class="dest-tag">${esc(t)}</span>`)
           .join("");
 
-        const done = S.feedbackDone.has(p.id);
-        const actionsHtml = done
-          ? `<span class="feedback-note">Thanks — we'll improve your results.</span>`
-          : `<button class="btn-detail" onclick="openModal('${esc(p.id)}')">Details</button>
-       <button class="btn-react like" title="Helpful" onclick="doFeedback('${esc(p.id)}','like',this)">👍</button>
-       <button class="btn-react dislike" title="Not a match" onclick="doFeedback('${esc(p.id)}','dislike',this)">👎</button>`;
+        const actionsHtml = `<button class="btn-detail" onclick="openModal('${esc(p.id)}')">Details</button>`;
 
         return `
     <div class="dest-card" data-id="${esc(p.id)}">
@@ -2399,7 +2347,7 @@
           });
       }
 
-      /* Open featured card by searching for it by name */
+      /* Open featured card by exact name lookup (accent-insensitive) */
       function openFeaturedModal(name) {
         const bd = $("modal-bd");
         const cnt = $("modal-content");
@@ -2407,55 +2355,33 @@
         cnt.innerHTML = `<div class="modal-loading">Loading place details…</div>`;
         document.body.style.overflow = "hidden";
 
-        apiRecommend(name, [], "", 1)
-          .then((data) => {
-            const recs = data.recommendations || [];
-            if (recs.length) {
-              closeModal();
-              openModal(recs[0].place.id);
-            } else {
-              cnt.innerHTML = `<div class="modal-body">
-        <div class="modal-top"><h3 class="modal-title">${esc(name)}</h3>
-        <button class="modal-close" type="button" aria-label="Close">✕</button></div>
-        <p style="color:var(--text-mu);padding:18px 0;">This destination wasn't found in the current dataset.</p>
-      </div>`;
-              cnt.onclick = (e) => {
-                if (e.target.closest(".modal-close")) closeModal();
-              };
-            }
-          })
-          .catch(() => {
-            cnt.innerHTML = `<div class="modal-body">
+        function showError(msg) {
+          cnt.innerHTML = `<div class="modal-body">
       <div class="modal-top"><h3 class="modal-title">${esc(name)}</h3>
       <button class="modal-close" type="button" aria-label="Close">✕</button></div>
-      <p style="color:var(--text-mu);padding:18px 0;">Could not load details. Please start the FastAPI server on port 8000.</p>
+      <p style="color:var(--text-mu);padding:18px 0;">${esc(msg)}</p>
     </div>`;
-            cnt.onclick = (e) => {
-              if (e.target.closest(".modal-close")) closeModal();
-            };
+          cnt.onclick = (e) => { if (e.target.closest(".modal-close")) closeModal(); };
+        }
+
+        fetch(`${API_BASE}/place/search?q=${encodeURIComponent(name)}`)
+          .then((r) => r.ok ? r.json() : Promise.reject(r.status))
+          .then((place) => {
+            closeModal();
+            openModal(place.id);
+          })
+          .catch((status) => {
+            if (status === 404) {
+              showError("This destination wasn't found in the current dataset.");
+            } else {
+              showError("Could not load details. Please start the FastAPI server on port 8000.");
+            }
           });
       }
 
       function closeModal() {
         $("modal-bd").classList.remove("open");
         document.body.style.overflow = "";
-      }
-
-      /* ─── Feedback ───────────────────────────────────────────────────────── */
-      function doFeedback(placeId, type, btn) {
-        S.feedbackDone.add(placeId);
-        const card = btn.closest(".dest-card");
-        if (card) {
-          card.querySelector(".dest-actions").innerHTML =
-            `<span class="feedback-note">${
-              type === "like"
-                ? "Marked as helpful — recommendations will improve."
-                : "Got it — we'll show better matches."
-            }</span>`;
-        }
-        apiFeedback(placeId, type).catch(() => {
-          toast("Feedback noted locally — server unavailable", "info");
-        });
       }
 
       /* ─── Featured section ───────────────────────────────────────────────── */
@@ -2487,8 +2413,6 @@
             </div>
             <div class="feat-actions">
               <button class="btn-detail" onclick="openFeaturedModal('${esc(f.name)}')">Details</button>
-              <button class="btn-react like" onclick="toast('Saved — nice pick!','success')" title="Like">👍</button>
-              <button class="btn-react dislike" onclick="toast('Noted — we\\u2019ll do better','info')" title="Not for me">👎</button>
             </div>
           </div>
         </div>
@@ -2521,7 +2445,7 @@
           $("results").scrollIntoView({ behavior: "smooth" });
         });
         $("hero-search").addEventListener("keydown", (e) => {
-          if (e.key === "Enter" && e.ctrlKey) {
+          if (e.key === "Enter") {
             $("hero-search-btn").click();
           }
         });

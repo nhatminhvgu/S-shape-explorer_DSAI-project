@@ -128,8 +128,6 @@ Valid preference values: `Adventure`, `Relax`, `Rural`, `Urban`, `Mountain`, `Hi
 pip install -r requirements.txt
 
 # 2. Start the server
-uvicorn app.main:app --reload
-
 python -m uvicorn app.main:app --reload
 # 3. Open in browser
 # http://127.0.0.1:8000          <- Main UI

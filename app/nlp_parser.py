@@ -170,37 +170,39 @@ def _match_keywords(text: str, keyword_map: dict[str, list[str]]) -> list[str]:
 
 def _extract_location(text: str) -> str:
     """
-    Extract location from text. Supports:
+    Extract location from text. Priority order:
     1. Specific province/city names (hanoi, da nang, etc.)
-    2. Regional references (northern vietnam, southern vietnam, central vietnam)
-    3. Directional keywords (north, south, central, mekong delta)
+    2. Regional keywords (northern, southern, central, mekong)
+    3. Generic "in X / near X / at X" patterns
     """
-    # First try specific locations
+    # 1. Specific province / city names
     for loc in VIETNAM_LOCATIONS:
         if re.search(r"\b" + re.escape(loc) + r"\b", text):
             return loc.title()
-    
-    # Then try location patterns (in X, near X, at X)
-    for pattern in LOCATION_PATTERNS:
-        m = re.search(pattern, text, re.IGNORECASE)
-        if m:
-            return m.group(1).strip().title()
-    
-    # Finally try regional keywords
+
+    # 2. Regional keywords — checked BEFORE generic "in X" pattern so that
+    #    "5 days in Northern" correctly maps to "North Vietnam" rather than
+    #    capturing the word "Northern" as an unknown place name.
     regional_keywords = {
-        "north": [r"\bnorth(ern)?\s+(vietnam|viet)", r"\bnorth"],
-        "central": [r"\bcentral\s+(vietnam|viet)", r"\bcentral"],
-        "south": [r"\bsouth(ern)?\s+(vietnam|viet)", r"\bsouth"],
-        "mekong": [r"\bmekong\s+(delta|region)", r"\bmekong"],
+        "north":   [r"\bnorth(ern)?\s+(vietnam|viet)\b", r"\bnorth(ern)?\b"],
+        "central": [r"\bcentral\s+(vietnam|viet)\b",      r"\bcentral\b"],
+        "south":   [r"\bsouth(ern)?\s+(vietnam|viet)\b",  r"\bsouth(ern)?\b"],
+        "mekong":  [r"\bmekong(\s+(delta|region))?\b"],
     }
-    
+
     for region, patterns in regional_keywords.items():
         for pattern in patterns:
             if re.search(pattern, text, re.IGNORECASE):
                 if region == "mekong":
-                    return "Mekong Delta"  # Special handling for Mekong
+                    return "Mekong Delta"
                 return region.capitalize() + " Vietnam"
-    
+
+    # 3. Generic positional patterns (in X, near X, at X)
+    for pattern in LOCATION_PATTERNS:
+        m = re.search(pattern, text, re.IGNORECASE)
+        if m:
+            return m.group(1).strip().title()
+
     return ""
 
 
