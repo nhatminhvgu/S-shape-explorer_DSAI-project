@@ -12,6 +12,7 @@ Endpoints:
 from __future__ import annotations
 
 import logging
+import unicodedata
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Optional
@@ -132,6 +133,33 @@ def recommend(body: RecommendRequest) -> RecommendResponse:
         selected_preferences=preferences,
         recommendations=ranked,
     )
+
+
+def _strip_accents(s: str) -> str:
+    return "".join(
+        c for c in unicodedata.normalize("NFD", s)
+        if unicodedata.category(c) != "Mn"
+    )
+
+
+@app.get("/place/search", response_model=Place, tags=["Places"])
+def search_place_by_name(q: str) -> Place:
+    """Find the best-matching place by name, ignoring diacritics and case."""
+    q_norm = _strip_accents(q.casefold().strip())
+    best: Optional[Place] = None
+    best_score = 0
+    for place in PLACES:
+        name_norm = _strip_accents(place.name.casefold().strip())
+        if q_norm == name_norm:
+            return place
+        if q_norm in name_norm or name_norm in q_norm:
+            score = len(set(q_norm.split()) & set(name_norm.split()))
+            if score > best_score:
+                best_score = score
+                best = place
+    if best:
+        return best
+    raise HTTPException(status_code=404, detail=f"No place found for '{q}'.")
 
 
 @app.get("/place/{place_id}", response_model=Place, tags=["Places"])

@@ -34,10 +34,10 @@ S-shape-explorer_DSAI-project/
 
 ## Dataset
 
-| File | Rows | Key columns |
-|------|------|-------------|
-| `Vietnam_Tourism_Final_8Labels.csv` | 315 | Place_Name, Description, Location, Adventure, Relax, Rural, Urban, Mountain, Historical, Food, Nature |
-| `Full_Translated_DataSet_V2.xlsx` | 315 | ID, Place_Name, Location, Description, Rating, Image_URL, Keywords |
+| File                                | Rows | Key columns                                                                                           |
+| ----------------------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| `Vietnam_Tourism_Final_8Labels.csv` | 315  | Place_Name, Description, Location, Adventure, Relax, Rural, Urban, Mountain, Historical, Food, Nature |
+| `Full_Translated_DataSet_V2.xlsx`   | 315  | ID, Place_Name, Location, Description, Rating, Image_URL, Keywords                                    |
 
 Both files are row-aligned (row 0 = same place in both).
 
@@ -45,17 +45,18 @@ Both files are row-aligned (row 0 = same place in both).
 
 ## API Endpoints
 
-| Method | Path | Description |
-|--------|------|-------------|
-| `GET` | `/` | Main travel UI |
-| `GET` | `/health` | Readiness probe |
-| `POST` | `/recommend` | Get destination recommendations |
-| `GET` | `/place/{id}` | Fetch a single place by ID |
-| `POST` | `/feedback` | Submit like/dislike for a place |
+| Method | Path          | Description                     |
+| ------ | ------------- | ------------------------------- |
+| `GET`  | `/`           | Main travel UI                  |
+| `GET`  | `/health`     | Readiness probe                 |
+| `POST` | `/recommend`  | Get destination recommendations |
+| `GET`  | `/place/{id}` | Fetch a single place by ID      |
+| `POST` | `/feedback`   | Submit like/dislike for a place |
 
 ### POST /recommend
 
 **Request:**
+
 ```json
 {
   "query": "I want a relaxing beach in Khanh Hoa",
@@ -66,6 +67,7 @@ Both files are row-aligned (row 0 = same place in both).
 ```
 
 **Response:**
+
 ```json
 {
   "query": "I want a relaxing beach in Khanh Hoa",
@@ -79,8 +81,14 @@ Both files are row-aligned (row 0 = same place in both).
         "description": "Pristine beach with natural beauty, ideal for relaxing and swimming",
         "rating": 4.8,
         "keywords": ["sea", "play", "take photos", "relax"],
-        "adventure": 0, "relax": 1, "rural": 0, "urban": 0,
-        "mountain": 0, "historical": 0, "food": 0, "nature": 0
+        "adventure": 0,
+        "relax": 1,
+        "rural": 0,
+        "urban": 0,
+        "mountain": 0,
+        "historical": 0,
+        "food": 0,
+        "nature": 0
       },
       "score": 0.977,
       "matched_labels": ["Relax"],
@@ -98,14 +106,15 @@ Valid preference values: `Adventure`, `Relax`, `Rural`, `Urban`, `Mountain`, `Hi
 
 **Scoring formula** (weights adjust based on what the user provides):
 
-| Case | TF-IDF | Label match | Rating |
-|------|--------|-------------|--------|
-| Query + Preferences | 35% | 45% | 20% |
-| Preferences only | 0% | 60% | 40% |
-| Query only | 65% | 0% | 35% |
-| Empty (fallback) | 50% | 0% | 50% |
+| Case                | TF-IDF | Label match | Rating |
+| ------------------- | ------ | ----------- | ------ |
+| Query + Preferences | 35%    | 45%         | 20%    |
+| Preferences only    | 0%     | 60%         | 40%    |
+| Query only          | 65%    | 0%          | 35%    |
+| Empty (fallback)    | 50%    | 0%          | 50%    |
 
 **Location boost:**
+
 - Exact province match: x1.50
 - Partial match: x1.25
 - Different location: x0.70
@@ -119,8 +128,7 @@ Valid preference values: `Adventure`, `Relax`, `Rural`, `Urban`, `Mountain`, `Hi
 pip install -r requirements.txt
 
 # 2. Start the server
-uvicorn app.main:app --reload
-
+python -m uvicorn app.main:app --reload
 # 3. Open in browser
 # http://127.0.0.1:8000          <- Main UI
 # http://127.0.0.1:8000/docs     <- Interactive API docs

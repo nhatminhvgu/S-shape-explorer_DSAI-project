@@ -106,6 +106,30 @@ VIETNAM_LOCATIONS: list[str] = [
     "quang ngai", "binh phuoc",
 ]
 
+# Regional grouping for "northern/southern/central Vietnam" queries
+REGION_MAP: dict[str, list[str]] = {
+    "north": [
+        "hanoi", "ha giang", "cao bang", "lao cai", "sapa", "sa pa",
+        "lai chau", "son la", "dien bien", "hoa binh", "tuyen quang", "yen bai",
+        "lang son", "bac giang", "quang ninh", "hai phong", "ha long", "halong",
+        "ha nam", "nam dinh", "bac ninh", "hung yen", "hai duong", "vinh phuc",
+        "phu tho", "thai nguyen", "bac kan",
+    ],
+    "central": [
+        "ha tinh", "nghe an", "thanh hoa", "quang tri", "quang binh",
+        "thua thien hue", "hue", "da nang", "quang nam", "quang ngai",
+        "binh dinh", "quy nhon", "phu yen", "khanh hoa", "nha trang",
+        "ninh thuan", "ninh binh",
+    ],
+    "south": [
+        "lam dong", "da lat", "dalat", "dong nai", "binh duong", "tay ninh",
+        "long an", "tien giang", "ben tre", "tra vinh", "vinh long",
+        "dong thap", "an giang", "kien giang", "hau giang", "soc trang",
+        "bac lieu", "ca mau", "vung tau", "con dao", "ho chi minh city", "hcmc",
+        "saigon", "binh thuan", "mui ne", "phu quoc",
+    ],
+}
+
 LOCATION_PATTERNS: list[str] = [
     r"\bin\s+(ho chi minh city)",
     r"\bin\s+([\w\s]{3,30})",
@@ -145,13 +169,40 @@ def _match_keywords(text: str, keyword_map: dict[str, list[str]]) -> list[str]:
 
 
 def _extract_location(text: str) -> str:
+    """
+    Extract location from text. Priority order:
+    1. Specific province/city names (hanoi, da nang, etc.)
+    2. Regional keywords (northern, southern, central, mekong)
+    3. Generic "in X / near X / at X" patterns
+    """
+    # 1. Specific province / city names
     for loc in VIETNAM_LOCATIONS:
         if re.search(r"\b" + re.escape(loc) + r"\b", text):
             return loc.title()
+
+    # 2. Regional keywords — checked BEFORE generic "in X" pattern so that
+    #    "5 days in Northern" correctly maps to "North Vietnam" rather than
+    #    capturing the word "Northern" as an unknown place name.
+    regional_keywords = {
+        "north":   [r"\bnorth(ern)?\s+(vietnam|viet)\b", r"\bnorth(ern)?\b"],
+        "central": [r"\bcentral\s+(vietnam|viet)\b",      r"\bcentral\b"],
+        "south":   [r"\bsouth(ern)?\s+(vietnam|viet)\b",  r"\bsouth(ern)?\b"],
+        "mekong":  [r"\bmekong(\s+(delta|region))?\b"],
+    }
+
+    for region, patterns in regional_keywords.items():
+        for pattern in patterns:
+            if re.search(pattern, text, re.IGNORECASE):
+                if region == "mekong":
+                    return "Mekong Delta"
+                return region.capitalize() + " Vietnam"
+
+    # 3. Generic positional patterns (in X, near X, at X)
     for pattern in LOCATION_PATTERNS:
         m = re.search(pattern, text, re.IGNORECASE)
         if m:
             return m.group(1).strip().title()
+
     return ""
 
 

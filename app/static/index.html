@@ -1,1177 +1,2215 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AI-powered Vietnam travel discovery. Describe your dream trip and get personalised destination recommendations.">
-  <title>S-Shape Explorer — AI Vietnam Travel Guide</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
-  <style>
-    /* ── Variables ───────────────────────────────────────────────────── */
-    :root {
-      --g900: #0d1f16;
-      --g800: #1a3a2a;
-      --g700: #234d38;
-      --g600: #2d6147;
-      --cream: #faf8f2;
-      --cream-d: #f0ece0;
-      --orange: #c8561a;
-      --orange-h: #d96b2a;
-      --orange-pale: rgba(200,86,26,0.1);
-      --gold: #c9a044;
-      --gold-l: #dbb85a;
-      --gold-pale: rgba(201,160,68,0.14);
-      --text: #1e160c;
-      --text-m: #4a3728;
-      --text-mu: #7a6858;
-      --text-lt: #a09080;
-      --white: #ffffff;
-      --border: rgba(201,160,68,0.2);
-      --border-l: rgba(201,160,68,0.1);
-      --sh-sm: 0 2px 8px rgba(30,22,12,0.08);
-      --sh-md: 0 4px 20px rgba(30,22,12,0.12);
-      --sh-lg: 0 8px 40px rgba(30,22,12,0.18);
-      --r-sm: 8px;
-      --r-md: 16px;
-      --r-lg: 24px;
-      --r-xl: 32px;
-      --ease: 0.2s ease;
-      --ease-s: 0.35s ease;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="AI-powered Vietnam travel discovery. Describe your dream trip and get personalised destination recommendations."
+    />
+    <title>S-Shape Explorer — AI Vietnam Travel Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ── Variables ───────────────────────────────────────────────────── */
+      :root {
+        --g900: #0d1f16;
+        --g800: #1a3a2a;
+        --g700: #234d38;
+        --g600: #2d6147;
+        --cream: #faf8f2;
+        --cream-d: #f0ece0;
+        --orange: #c8561a;
+        --orange-h: #d96b2a;
+        --orange-pale: rgba(200, 86, 26, 0.1);
+        --gold: #c9a044;
+        --gold-l: #dbb85a;
+        --gold-pale: rgba(201, 160, 68, 0.14);
+        --text: #1e160c;
+        --text-m: #4a3728;
+        --text-mu: #7a6858;
+        --text-lt: #a09080;
+        --white: #ffffff;
+        --border: rgba(201, 160, 68, 0.2);
+        --border-l: rgba(201, 160, 68, 0.1);
+        --sh-sm: 0 2px 8px rgba(30, 22, 12, 0.08);
+        --sh-md: 0 4px 20px rgba(30, 22, 12, 0.12);
+        --sh-lg: 0 8px 40px rgba(30, 22, 12, 0.18);
+        --r-sm: 8px;
+        --r-md: 16px;
+        --r-lg: 24px;
+        --r-xl: 32px;
+        --ease: 0.2s ease;
+        --ease-s: 0.35s ease;
+      }
 
-    /* ── Reset ───────────────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    img { display: block; max-width: 100%; }
-    button { cursor: pointer; border: none; background: none; font-family: inherit; }
-    input, textarea { font-family: inherit; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
-    code {
-      background: rgba(0,0,0,0.06); border-radius: 4px;
-      padding: 1px 6px; font-family: monospace; font-size: 0.9em;
-    }
+      /* ── Reset ───────────────────────────────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          "DM Sans",
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background: var(--cream);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      button {
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-family: inherit;
+      }
+      input,
+      textarea {
+        font-family: inherit;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      ul {
+        list-style: none;
+      }
+      code {
+        background: rgba(0, 0, 0, 0.06);
+        border-radius: 4px;
+        padding: 1px 6px;
+        font-family: monospace;
+        font-size: 0.9em;
+      }
 
-    /* ── Typography ──────────────────────────────────────────────────── */
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', Georgia, serif;
-      line-height: 1.15;
-    }
-    h1 { font-size: clamp(2.2rem, 5.2vw, 3.8rem); font-weight: 700; }
-    h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; }
-    h3 { font-size: clamp(1.15rem, 2vw, 1.55rem); font-weight: 600; }
-    h4 { font-size: 1.05rem; font-weight: 600; }
-    p { color: var(--text-m); }
+      /* ── Typography ──────────────────────────────────────────────────── */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Playfair Display", Georgia, serif;
+        line-height: 1.15;
+      }
+      h1 {
+        font-size: clamp(2.2rem, 5.2vw, 3.8rem);
+        font-weight: 700;
+      }
+      h2 {
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 700;
+      }
+      h3 {
+        font-size: clamp(1.15rem, 2vw, 1.55rem);
+        font-weight: 600;
+      }
+      h4 {
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+      p {
+        color: var(--text-m);
+      }
 
-    /* ── Shared Utilities ────────────────────────────────────────────── */
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .hidden { display: none !important; }
+      /* ── Shared Utilities ────────────────────────────────────────────── */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .hidden {
+        display: none !important;
+      }
 
-    .section-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--gold-pale); border: 1px solid var(--border);
-      color: var(--gold); font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.09em; text-transform: uppercase;
-      padding: 6px 14px; border-radius: 100px; margin-bottom: 14px;
-    }
-    .section-badge::before { content: '◆'; font-size: 0.6em; opacity: 0.7; }
+      .section-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--gold-pale);
+        border: 1px solid var(--border);
+        color: var(--gold);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        padding: 6px 14px;
+        border-radius: 100px;
+        margin-bottom: 14px;
+      }
+      .section-badge::before {
+        content: "◆";
+        font-size: 0.6em;
+        opacity: 0.7;
+      }
 
-    /* ── Navbar ──────────────────────────────────────────────────────── */
-    #navbar {
-      position: sticky; top: 0; z-index: 900;
-      background: rgba(250,248,242,0.94);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-l);
-      transition: box-shadow var(--ease);
-    }
-    #navbar.scrolled { box-shadow: var(--sh-md); }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 68px; max-width: 1200px; margin: 0 auto; padding: 0 24px;
-    }
-    .nav-brand { display: flex; align-items: baseline; gap: 8px; }
-    .nav-brand-name {
-      font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
-      color: var(--g800); letter-spacing: -0.01em;
-    }
-    .nav-brand-accent {
-      font-family: 'Playfair Display', serif; font-style: italic;
-      font-size: 0.8rem; color: var(--gold); font-weight: 400;
-    }
-    .nav-links { display: flex; align-items: center; gap: 28px; }
-    .nav-links a {
-      font-size: 0.875rem; font-weight: 500; color: var(--text-m);
-      position: relative; transition: color var(--ease);
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -2px; left: 0; width: 0;
-      height: 1.5px; background: var(--orange); transition: width var(--ease);
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-cta {
-      background: var(--g800) !important; color: var(--cream) !important;
-      padding: 10px 20px; border-radius: var(--r-sm);
-      font-weight: 600 !important; font-size: 0.85rem !important;
-      transition: background var(--ease), transform var(--ease) !important;
-      border: none !important;
-    }
-    .nav-cta::after { display: none !important; }
-    .nav-cta:hover { background: var(--g700) !important; transform: translateY(-1px); }
-    .nav-hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      width: 28px; padding: 4px; cursor: pointer;
-    }
-    .nav-hamburger span {
-      display: block; width: 100%; height: 2px;
-      background: var(--text); border-radius: 2px; transition: var(--ease);
-    }
-
-    /* ── Hero ────────────────────────────────────────────────────────── */
-    #hero {
-      background:
-        radial-gradient(ellipse at 18% 65%, rgba(45,97,71,0.5) 0%, transparent 55%),
-        radial-gradient(ellipse at 78% 18%, rgba(35,77,56,0.38) 0%, transparent 48%),
-        linear-gradient(152deg, #1a3a2a 0%, #0d1f16 100%);
-      min-height: 88vh; padding: 80px 0 100px;
-      position: relative; overflow: hidden;
-    }
-    #hero::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(201,160,68,0.065) 1px, transparent 1px);
-      background-size: 28px 28px; pointer-events: none;
-    }
-    .hero-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 24px;
-      display: grid; grid-template-columns: 1fr 400px;
-      gap: 56px; align-items: center;
-    }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(201,160,68,0.1); border: 1px solid rgba(201,160,68,0.25);
-      color: var(--gold-l); font-size: 0.72rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 7px 16px; border-radius: 100px; margin-bottom: 24px;
-    }
-    .hero-badge-dot {
-      width: 6px; height: 6px; background: var(--gold-l);
-      border-radius: 50%; animation: pulse 2.4s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(0.75); }
-    }
-    .hero-headline {
-      font-size: clamp(2.3rem, 5.4vw, 3.8rem); font-weight: 700;
-      color: #f5f0e8; line-height: 1.08; margin-bottom: 20px;
-      letter-spacing: -0.02em;
-    }
-    .hero-headline em { color: var(--gold-l); font-style: italic; }
-    .hero-sub {
-      font-size: 1.02rem; color: rgba(245,240,232,0.68);
-      line-height: 1.72; margin-bottom: 36px; max-width: 500px;
-    }
-
-    /* Search bar */
-    .hero-search-wrap {
-      background: rgba(255,255,255,0.07); border: 1.5px solid rgba(201,160,68,0.2);
-      border-radius: 100px; padding: 6px 6px 6px 22px;
-      display: flex; align-items: center; gap: 8px;
-      backdrop-filter: blur(8px); margin-bottom: 16px;
-      transition: border-color var(--ease), box-shadow var(--ease);
-    }
-    .hero-search-wrap:focus-within {
-      border-color: rgba(201,160,68,0.48);
-      box-shadow: 0 0 0 4px rgba(201,160,68,0.08);
-    }
-    .hero-search-input {
-      flex: 1; background: none; border: none; outline: none;
-      color: #f5f0e8; font-size: 0.975rem; min-width: 0;
-    }
-    .hero-search-input::placeholder { color: rgba(245,240,232,0.38); }
-    .hero-search-btn {
-      background: var(--orange); color: white;
-      padding: 13px 28px; border-radius: 100px; flex-shrink: 0;
-      font-size: 0.9rem; font-weight: 600;
-      transition: background var(--ease), transform var(--ease);
-    }
-    .hero-search-btn:hover { background: var(--orange-h); transform: scale(1.02); }
-    .hero-search-btn:active { transform: scale(0.98); }
-
-    /* Hero chips */
-    .hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
-    .hero-chip {
-      background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
-      color: rgba(245,240,232,0.65); font-size: 0.82rem; font-weight: 500;
-      padding: 7px 15px; border-radius: 100px; transition: all var(--ease);
-    }
-    .hero-chip:hover { background: rgba(255,255,255,0.13); color: #f5f0e8; border-color: rgba(255,255,255,0.22); }
-    .hero-chip.active {
-      background: var(--orange); border-color: var(--orange);
-      color: white; font-weight: 600;
-    }
-
-    /* Hero stats */
-    .hero-stats { display: flex; gap: 36px; }
-    .hero-stat-num {
-      font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700;
-      color: #f5f0e8; line-height: 1;
-    }
-    .hero-stat-label { font-size: 0.75rem; color: rgba(245,240,232,0.48); margin-top: 4px; }
-
-    /* Float cards */
-    .hero-float-col { display: flex; flex-direction: column; gap: 14px; }
-    .float-card {
-      background: rgba(255,255,255,0.07);
-      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(201,160,68,0.2);
-      border-radius: var(--r-md); padding: 18px 20px;
-      transition: transform var(--ease-s), box-shadow var(--ease-s);
-    }
-    .float-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 14px 36px rgba(0,0,0,0.28);
-    }
-    .float-card-label {
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
-      display: block;
-    }
-    .float-card h4 { color: #f5f0e8; font-size: 1rem; margin-bottom: 4px; }
-    .float-card-loc { font-size: 0.78rem; color: rgba(245,240,232,0.52); }
-    .float-card-footer {
-      display: flex; align-items: center; gap: 6px;
-      margin-top: 10px; font-size: 0.78rem; color: rgba(245,240,232,0.65);
-    }
-    .fc-stars { color: var(--gold); font-size: 0.72rem; }
-
-    /* ── Results Section ─────────────────────────────────────────────── */
-    #results {
-      background: var(--cream-d); padding: 52px 0 68px;
-      border-bottom: 1px solid var(--border-l);
-    }
-    .results-bar {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      flex-wrap: wrap; gap: 16px; margin-bottom: 32px;
-    }
-    #results-title {
-      font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--text);
-    }
-    #results-meta { font-size: 0.875rem; color: var(--text-mu); margin-top: 4px; }
-    .results-close {
-      border: 1.5px solid var(--border); color: var(--text-mu);
-      padding: 8px 16px; border-radius: var(--r-sm); font-size: 0.83rem;
-      font-weight: 500; transition: all var(--ease); flex-shrink: 0;
-    }
-    .results-close:hover { border-color: var(--orange); color: var(--orange); }
-    .results-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(308px, 1fr));
-      gap: 20px;
-    }
-
-    /* ── Destination Card ────────────────────────────────────────────── */
-    .dest-card {
-      background: var(--white); border: 1px solid var(--border-l);
-      border-radius: var(--r-md); overflow: hidden;
-      display: flex; flex-direction: column;
-      transition: transform var(--ease-s), box-shadow var(--ease-s);
-    }
-    .dest-card:hover { transform: translateY(-4px); box-shadow: var(--sh-lg); }
-    .dest-card-img-wrap {
-      position: relative; height: 178px; overflow: hidden;
-      background: linear-gradient(135deg, #e0efe8, #cce0d5);
-    }
-    .dest-card-img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform var(--ease-s);
-    }
-    .dest-card:hover .dest-card-img { transform: scale(1.05); }
-    .dest-card-img.err { opacity: 0; }
-    .dest-card-match {
-      position: absolute; top: 12px; right: 12px;
-      background: var(--g800); color: var(--gold-l);
-      font-size: 0.7rem; font-weight: 700;
-      padding: 4px 10px; border-radius: 100px;
-    }
-    .dest-card-body {
-      padding: 16px 18px 14px; flex: 1; display: flex; flex-direction: column;
-    }
-    .dest-card-top {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 8px; margin-bottom: 6px;
-    }
-    .dest-card-name { font-size: 1.02rem; font-weight: 700; color: var(--text); line-height: 1.3; }
-    .cat-badge {
-      flex-shrink: 0; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em;
-      text-transform: uppercase; padding: 3px 10px; border-radius: 100px;
-      background: var(--gold-pale); color: var(--gold); border: 1px solid var(--border);
-      white-space: nowrap; align-self: flex-start; margin-top: 2px;
-    }
-    .dest-card-loc {
-      display: flex; align-items: center; gap: 4px;
-      font-size: 0.78rem; color: var(--text-mu); margin-bottom: 9px;
-    }
-    .dest-card-loc::before { content: '📍'; font-size: 0.75em; }
-    .dest-card-desc {
-      font-size: 0.855rem; color: var(--text-m); line-height: 1.55;
-      flex: 1; margin-bottom: 11px;
-      display: -webkit-box; line-clamp: 3; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .dest-card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 13px; }
-    .dest-tag {
-      font-size: 0.7rem; padding: 3px 9px; border-radius: 100px;
-      background: rgba(45,97,71,0.07); color: var(--g600);
-      border: 1px solid rgba(45,97,71,0.14);
-    }
-    .dest-card-foot {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-top: 11px; border-top: 1px solid var(--border-l);
-    }
-    .dest-rating {
-      display: flex; align-items: center; gap: 4px;
-      font-size: 0.84rem; font-weight: 600; color: var(--text);
-    }
-    .star { color: var(--gold); }
-    .dest-actions { display: flex; align-items: center; gap: 6px; }
-    .btn-detail {
-      background: var(--g800); color: var(--cream);
-      font-size: 0.78rem; font-weight: 600;
-      padding: 7px 13px; border-radius: var(--r-sm);
-      transition: background var(--ease);
-    }
-    .btn-detail:hover { background: var(--g700); }
-    .btn-react {
-      width: 33px; height: 33px; border-radius: var(--r-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.95rem; border: 1.5px solid var(--border);
-      transition: all var(--ease);
-    }
-    .btn-react.like:hover { background: rgba(45,97,71,0.1); border-color: var(--g600); }
-    .btn-react.dislike:hover { background: var(--orange-pale); border-color: var(--orange); }
-    .btn-react.voted { opacity: 0.55; pointer-events: none; }
-    .feedback-note { font-size: 0.72rem; color: var(--text-mu); font-style: italic; line-height: 1.35; }
-
-    /* Loading / Error / Empty */
-    .state-box {
-      grid-column: 1 / -1; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 72px 24px; text-align: center;
-    }
-    .state-icon { font-size: 3rem; margin-bottom: 14px; }
-    .state-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--text); margin-bottom: 8px; }
-    .state-sub { font-size: 0.9rem; color: var(--text-mu); max-width: 420px; line-height: 1.65; }
-    .loading-dots { display: flex; gap: 8px; margin: 10px 0 6px; }
-    .ld {
-      width: 9px; height: 9px; border-radius: 50%; background: var(--orange);
-      animation: bounce 1.1s infinite ease-in-out;
-    }
-    .ld:nth-child(2) { animation-delay: 0.18s; }
-    .ld:nth-child(3) { animation-delay: 0.36s; }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); opacity: 0.35; }
-      50% { transform: translateY(-9px); opacity: 1; }
-    }
-
-    /* ── Category Browse ─────────────────────────────────────────────── */
-    #categories {
-      background: var(--cream); padding: 76px 0;
-      border-bottom: 1px solid var(--border-l);
-    }
-    #categories .container { text-align: center; }
-    #categories h2 { margin-bottom: 8px; }
-    .section-sub { color: var(--text-mu); margin-bottom: 36px; font-size: 1rem; }
-    .cat-pills { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-    .cat-pill {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--white); border: 1.5px solid var(--border);
-      color: var(--text-m); font-size: 0.88rem; font-weight: 500;
-      padding: 11px 22px; border-radius: var(--r-xl);
-      transition: all var(--ease); box-shadow: var(--sh-sm);
-    }
-    .cat-pill-ico { font-size: 1.05em; }
-    .cat-pill:hover {
-      border-color: var(--orange); color: var(--orange);
-      box-shadow: 0 4px 18px rgba(200,86,26,0.12);
-      transform: translateY(-2px);
-    }
-    .cat-pill.active {
-      background: var(--orange); border-color: var(--orange);
-      color: white; box-shadow: 0 4px 20px rgba(200,86,26,0.3);
-      transform: translateY(-2px);
-    }
-
-    /* ── Featured Destinations ───────────────────────────────────────── */
-    #featured { background: var(--cream-d); padding: 84px 0; }
-    #featured .sec-head { margin-bottom: 40px; }
-    #featured .sec-head h2 { margin-bottom: 8px; }
-    #featured .sec-head p { font-size: 1rem; }
-    .feat-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-    }
-    .feat-card {
-      background: var(--white); border-radius: var(--r-md);
-      overflow: hidden; box-shadow: var(--sh-sm);
-      display: flex; flex-direction: column;
-      transition: transform var(--ease-s), box-shadow var(--ease-s);
-    }
-    .feat-card:hover { transform: translateY(-5px); box-shadow: var(--sh-lg); }
-    .feat-img-wrap {
-      position: relative; height: 200px; overflow: hidden;
-      background: linear-gradient(135deg, #e0efe8, #cce0d5);
-    }
-    .feat-img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform var(--ease-s);
-    }
-    .feat-card:hover .feat-img { transform: scale(1.06); }
-    .feat-img.err { opacity: 0; }
-    .feat-overlay {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(13,31,22,0.72), transparent);
-      padding: 48px 16px 14px;
-    }
-    .feat-loc { font-size: 0.78rem; color: rgba(255,255,255,0.82); margin-bottom: 5px; }
-    .feat-tags { display: flex; gap: 5px; flex-wrap: wrap; }
-    .feat-tag {
-      font-size: 0.67rem; padding: 2px 8px; border-radius: 100px;
-      background: rgba(255,255,255,0.16); color: white;
-      border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(4px);
-    }
-    .feat-body { padding: 16px 18px 14px; flex: 1; display: flex; flex-direction: column; }
-    .feat-title { font-size: 1.02rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
-    .feat-desc {
-      font-size: 0.84rem; color: var(--text-mu); line-height: 1.55;
-      flex: 1; margin-bottom: 13px;
-      display: -webkit-box; line-clamp: 2; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .feat-foot {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-top: 11px; border-top: 1px solid var(--border-l);
-    }
-    .feat-rating {
-      display: flex; align-items: center; gap: 4px;
-      font-size: 0.84rem; font-weight: 600; color: var(--text);
-    }
-    .feat-reviews { font-size: 0.72rem; color: var(--text-mu); font-weight: 400; margin-left: 3px; }
-    .feat-price { font-size: 0.76rem; color: var(--text-mu); }
-    .feat-actions { display: flex; gap: 6px; }
-
-    /* ── How It Works ────────────────────────────────────────────────── */
-    #how { background: var(--g900); padding: 88px 0; }
-    .how-head { text-align: center; margin-bottom: 56px; }
-    .how-head h2 { color: #f5f0e8; margin-bottom: 12px; }
-    .how-head p { color: rgba(245,240,232,0.55); max-width: 520px; margin: 0 auto; }
-    .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
-    .how-step {
-      position: relative; text-align: center; padding: 36px 20px 28px;
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(201,160,68,0.1);
-      border-radius: var(--r-md);
-      transition: border-color var(--ease), background var(--ease);
-    }
-    .how-step:hover {
-      border-color: rgba(201,160,68,0.28);
-      background: rgba(255,255,255,0.055);
-    }
-    .how-num {
-      position: absolute; top: -18px; left: 50%; transform: translateX(-50%);
-      font-family: 'Playfair Display', serif; font-size: 4.2rem; font-weight: 700;
-      color: rgba(201,160,68,0.1); line-height: 1; user-select: none;
-      pointer-events: none;
-    }
-    .how-icon {
-      width: 56px; height: 56px; border-radius: var(--r-sm);
-      background: rgba(201,160,68,0.09); border: 1px solid rgba(201,160,68,0.18);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.65rem; margin: 0 auto 16px;
-    }
-    .how-step h4 { color: #f5f0e8; margin-bottom: 10px; }
-    .how-step p { color: rgba(245,240,232,0.52); font-size: 0.875rem; line-height: 1.65; }
-
-    /* ── CTA Section ─────────────────────────────────────────────────── */
-    #cta { background: var(--cream); padding: 80px 0; }
-    .cta-card {
-      background: var(--g800); border-radius: var(--r-xl);
-      padding: 60px 56px; position: relative; overflow: hidden;
-    }
-    .cta-card::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: radial-gradient(circle, rgba(201,160,68,0.05) 1px, transparent 1px);
-      background-size: 24px 24px; pointer-events: none;
-    }
-    .cta-card::after {
-      content: ''; position: absolute; top: -80px; right: -80px;
-      width: 340px; height: 340px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(45,97,71,0.55), transparent 70%);
-      pointer-events: none;
-    }
-    .cta-inner { position: relative; z-index: 1; max-width: 740px; margin: 0 auto; text-align: center; }
-    .cta-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(201,160,68,0.1); border: 1px solid rgba(201,160,68,0.24);
-      color: var(--gold-l); font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 6px 16px; border-radius: 100px; margin-bottom: 20px;
-    }
-    .cta-card h2 { color: #f5f0e8; margin-bottom: 12px; }
-    .cta-card > .cta-inner > p { color: rgba(245,240,232,0.62); margin-bottom: 32px; }
-    .cta-textarea {
-      width: 100%; background: rgba(255,255,255,0.07);
-      border: 1.5px solid rgba(201,160,68,0.2);
-      color: #f5f0e8; font-size: 0.95rem; line-height: 1.65;
-      padding: 18px 20px; border-radius: var(--r-md);
-      resize: vertical; min-height: 110px; outline: none;
-      transition: border-color var(--ease), box-shadow var(--ease);
-      margin-bottom: 16px;
-    }
-    .cta-textarea::placeholder { color: rgba(245,240,232,0.32); }
-    .cta-textarea:focus {
-      border-color: rgba(201,160,68,0.44);
-      box-shadow: 0 0 0 4px rgba(201,160,68,0.07);
-    }
-    .cta-submit {
-      display: inline-block; background: var(--orange); color: white;
-      padding: 15px 44px; border-radius: var(--r-xl);
-      font-size: 0.975rem; font-weight: 600; margin-bottom: 24px;
-      transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
-    }
-    .cta-submit:hover {
-      background: var(--orange-h); transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(200,86,26,0.35);
-    }
-    .adv-toggle {
-      display: flex; align-items: center; gap: 8px;
-      justify-content: center; cursor: pointer;
-      color: rgba(245,240,232,0.45); font-size: 0.84rem;
-      margin: 0 auto; transition: color var(--ease);
-    }
-    .adv-toggle:hover { color: rgba(245,240,232,0.78); }
-    .adv-arr { font-size: 0.68em; transition: transform var(--ease); }
-    .adv-toggle.open .adv-arr { transform: rotate(90deg); }
-    .adv-panel {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(201,160,68,0.11);
-      border-radius: var(--r-md); padding: 24px 28px; margin-top: 16px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 18px 36px; text-align: left;
-    }
-    .sl-group label {
-      display: flex; justify-content: space-between; align-items: center;
-      font-size: 0.8rem; color: rgba(245,240,232,0.6); margin-bottom: 8px; font-weight: 500;
-    }
-    .sl-group label span { color: var(--gold-l); font-weight: 600; }
-    .adv-slider {
-      width: 100%; -webkit-appearance: none; appearance: none;
-      height: 4px; border-radius: 4px; background: rgba(201,160,68,0.2);
-      outline: none; cursor: pointer;
-    }
-    .adv-slider::-webkit-slider-thumb {
-      -webkit-appearance: none; width: 16px; height: 16px;
-      border-radius: 50%; background: var(--gold); cursor: pointer;
-      transition: transform var(--ease);
-    }
-    .adv-slider::-webkit-slider-thumb:hover { transform: scale(1.3); }
-    .adv-slider::-moz-range-thumb {
-      width: 16px; height: 16px; border-radius: 50%;
-      background: var(--gold); border: none; cursor: pointer;
-    }
-
-    /* ── Footer ──────────────────────────────────────────────────────── */
-    footer { background: var(--g900); padding: 48px 0 28px; }
-    .foot-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 20px; padding-bottom: 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.06); margin-bottom: 20px;
-    }
-    .foot-brand {
-      font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
-      color: rgba(245,240,232,0.88);
-    }
-    .foot-brand span { color: var(--gold); font-style: italic; font-size: 0.85rem; font-weight: 400; }
-    .foot-links { display: flex; gap: 24px; }
-    .foot-links a {
-      font-size: 0.84rem; color: rgba(245,240,232,0.45);
-      transition: color var(--ease);
-    }
-    .foot-links a:hover { color: rgba(245,240,232,0.88); }
-    .foot-copy { font-size: 0.78rem; color: rgba(245,240,232,0.28); text-align: center; }
-
-    /* ── Modal ───────────────────────────────────────────────────────── */
-    .modal-backdrop {
-      position: fixed; inset: 0; z-index: 1000;
-      background: rgba(13,31,22,0.72); backdrop-filter: blur(6px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px; opacity: 0; pointer-events: none;
-      transition: opacity var(--ease-s);
-    }
-    .modal-backdrop.open { opacity: 1; pointer-events: auto; }
-    .modal {
-      background: var(--white); border-radius: var(--r-lg);
-      max-width: 600px; width: 100%; max-height: 90vh;
-      overflow-y: auto; box-shadow: 0 28px 80px rgba(0,0,0,0.3);
-      transform: translateY(22px); transition: transform var(--ease-s);
-    }
-    .modal-backdrop.open .modal { transform: translateY(0); }
-    .modal-hero {
-      width: 100%; height: 220px; object-fit: cover;
-      background: linear-gradient(135deg, #e0efe8, #cce0d5);
-    }
-    .modal-hero.err { opacity: 0; margin-bottom: -220px; }
-    .modal-hero-ph {
-      width: 100%; height: 220px; display: flex; align-items: center;
-      justify-content: center; font-size: 3rem;
-      background: linear-gradient(135deg, #e0efe8, #cce0d5);
-    }
-    .modal-body { padding: 28px 32px 34px; }
-    .modal-top {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 12px; margin-bottom: 14px;
-    }
-    .modal-title { font-size: 1.5rem; color: var(--text); }
-    .modal-close {
-      width: 36px; height: 36px; border-radius: var(--r-sm); flex-shrink: 0;
-      border: 1.5px solid var(--border); display: flex; align-items: center;
-      justify-content: center; font-size: 1.1rem; color: var(--text-mu);
-      transition: all var(--ease);
-    }
-    .modal-close:hover { border-color: var(--orange); color: var(--orange); background: var(--orange-pale); }
-    .modal-badge {
-      display: inline-block; font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 4px 12px; border-radius: 100px;
-      background: var(--gold-pale); color: var(--gold); border: 1px solid var(--border);
-      margin-bottom: 16px;
-    }
-    .modal-meta {
-      display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 18px;
-      padding-bottom: 18px; border-bottom: 1px solid var(--border-l);
-    }
-    .modal-meta-item { display: flex; align-items: center; gap: 5px; font-size: 0.875rem; color: var(--text-m); }
-    .modal-desc { font-size: 0.95rem; color: var(--text-m); line-height: 1.72; margin-bottom: 20px; }
-    .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .modal-tag {
-      font-size: 0.76rem; padding: 4px 12px; border-radius: 100px;
-      background: rgba(45,97,71,0.07); color: var(--g600);
-      border: 1px solid rgba(45,97,71,0.14);
-    }
-    .modal-loading {
-      padding: 64px 32px; text-align: center; color: var(--text-mu); font-size: 0.95rem;
-    }
-
-    /* ── Toast ───────────────────────────────────────────────────────── */
-    #toasts {
-      position: fixed; bottom: 24px; right: 24px; z-index: 2000;
-      display: flex; flex-direction: column; gap: 10px; pointer-events: none;
-    }
-    .toast {
-      background: var(--text); color: var(--cream);
-      padding: 13px 18px; border-radius: var(--r-md);
-      font-size: 0.875rem; font-weight: 500;
-      box-shadow: var(--sh-lg); max-width: 340px;
-      display: flex; align-items: center; gap: 10px;
-      animation: tIn 0.28s ease, tOut 0.3s ease 2.9s forwards;
-      pointer-events: auto;
-    }
-    .toast.success { background: var(--g800); border-left: 3px solid var(--gold); }
-    .toast.error   { background: #4f1f10;    border-left: 3px solid var(--orange); }
-    .toast.info    { background: var(--g900); border-left: 3px solid var(--gold-l); }
-    @keyframes tIn  { from { transform: translateX(110%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-    @keyframes tOut { from { opacity: 1; } to { opacity: 0; transform: translateX(40px); } }
-
-    /* ── Responsive ──────────────────────────────────────────────────── */
-    @media (max-width: 1040px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-float-col { display: none; }
-      .how-grid { grid-template-columns: repeat(2, 1fr); }
-      .feat-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-hamburger { display: flex; }
-      .nav-links.open {
-        display: flex; flex-direction: column; align-items: flex-start;
-        position: fixed; top: 68px; left: 0; right: 0;
-        background: rgba(250,248,242,0.97); backdrop-filter: blur(14px);
-        padding: 24px; gap: 22px;
-        border-bottom: 1px solid var(--border);
+      /* ── Navbar ──────────────────────────────────────────────────────── */
+      #navbar {
+        position: sticky;
+        top: 0;
+        z-index: 900;
+        background: rgba(250, 248, 242, 0.94);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border-l);
+        transition: box-shadow var(--ease);
+      }
+      #navbar.scrolled {
         box-shadow: var(--sh-md);
       }
-      #hero { padding: 56px 0 72px; min-height: unset; }
-      .hero-stats { gap: 22px; flex-wrap: wrap; }
-      .how-grid { gap: 20px; }
-      .feat-grid { grid-template-columns: 1fr; }
-      .results-grid { grid-template-columns: 1fr; }
-      .cta-card { padding: 40px 24px; }
-      .adv-panel { grid-template-columns: 1fr; gap: 16px; }
-      .modal-body { padding: 22px 22px 28px; }
-    }
-    @media (max-width: 520px) {
-      .how-grid { grid-template-columns: 1fr; }
-      .hero-chips { gap: 6px; }
-      .hero-chip { font-size: 0.78rem; padding: 6px 12px; }
-      .cat-pills { gap: 8px; }
-      .cat-pill { padding: 9px 15px; font-size: 0.83rem; }
-      .foot-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
-    }
-  </style>
-</head>
-<body>
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .nav-brand {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+      .nav-brand-name {
+        font-family: "Playfair Display", serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--g800);
+        letter-spacing: -0.01em;
+      }
+      .nav-brand-accent {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 0.8rem;
+        color: var(--gold);
+        font-weight: 400;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+      .nav-links a {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-m);
+        position: relative;
+        transition: color var(--ease);
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: var(--orange);
+        transition: width var(--ease);
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-cta {
+        background: var(--g800) !important;
+        color: var(--cream) !important;
+        padding: 10px 20px;
+        border-radius: var(--r-sm);
+        font-weight: 600 !important;
+        font-size: 0.85rem !important;
+        transition:
+          background var(--ease),
+          transform var(--ease) !important;
+        border: none !important;
+      }
+      .nav-cta::after {
+        display: none !important;
+      }
+      .nav-cta:hover {
+        background: var(--g700) !important;
+        transform: translateY(-1px);
+      }
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        width: 28px;
+        padding: 4px;
+        cursor: pointer;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: var(--ease);
+      }
 
-<!-- ── Navbar ─────────────────────────────────────────────────────────── -->
-<nav id="navbar">
-  <div class="nav-inner">
-    <a href="#" class="nav-brand">
-      <span class="nav-brand-name">S-Shape Explorer</span>
-      <span class="nav-brand-accent">AI Travel</span>
-    </a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#categories">Exploration</a></li>
-      <li><a href="#how">How It Works</a></li>
-      <li><a href="#cta">Recommendations</a></li>
-      <li><a href="#featured">Destinations</a></li>
-      <li><a href="#cta" class="nav-cta">Try AI Guide</a></li>
-    </ul>
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
+      /* ── Hero ────────────────────────────────────────────────────────── */
+      #hero {
+        background:
+          radial-gradient(
+            ellipse at 18% 65%,
+            rgba(45, 97, 71, 0.5) 0%,
+            transparent 55%
+          ),
+          radial-gradient(
+            ellipse at 78% 18%,
+            rgba(35, 77, 56, 0.38) 0%,
+            transparent 48%
+          ),
+          linear-gradient(152deg, #1a3a2a 0%, #0d1f16 100%);
+        min-height: 88vh;
+        padding: 80px 0 100px;
+        position: relative;
+        overflow: hidden;
+      }
+      #hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          circle,
+          rgba(201, 160, 68, 0.065) 1px,
+          transparent 1px
+        );
+        background-size: 28px 28px;
+        pointer-events: none;
+      }
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 56px;
+        align-items: center;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(201, 160, 68, 0.1);
+        border: 1px solid rgba(201, 160, 68, 0.25);
+        color: var(--gold-l);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 7px 16px;
+        border-radius: 100px;
+        margin-bottom: 24px;
+      }
+      .hero-badge-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--gold-l);
+        border-radius: 50%;
+        animation: pulse 2.4s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.45;
+          transform: scale(0.75);
+        }
+      }
+      .hero-headline {
+        font-size: clamp(2.3rem, 5.4vw, 3.8rem);
+        font-weight: 700;
+        color: #f5f0e8;
+        line-height: 1.08;
+        margin-bottom: 20px;
+        letter-spacing: -0.02em;
+      }
+      .hero-headline em {
+        color: var(--gold-l);
+        font-style: italic;
+      }
+      .hero-sub {
+        font-size: 1.02rem;
+        color: rgba(245, 240, 232, 0.68);
+        line-height: 1.72;
+        margin-bottom: 36px;
+        max-width: 500px;
+      }
 
-<!-- ── Hero ───────────────────────────────────────────────────────────── -->
-<section id="hero">
-  <div class="hero-inner">
+      /* Search bar */
+      .hero-search-wrap {
+        display: flex;
+        align-items: center;
+        margin-bottom: 28px;
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 14px;
+        border: 1.5px solid rgba(201, 160, 68, 0.28);
+        box-shadow: 0 4px 24px rgba(201, 160, 68, 0.14), 0 1px 4px rgba(30, 22, 12, 0.07);
+        overflow: hidden;
+        transition: box-shadow 0.25s ease, border-color 0.25s ease;
+      }
+      .hero-search-wrap:focus-within {
+        border-color: rgba(201, 160, 68, 0.55);
+        box-shadow: 0 6px 32px rgba(201, 160, 68, 0.22);
+      }
+      .hero-search-icon {
+        padding: 0 14px 0 18px;
+        font-size: 1.05rem;
+        flex-shrink: 0;
+        opacity: 0.55;
+      }
+      .hero-search-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: var(--text);
+        font-size: 0.97rem;
+        padding: 18px 8px;
+        outline: none;
+        min-width: 0;
+        font-family: inherit;
+        line-height: 1.5;
+      }
+      .hero-search-input::placeholder {
+        color: rgba(74, 55, 40, 0.35);
+      }
+      .hero-search-btn {
+        background: var(--orange);
+        color: white;
+        padding: 12px 26px;
+        margin: 6px;
+        border-radius: 10px;
+        font-size: 0.92rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        flex-shrink: 0;
+        font-family: inherit;
+        transition: background var(--ease), transform var(--ease);
+        white-space: nowrap;
+      }
+      .hero-search-btn:hover {
+        background: var(--orange-h);
+        transform: translateY(-1px);
+      }
+      .hero-search-btn:active {
+        transform: translateY(0);
+      }
 
-    <!-- Left: content -->
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="hero-badge-dot"></span>
-        AI-Powered Travel Guide
-      </div>
-      <h1 class="hero-headline">
-        Know <em>Việt Nam</em><br>Through Your Journey
-      </h1>
-      <p class="hero-sub">
-        Describe the trip you dream of — a hidden beach, a mountain trek, or a street food adventure — and our AI engine surfaces the perfect Vietnamese destination for you.
-      </p>
+      /* Hero chips */
+      .hero-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 28px;
+        justify-content: flex-start;
+      }
+      .hero-chip {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(245, 240, 232, 0.65);
+        font-size: 0.82rem;
+        font-weight: 500;
+        padding: 7px 15px;
+        border-radius: 100px;
+        transition: all var(--ease);
+      }
+      .hero-chip:hover {
+        background: rgba(255, 255, 255, 0.13);
+        color: #f5f0e8;
+        border-color: rgba(255, 255, 255, 0.22);
+      }
+      .hero-chip.active {
+        background: var(--orange);
+        border-color: var(--orange);
+        color: white;
+        font-weight: 600;
+      }
 
-      <div class="hero-search-wrap">
-        <input
-          id="hero-search"
-          class="hero-search-input"
-          type="text"
-          placeholder='quiet beach near Hội An, street food in Hanoi, peaceful nature trip…'
-          autocomplete="off"
+      /* Hero stats */
+      .hero-stats {
+        display: flex;
+        gap: 36px;
+      }
+      .hero-stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 1.65rem;
+        font-weight: 700;
+        color: #f5f0e8;
+        line-height: 1;
+      }
+      .hero-stat-label {
+        font-size: 0.75rem;
+        color: rgba(245, 240, 232, 0.48);
+        margin-top: 4px;
+      }
+
+      /* Float cards */
+      .hero-float-col {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .float-card {
+        background: rgba(255, 255, 255, 0.07);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid rgba(201, 160, 68, 0.2);
+        border-radius: var(--r-md);
+        padding: 18px 20px;
+        transition:
+          transform var(--ease-s),
+          box-shadow var(--ease-s);
+      }
+      .float-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28);
+      }
+      .float-card-label {
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 8px;
+        display: block;
+      }
+      .float-card h4 {
+        color: #f5f0e8;
+        font-size: 1rem;
+        margin-bottom: 4px;
+      }
+      .float-card-loc {
+        font-size: 0.78rem;
+        color: rgba(245, 240, 232, 0.52);
+      }
+      .float-card-footer {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 10px;
+        font-size: 0.78rem;
+        color: rgba(245, 240, 232, 0.65);
+      }
+      .fc-stars {
+        color: var(--gold);
+        font-size: 0.72rem;
+      }
+
+      /* ── Results Section ─────────────────────────────────────────────── */
+      #results {
+        background: var(--cream-d);
+        padding: 52px 0 68px;
+        border-bottom: 1px solid var(--border-l);
+      }
+      .results-bar {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      #results-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.5rem;
+        color: var(--text);
+      }
+      #results-meta {
+        font-size: 0.875rem;
+        color: var(--text-mu);
+        margin-top: 4px;
+      }
+      .results-close {
+        border: 1.5px solid var(--border);
+        color: var(--text-mu);
+        padding: 8px 16px;
+        border-radius: var(--r-sm);
+        font-size: 0.83rem;
+        font-weight: 500;
+        transition: all var(--ease);
+        flex-shrink: 0;
+      }
+      .results-close:hover {
+        border-color: var(--orange);
+        color: var(--orange);
+      }
+      .results-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(308px, 1fr));
+        gap: 20px;
+      }
+
+      /* ── Destination Card ────────────────────────────────────────────── */
+      .dest-card {
+        background: var(--white);
+        border: 1px solid var(--border-l);
+        border-radius: var(--r-md);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform var(--ease-s),
+          box-shadow var(--ease-s);
+      }
+      .dest-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--sh-lg);
+      }
+      .dest-card-img-wrap {
+        position: relative;
+        height: 178px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #e0efe8, #cce0d5);
+      }
+      .dest-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform var(--ease-s);
+      }
+      .dest-card:hover .dest-card-img {
+        transform: scale(1.05);
+      }
+      .dest-card-img.err {
+        opacity: 0;
+      }
+      .dest-card-match {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: var(--g800);
+        color: var(--gold-l);
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 100px;
+      }
+      .dest-card-body {
+        padding: 16px 18px 14px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .dest-card-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+      .dest-card-name {
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.3;
+      }
+      .cat-badge {
+        flex-shrink: 0;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        padding: 3px 10px;
+        border-radius: 100px;
+        background: var(--gold-pale);
+        color: var(--gold);
+        border: 1px solid var(--border);
+        white-space: nowrap;
+        align-self: flex-start;
+        margin-top: 2px;
+      }
+      .dest-card-loc {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.78rem;
+        color: var(--text-mu);
+        margin-bottom: 9px;
+      }
+      .dest-card-loc::before {
+        content: "📍";
+        font-size: 0.75em;
+      }
+      .dest-card-desc {
+        font-size: 0.855rem;
+        color: var(--text-m);
+        line-height: 1.55;
+        flex: 1;
+        margin-bottom: 11px;
+        display: -webkit-box;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .dest-card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        margin-bottom: 13px;
+      }
+      .dest-tag {
+        font-size: 0.7rem;
+        padding: 3px 9px;
+        border-radius: 100px;
+        background: rgba(45, 97, 71, 0.07);
+        color: var(--g600);
+        border: 1px solid rgba(45, 97, 71, 0.14);
+      }
+      .dest-card-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 11px;
+        border-top: 1px solid var(--border-l);
+      }
+      .dest-rating {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.84rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .star {
+        color: var(--gold);
+      }
+      .dest-actions {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .btn-detail {
+        background: var(--g800);
+        color: var(--cream);
+        font-size: 0.78rem;
+        font-weight: 600;
+        padding: 7px 13px;
+        border-radius: var(--r-sm);
+        transition: background var(--ease);
+      }
+      .btn-detail:hover {
+        background: var(--g700);
+      }
+      /* Loading / Error / Empty */
+      .state-box {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 72px 24px;
+        text-align: center;
+      }
+      .state-icon {
+        font-size: 3rem;
+        margin-bottom: 14px;
+      }
+      .state-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.25rem;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .state-sub {
+        font-size: 0.9rem;
+        color: var(--text-mu);
+        max-width: 420px;
+        line-height: 1.65;
+      }
+      .loading-dots {
+        display: flex;
+        gap: 8px;
+        margin: 10px 0 6px;
+      }
+      .ld {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--orange);
+        animation: bounce 1.1s infinite ease-in-out;
+      }
+      .ld:nth-child(2) {
+        animation-delay: 0.18s;
+      }
+      .ld:nth-child(3) {
+        animation-delay: 0.36s;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+          opacity: 0.35;
+        }
+        50% {
+          transform: translateY(-9px);
+          opacity: 1;
+        }
+      }
+
+      /* ── Category Browse ─────────────────────────────────────────────── */
+      #categories {
+        background: var(--cream);
+        padding: 76px 0;
+        border-bottom: 1px solid var(--border-l);
+      }
+      #categories .container {
+        text-align: center;
+      }
+      #categories h2 {
+        margin-bottom: 8px;
+      }
+      .section-sub {
+        color: var(--text-mu);
+        margin-bottom: 36px;
+        font-size: 1rem;
+      }
+      .cat-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+      .cat-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--white);
+        border: 1.5px solid var(--border);
+        color: var(--text-m);
+        font-size: 0.88rem;
+        font-weight: 500;
+        padding: 11px 22px;
+        border-radius: var(--r-xl);
+        transition: all var(--ease);
+        box-shadow: var(--sh-sm);
+      }
+      .cat-pill-ico {
+        font-size: 1.05em;
+      }
+      .cat-pill:hover {
+        border-color: var(--orange);
+        color: var(--orange);
+        box-shadow: 0 4px 18px rgba(200, 86, 26, 0.12);
+        transform: translateY(-2px);
+      }
+      .cat-pill.active {
+        background: var(--orange);
+        border-color: var(--orange);
+        color: white;
+        box-shadow: 0 4px 20px rgba(200, 86, 26, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* ── Featured Destinations ───────────────────────────────────────── */
+      #featured {
+        background: var(--cream-d);
+        padding: 84px 0;
+      }
+      #featured .sec-head {
+        margin-bottom: 40px;
+      }
+      #featured .sec-head h2 {
+        margin-bottom: 8px;
+      }
+      #featured .sec-head p {
+        font-size: 1rem;
+      }
+      .feat-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .feat-card {
+        background: var(--white);
+        border-radius: var(--r-md);
+        overflow: hidden;
+        box-shadow: var(--sh-sm);
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform var(--ease-s),
+          box-shadow var(--ease-s);
+      }
+      .feat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--sh-lg);
+      }
+      .feat-img-wrap {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #e0efe8, #cce0d5);
+      }
+      .feat-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform var(--ease-s);
+      }
+      .feat-card:hover .feat-img {
+        transform: scale(1.06);
+      }
+      .feat-img.err {
+        opacity: 0;
+      }
+      .feat-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+          to top,
+          rgba(13, 31, 22, 0.72),
+          transparent
+        );
+        padding: 48px 16px 14px;
+      }
+      .feat-loc {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.82);
+        margin-bottom: 5px;
+      }
+      .feat-tags {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+      .feat-tag {
+        font-size: 0.67rem;
+        padding: 2px 8px;
+        border-radius: 100px;
+        background: rgba(255, 255, 255, 0.16);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(4px);
+      }
+      .feat-body {
+        padding: 16px 18px 14px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .feat-title {
+        font-size: 1.02rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .feat-desc {
+        font-size: 0.84rem;
+        color: var(--text-mu);
+        line-height: 1.55;
+        flex: 1;
+        margin-bottom: 13px;
+        display: -webkit-box;
+        line-clamp: 2;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .feat-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 11px;
+        border-top: 1px solid var(--border-l);
+      }
+      .feat-rating {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.84rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .feat-reviews {
+        font-size: 0.72rem;
+        color: var(--text-mu);
+        font-weight: 400;
+        margin-left: 3px;
+      }
+      .feat-price {
+        font-size: 0.76rem;
+        color: var(--text-mu);
+      }
+      .feat-actions {
+        display: flex;
+        gap: 6px;
+      }
+
+      /* ── How It Works ────────────────────────────────────────────────── */
+      #how {
+        background: var(--g900);
+        padding: 88px 0;
+      }
+      .how-head {
+        text-align: center;
+        margin-bottom: 56px;
+      }
+      .how-head h2 {
+        color: #f5f0e8;
+        margin-bottom: 12px;
+      }
+      .how-head p {
+        color: rgba(245, 240, 232, 0.55);
+        max-width: 520px;
+        margin: 0 auto;
+      }
+      .how-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 28px;
+      }
+      .how-step {
+        position: relative;
+        text-align: center;
+        padding: 36px 20px 28px;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(201, 160, 68, 0.1);
+        border-radius: var(--r-md);
+        transition:
+          border-color var(--ease),
+          background var(--ease);
+      }
+      .how-step:hover {
+        border-color: rgba(201, 160, 68, 0.28);
+        background: rgba(255, 255, 255, 0.055);
+      }
+      .how-num {
+        position: absolute;
+        top: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Playfair Display", serif;
+        font-size: 4.2rem;
+        font-weight: 700;
+        color: rgba(201, 160, 68, 0.1);
+        line-height: 1;
+        user-select: none;
+        pointer-events: none;
+      }
+      .how-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: var(--r-sm);
+        background: rgba(201, 160, 68, 0.09);
+        border: 1px solid rgba(201, 160, 68, 0.18);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.65rem;
+        margin: 0 auto 16px;
+      }
+      .how-step h4 {
+        color: #f5f0e8;
+        margin-bottom: 10px;
+      }
+      .how-step p {
+        color: rgba(245, 240, 232, 0.52);
+        font-size: 0.875rem;
+        line-height: 1.65;
+      }
+
+      /* ── CTA Section ─────────────────────────────────────────────────── */
+      #cta {
+        background: var(--cream);
+        padding: 80px 0;
+      }
+      .cta-card {
+        background: var(--g800);
+        border-radius: var(--r-xl);
+        padding: 60px 56px;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          circle,
+          rgba(201, 160, 68, 0.05) 1px,
+          transparent 1px
+        );
+        background-size: 24px 24px;
+        pointer-events: none;
+      }
+      .cta-card::after {
+        content: "";
+        position: absolute;
+        top: -80px;
+        right: -80px;
+        width: 340px;
+        height: 340px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(45, 97, 71, 0.55),
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .cta-inner {
+        position: relative;
+        z-index: 1;
+        max-width: 740px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .cta-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(201, 160, 68, 0.1);
+        border: 1px solid rgba(201, 160, 68, 0.24);
+        color: var(--gold-l);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 6px 16px;
+        border-radius: 100px;
+        margin-bottom: 20px;
+      }
+      .cta-card h2 {
+        color: #f5f0e8;
+        margin-bottom: 12px;
+      }
+      .cta-card > .cta-inner > p {
+        color: rgba(245, 240, 232, 0.62);
+        margin-bottom: 32px;
+      }
+      .cta-textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1.5px solid rgba(201, 160, 68, 0.2);
+        color: #f5f0e8;
+        font-size: 0.95rem;
+        line-height: 1.65;
+        padding: 18px 20px;
+        border-radius: var(--r-md);
+        resize: vertical;
+        min-height: 110px;
+        outline: none;
+        transition:
+          border-color var(--ease),
+          box-shadow var(--ease);
+        margin-bottom: 16px;
+      }
+      .cta-textarea::placeholder {
+        color: rgba(245, 240, 232, 0.32);
+      }
+      .cta-textarea:focus {
+        border-color: rgba(201, 160, 68, 0.44);
+        box-shadow: 0 0 0 4px rgba(201, 160, 68, 0.07);
+      }
+      .cta-submit {
+        display: inline-block;
+        background: var(--orange);
+        color: white;
+        padding: 15px 44px;
+        border-radius: var(--r-xl);
+        font-size: 0.975rem;
+        font-weight: 600;
+        margin-bottom: 24px;
+        transition:
+          background var(--ease),
+          transform var(--ease),
+          box-shadow var(--ease);
+      }
+      .cta-submit:hover {
+        background: var(--orange-h);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(200, 86, 26, 0.35);
+      }
+      .adv-toggle {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--gold);
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin: 0 auto;
+        transition: all 0.2s ease;
+        padding: 6px 12px;
+        border-radius: 6px;
+      }
+      .adv-toggle:hover {
+        background: rgba(201, 160, 68, 0.08);
+        color: var(--gold-l);
+      }
+      .adv-arr {
+        font-size: 0.68em;
+        transition: transform 0.2s ease;
+      }
+      .adv-toggle.open .adv-arr {
+        transform: rotate(90deg);
+      }
+      .adv-panel {
+        background: linear-gradient(135deg, rgba(201, 160, 68, 0.08) 0%, rgba(201, 160, 68, 0.03) 100%);
+        border: 1px solid var(--border-l);
+        border-radius: 10px;
+        padding: 18px;
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px 24px;
+        text-align: left;
+      }
+      .sl-group label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.8rem;
+        color: var(--text-m);
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      .sl-group label span {
+        color: var(--gold);
+        font-weight: 600;
+      }
+      .adv-slider {
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 5px;
+        border-radius: 5px;
+        background: linear-gradient(to right, rgba(201, 160, 68, 0.15), rgba(201, 160, 68, 0.25));
+        outline: none;
+        cursor: pointer;
+        transition: background 0.2s ease;
+      }
+      .adv-slider:hover {
+        background: linear-gradient(to right, rgba(201, 160, 68, 0.25), rgba(201, 160, 68, 0.35));
+      }
+      .adv-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--gold);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(201, 160, 68, 0.3);
+      }
+      .adv-slider::-webkit-slider-thumb:hover {
+        transform: scale(1.25);
+        box-shadow: 0 4px 12px rgba(201, 160, 68, 0.45);
+      }
+      .adv-slider::-moz-range-track {
+        background: transparent;
+        border: none;
+      }
+      .adv-slider::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--gold);
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(201, 160, 68, 0.3);
+      }
+      .adv-slider::-moz-range-thumb:hover {
+        transform: scale(1.25);
+        box-shadow: 0 4px 12px rgba(201, 160, 68, 0.45);
+      }
+
+      /* ── Footer ──────────────────────────────────────────────────────── */
+      footer {
+        background: var(--g900);
+        padding: 48px 0 28px;
+      }
+      .foot-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        margin-bottom: 20px;
+      }
+      .foot-brand {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: rgba(245, 240, 232, 0.88);
+      }
+      .foot-brand span {
+        color: var(--gold);
+        font-style: italic;
+        font-size: 0.85rem;
+        font-weight: 400;
+      }
+      .foot-links {
+        display: flex;
+        gap: 24px;
+      }
+      .foot-links a {
+        font-size: 0.84rem;
+        color: rgba(245, 240, 232, 0.45);
+        transition: color var(--ease);
+      }
+      .foot-links a:hover {
+        color: rgba(245, 240, 232, 0.88);
+      }
+      .foot-copy {
+        font-size: 0.78rem;
+        color: rgba(245, 240, 232, 0.28);
+        text-align: center;
+      }
+
+      /* ── Modal ───────────────────────────────────────────────────────── */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(13, 31, 22, 0.72);
+        backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity var(--ease-s);
+      }
+      .modal-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .modal {
+        background: var(--white);
+        border-radius: var(--r-lg);
+        max-width: 600px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3);
+        transform: translateY(22px);
+        transition: transform var(--ease-s);
+      }
+      .modal-backdrop.open .modal {
+        transform: translateY(0);
+      }
+      .modal-hero {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        background: linear-gradient(135deg, #e0efe8, #cce0d5);
+      }
+      .modal-hero.err {
+        opacity: 0;
+        margin-bottom: -220px;
+      }
+      .modal-hero-ph {
+        width: 100%;
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        background: linear-gradient(135deg, #e0efe8, #cce0d5);
+      }
+      .modal-body {
+        padding: 28px 32px 34px;
+      }
+      .modal-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .modal-title {
+        font-size: 1.5rem;
+        color: var(--text);
+      }
+      .modal-close {
+        width: 36px;
+        height: 36px;
+        border-radius: var(--r-sm);
+        flex-shrink: 0;
+        border: 1.5px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        color: var(--text-mu);
+        transition: all var(--ease);
+      }
+      .modal-close:hover {
+        border-color: var(--orange);
+        color: var(--orange);
+        background: var(--orange-pale);
+      }
+      .modal-badge {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 100px;
+        background: var(--gold-pale);
+        color: var(--gold);
+        border: 1px solid var(--border);
+        margin-bottom: 16px;
+      }
+      .modal-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-bottom: 18px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid var(--border-l);
+      }
+      .modal-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.875rem;
+        color: var(--text-m);
+      }
+      .modal-desc {
+        font-size: 0.95rem;
+        color: var(--text-m);
+        line-height: 1.72;
+        margin-bottom: 20px;
+      }
+      .modal-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .modal-tag {
+        font-size: 0.76rem;
+        padding: 4px 12px;
+        border-radius: 100px;
+        background: rgba(45, 97, 71, 0.07);
+        color: var(--g600);
+        border: 1px solid rgba(45, 97, 71, 0.14);
+      }
+      .modal-loading {
+        padding: 64px 32px;
+        text-align: center;
+        color: var(--text-mu);
+        font-size: 0.95rem;
+      }
+
+      /* ── Toast ───────────────────────────────────────────────────────── */
+      #toasts {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 2000;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        pointer-events: none;
+      }
+      .toast {
+        background: var(--text);
+        color: var(--cream);
+        padding: 13px 18px;
+        border-radius: var(--r-md);
+        font-size: 0.875rem;
+        font-weight: 500;
+        box-shadow: var(--sh-lg);
+        max-width: 340px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        animation:
+          tIn 0.28s ease,
+          tOut 0.3s ease 2.9s forwards;
+        pointer-events: auto;
+      }
+      .toast.success {
+        background: var(--g800);
+        border-left: 3px solid var(--gold);
+      }
+      .toast.error {
+        background: #4f1f10;
+        border-left: 3px solid var(--orange);
+      }
+      .toast.info {
+        background: var(--g900);
+        border-left: 3px solid var(--gold-l);
+      }
+      @keyframes tIn {
+        from {
+          transform: translateX(110%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes tOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+          transform: translateX(40px);
+        }
+      }
+
+      /* ── Responsive ──────────────────────────────────────────────────── */
+      @media (max-width: 1040px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+        .hero-float-col {
+          display: none;
+        }
+        .how-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .feat-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-hamburger {
+          display: flex;
+        }
+        .nav-links.open {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          position: fixed;
+          top: 68px;
+          left: 0;
+          right: 0;
+          background: rgba(250, 248, 242, 0.97);
+          backdrop-filter: blur(14px);
+          padding: 24px;
+          gap: 22px;
+          border-bottom: 1px solid var(--border);
+          box-shadow: var(--sh-md);
+        }
+        #hero {
+          padding: 56px 0 72px;
+          min-height: unset;
+        }
+        .hero-stats {
+          gap: 22px;
+          flex-wrap: wrap;
+        }
+        .how-grid {
+          gap: 20px;
+        }
+        .feat-grid {
+          grid-template-columns: 1fr;
+        }
+        .results-grid {
+          grid-template-columns: 1fr;
+        }
+        .cta-card {
+          padding: 40px 24px;
+        }
+        .adv-panel {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .modal-body {
+          padding: 22px 22px 28px;
+        }
+      }
+      @media (max-width: 520px) {
+        .how-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero-chips {
+          gap: 6px;
+        }
+        .hero-chip {
+          font-size: 0.78rem;
+          padding: 6px 12px;
+        }
+        .cat-pills {
+          gap: 8px;
+        }
+        .cat-pill {
+          padding: 9px 15px;
+          font-size: 0.83rem;
+        }
+        .foot-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ── Navbar ─────────────────────────────────────────────────────────── -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="#" class="nav-brand">
+          <span class="nav-brand-name">S-Shape Explorer</span>
+          <span class="nav-brand-accent">AI Travel</span>
+        </a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#categories">Exploration</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#cta">Recommendations</a></li>
+          <li><a href="#featured">Destinations</a></li>
+          <li><a href="#cta" class="nav-cta">Try AI Guide</a></li>
+        </ul>
+        <button
+          class="nav-hamburger"
+          id="nav-hamburger"
+          aria-label="Toggle menu"
         >
-        <button class="hero-search-btn" id="hero-search-btn">Find Places</button>
+          <span></span><span></span><span></span>
+        </button>
       </div>
+    </nav>
 
-      <div class="hero-chips" id="hero-chips">
-        <button class="hero-chip active" data-cat="All">All</button>
-        <button class="hero-chip" data-cat="Beach">Beach</button>
-        <button class="hero-chip" data-cat="Mountain">Mountain</button>
-        <button class="hero-chip" data-cat="Heritage">Heritage</button>
-        <button class="hero-chip" data-cat="Nature">Nature</button>
-        <button class="hero-chip" data-cat="Food">Food</button>
-        <button class="hero-chip" data-cat="Outdoor">Outdoor</button>
-        <button class="hero-chip" data-cat="City">City</button>
-      </div>
+    <!-- ── Hero ───────────────────────────────────────────────────────────── -->
+    <section id="hero">
+      <div class="hero-inner">
+        <!-- Left: content -->
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            AI-Powered Travel Guide
+          </div>
+          <h1 class="hero-headline">
+            Know <em>Việt Nam</em><br />Through Your Journey
+          </h1>
+          <p class="hero-sub">
+            Describe the trip you dream of — a hidden beach, a mountain trek, or
+            a street food adventure — and our AI engine surfaces the perfect
+            Vietnamese destination for you.
+          </p>
 
-      <div class="hero-stats">
-        <div>
-          <div class="hero-stat-num">315+</div>
-          <div class="hero-stat-label">Destinations</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">8</div>
-          <div class="hero-stat-label">Categories</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">4.8★</div>
-          <div class="hero-stat-label">Avg. Rating</div>
-        </div>
-      </div>
-    </div>
+          <div class="hero-search-wrap">
+            <span class="hero-search-icon">🔍</span>
+            <input
+              type="text"
+              id="hero-search"
+              class="hero-search-input"
+              placeholder="e.g. 5 days in Northern Vietnam, trekking and local food…"
+            />
+            <button class="hero-search-btn" id="hero-search-btn">Explore</button>
+          </div>
 
-    <!-- Right: floating cards (desktop only) -->
-    <div class="hero-float-col" aria-hidden="true">
-      <div class="float-card">
-        <span class="float-card-label">✦ Top Pick Today</span>
-        <h4>Hạ Long Bay</h4>
-        <p class="float-card-loc">Quảng Ninh Province</p>
-        <div class="float-card-footer">
-          <span class="fc-stars">★★★★★</span>
-          <span>4.9 · Nature &amp; Water</span>
-        </div>
-      </div>
-      <div class="float-card">
-        <span class="float-card-label">🔥 Trending Now</span>
-        <h4>Hội An Ancient Town</h4>
-        <p class="float-card-loc">Quảng Nam Province</p>
-        <div class="float-card-footer">
-          <span class="fc-stars">★★★★★</span>
-          <span>4.8 · Heritage</span>
-        </div>
-      </div>
-      <div class="float-card">
-        <span class="float-card-label">💎 Hidden Gem</span>
-        <h4>Phong Nha Cave</h4>
-        <p class="float-card-loc">Quảng Bình Province</p>
-        <div class="float-card-footer">
-          <span class="fc-stars">★★★★★</span>
-          <span>4.9 · Adventure</span>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ── Results ────────────────────────────────────────────────────────── -->
-<section id="results" class="hidden">
-  <div class="container">
-    <div class="results-bar">
-      <div>
-        <h2 id="results-title">Finding places…</h2>
-        <p id="results-meta"></p>
-      </div>
-      <button class="results-close" id="results-close">✕ Close</button>
-    </div>
-    <div class="results-grid" id="results-grid"></div>
-  </div>
-</section>
-
-<!-- ── Category Browse ────────────────────────────────────────────────── -->
-<section id="categories">
-  <div class="container">
-    <div class="section-badge">Browse by Category</div>
-    <h2>What Are You Looking For?</h2>
-    <p class="section-sub">Pick a travel style and let AI find your perfect match</p>
-    <div class="cat-pills" id="cat-pills">
-      <button class="cat-pill active" data-cat="All"><span class="cat-pill-ico">🌏</span>All Destinations</button>
-      <button class="cat-pill" data-cat="Beach"><span class="cat-pill-ico">🏖</span>Beaches</button>
-      <button class="cat-pill" data-cat="Mountain"><span class="cat-pill-ico">⛰</span>Mountains</button>
-      <button class="cat-pill" data-cat="Heritage"><span class="cat-pill-ico">🏛</span>Heritage Sites</button>
-      <button class="cat-pill" data-cat="Nature"><span class="cat-pill-ico">🌿</span>Nature &amp; Jungle</button>
-      <button class="cat-pill" data-cat="Food"><span class="cat-pill-ico">🍜</span>Food &amp; Culture</button>
-      <button class="cat-pill" data-cat="Outdoor"><span class="cat-pill-ico">🧭</span>Exploration</button>
-      <button class="cat-pill" data-cat="City"><span class="cat-pill-ico">🏙</span>City Life</button>
-    </div>
-  </div>
-</section>
-
-<!-- ── Featured Destinations ──────────────────────────────────────────── -->
-<section id="featured">
-  <div class="container">
-    <div class="sec-head">
-      <div class="section-badge">Curated Picks</div>
-      <h2>Featured Destinations</h2>
-      <p>Hand-picked experiences from Vietnam's most beloved provinces</p>
-    </div>
-    <div class="feat-grid" id="feat-grid">
-      <!-- populated by JS -->
-    </div>
-  </div>
-</section>
-
-<!-- ── How It Works ───────────────────────────────────────────────────── -->
-<section id="how">
-  <div class="container">
-    <div class="how-head">
-      <div class="section-badge" style="background:rgba(201,160,68,0.09);color:var(--gold-l);">How It Works</div>
-      <h2>AI-Driven Recommendations</h2>
-      <p>Four steps from your idea to your perfect Vietnamese adventure</p>
-    </div>
-    <div class="how-grid">
-      <div class="how-step">
-        <div class="how-num">01</div>
-        <div class="how-icon">✍️</div>
-        <h4>Tell Us Your Vibe</h4>
-        <p>Type anything in plain language — "peaceful beach for a family" or "street food adventure up north". No special keywords needed.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">02</div>
-        <div class="how-icon">🧠</div>
-        <h4>NLP Understands You</h4>
-        <p>Our TF-IDF and multi-label NLP engine parses your intent and maps it to 8 travel preference categories automatically.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">03</div>
-        <div class="how-icon">📊</div>
-        <h4>AI-Ranked Results</h4>
-        <p>Places are scored by semantic match, category fit, average rating, and location — then ranked and surfaced just for you.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">04</div>
-        <div class="how-icon">♻️</div>
-        <h4>Learns From Feedback</h4>
-        <p>Like or dislike results and the system continuously adjusts to match your travel taste more accurately each time.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── CTA Recommendation ─────────────────────────────────────────────── -->
-<section id="cta">
-  <div class="container">
-    <div class="cta-card">
-      <div class="cta-inner">
-        <div class="cta-badge">✦ Powered by AI</div>
-        <h2>Find Your Perfect Vietnam Destination</h2>
-        <p>Describe your ideal trip and get personalised recommendations in seconds</p>
-        <textarea
-          id="cta-query"
-          class="cta-textarea"
-          placeholder="e.g. A 3-day peaceful nature trip away from crowds, ideally near a river or jungle, with local food options nearby…"
-        ></textarea>
-        <br>
-        <button class="cta-submit" id="cta-btn">Get Recommendations</button>
-        <div>
-          <button class="adv-toggle" id="adv-toggle">
-            <span class="adv-arr">▶</span> Advanced Settings
-          </button>
-          <div class="adv-panel hidden" id="adv-panel">
-            <div class="sl-group">
-              <label>Semantic Match <span id="v-sem">0.50</span></label>
-              <input type="range" class="adv-slider" id="sl-sem" min="0" max="1" step="0.05" value="0.5">
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              margin-bottom: 28px;
+            "
+          >
+            <button
+              class="adv-toggle"
+              id="adv-toggle"
+              style="
+                background: none;
+                border: none;
+                color: var(--gold);
+                font-weight: 600;
+                font-size: 0.85rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 6px 12px;
+                transition: all 0.2s ease;
+              "
+            >
+              <span class="adv-arr" style="transition: transform 0.2s ease"
+                >▶</span
+              >
+              Advanced Settings
+            </button>
+            <div
+              class="adv-panel hidden"
+              id="adv-panel"
+              style="
+                margin-top: 12px;
+                padding: 18px;
+                background: linear-gradient(
+                  135deg,
+                  rgba(201, 160, 68, 0.08) 0%,
+                  rgba(201, 160, 68, 0.03) 100%
+                );
+                border: 1px solid var(--border-l);
+                border-radius: 10px;
+                width: 100%;
+                max-width: 500px;
+              "
+            >
+              <div class="sl-group" style="margin-bottom: 12px">
+                <label
+                  style="
+                    display: block;
+                    margin-bottom: 6px;
+                    font-size: 0.9rem;
+                    color: var(--text-m);
+                  "
+                  >Semantic Match <span id="v-sem">0.50</span></label
+                >
+                <input
+                  type="range"
+                  class="adv-slider"
+                  id="sl-sem"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value="0.5"
+                  style="width: 100%; cursor: pointer"
+                />
+              </div>
+              <div class="sl-group" style="margin-bottom: 12px">
+                <label
+                  style="
+                    display: block;
+                    margin-bottom: 6px;
+                    font-size: 0.9rem;
+                    color: var(--text-m);
+                  "
+                  >Rating Weight <span id="v-rat">0.20</span></label
+                >
+                <input
+                  type="range"
+                  class="adv-slider"
+                  id="sl-rat"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value="0.2"
+                  style="width: 100%; cursor: pointer"
+                />
+              </div>
+              <div class="sl-group" style="margin-bottom: 12px">
+                <label
+                  style="
+                    display: block;
+                    margin-bottom: 6px;
+                    font-size: 0.9rem;
+                    color: var(--text-m);
+                  "
+                  >Popularity <span id="v-pop">0.20</span></label
+                >
+                <input
+                  type="range"
+                  class="adv-slider"
+                  id="sl-pop"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value="0.2"
+                  style="width: 100%; cursor: pointer"
+                />
+              </div>
+              <div class="sl-group" style="margin-bottom: 12px">
+                <label
+                  style="
+                    display: block;
+                    margin-bottom: 6px;
+                    font-size: 0.9rem;
+                    color: var(--text-m);
+                  "
+                  >Distance <span id="v-dis">0.10</span></label
+                >
+                <input
+                  type="range"
+                  class="adv-slider"
+                  id="sl-dis"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value="0.1"
+                  style="width: 100%; cursor: pointer"
+                />
+              </div>
+              <div class="sl-group">
+                <label
+                  style="
+                    display: block;
+                    margin-bottom: 6px;
+                    font-size: 0.9rem;
+                    color: var(--text-m);
+                  "
+                  >Top K Results <span id="v-topk">6</span></label
+                >
+                <input
+                  type="range"
+                  class="adv-slider"
+                  id="sl-topk"
+                  min="1"
+                  max="20"
+                  step="1"
+                  value="6"
+                  style="width: 100%; cursor: pointer"
+                />
+              </div>
             </div>
-            <div class="sl-group">
-              <label>Rating Weight <span id="v-rat">0.20</span></label>
-              <input type="range" class="adv-slider" id="sl-rat" min="0" max="1" step="0.05" value="0.2">
+          </div>
+
+          <div class="hero-chips" id="hero-chips">
+            <button class="hero-chip active" data-cat="All">All</button>
+            <button class="hero-chip" data-cat="Beach">Beach</button>
+            <button class="hero-chip" data-cat="Mountain">Mountain</button>
+            <button class="hero-chip" data-cat="Heritage">Heritage</button>
+            <button class="hero-chip" data-cat="Nature">Nature</button>
+            <button class="hero-chip" data-cat="Food">Food</button>
+            <button class="hero-chip" data-cat="Outdoor">Outdoor</button>
+            <button class="hero-chip" data-cat="City">City</button>
+          </div>
+
+          <div class="hero-stats">
+            <div>
+              <div class="hero-stat-num">315+</div>
+              <div class="hero-stat-label">Destinations</div>
             </div>
-            <div class="sl-group">
-              <label>Popularity <span id="v-pop">0.20</span></label>
-              <input type="range" class="adv-slider" id="sl-pop" min="0" max="1" step="0.05" value="0.2">
+            <div>
+              <div class="hero-stat-num">8</div>
+              <div class="hero-stat-label">Categories</div>
             </div>
-            <div class="sl-group">
-              <label>Distance <span id="v-dis">0.10</span></label>
-              <input type="range" class="adv-slider" id="sl-dis" min="0" max="1" step="0.05" value="0.1">
+            <div>
+              <div class="hero-stat-num">4.8★</div>
+              <div class="hero-stat-label">Avg. Rating</div>
             </div>
-            <div class="sl-group">
-              <label>Top K Results <span id="v-topk">6</span></label>
-              <input type="range" class="adv-slider" id="sl-topk" min="1" max="20" step="1" value="6">
+          </div>
+        </div>
+
+        <!-- Right: floating cards (desktop only) -->
+        <div class="hero-float-col" aria-hidden="true">
+          <div class="float-card">
+            <span class="float-card-label">✦ Top Pick Today</span>
+            <h4>Hạ Long Bay</h4>
+            <p class="float-card-loc">Quảng Ninh Province</p>
+            <div class="float-card-footer">
+              <span class="fc-stars">★★★★★</span>
+              <span>4.9 · Nature &amp; Water</span>
+            </div>
+          </div>
+          <div class="float-card">
+            <span class="float-card-label">🔥 Trending Now</span>
+            <h4>Hội An Ancient Town</h4>
+            <p class="float-card-loc">Quảng Nam Province</p>
+            <div class="float-card-footer">
+              <span class="fc-stars">★★★★★</span>
+              <span>4.8 · Heritage</span>
+            </div>
+          </div>
+          <div class="float-card">
+            <span class="float-card-label">💎 Hidden Gem</span>
+            <h4>Phong Nha Cave</h4>
+            <p class="float-card-loc">Quảng Bình Province</p>
+            <div class="float-card-footer">
+              <span class="fc-stars">★★★★★</span>
+              <span>4.9 · Adventure</span>
             </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- ── Results ────────────────────────────────────────────────────────── -->
+    <section id="results" class="hidden">
+      <div class="container">
+        <div class="results-bar">
+          <div>
+            <h2 id="results-title">Finding places…</h2>
+            <p id="results-meta"></p>
+          </div>
+          <button class="results-close" id="results-close">✕ Close</button>
+        </div>
+        <div class="results-grid" id="results-grid"></div>
+      </div>
+    </section>
+
+    <!-- ── Category Browse ────────────────────────────────────────────────── -->
+    <section id="categories">
+      <div class="container">
+        <div class="section-badge">Browse by Category</div>
+        <h2>What Are You Looking For?</h2>
+        <p class="section-sub">
+          Pick a travel style and let AI find your perfect match
+        </p>
+        <div class="cat-pills" id="cat-pills">
+          <button class="cat-pill active" data-cat="All">
+            <span class="cat-pill-ico">🌏</span>All Destinations
+          </button>
+          <button class="cat-pill" data-cat="Beach">
+            <span class="cat-pill-ico">🏖</span>Beaches
+          </button>
+          <button class="cat-pill" data-cat="Mountain">
+            <span class="cat-pill-ico">⛰</span>Mountains
+          </button>
+          <button class="cat-pill" data-cat="Heritage">
+            <span class="cat-pill-ico">🏛</span>Heritage Sites
+          </button>
+          <button class="cat-pill" data-cat="Nature">
+            <span class="cat-pill-ico">🌿</span>Nature &amp; Jungle
+          </button>
+          <button class="cat-pill" data-cat="Food">
+            <span class="cat-pill-ico">🍜</span>Food &amp; Culture
+          </button>
+          <button class="cat-pill" data-cat="Outdoor">
+            <span class="cat-pill-ico">🧭</span>Exploration
+          </button>
+          <button class="cat-pill" data-cat="City">
+            <span class="cat-pill-ico">🏙</span>City Life
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Featured Destinations ──────────────────────────────────────────── -->
+    <section id="featured">
+      <div class="container">
+        <div class="sec-head">
+          <div class="section-badge">Curated Picks</div>
+          <h2>Featured Destinations</h2>
+          <p>Hand-picked experiences from Vietnam's most beloved provinces</p>
+        </div>
+        <div class="feat-grid" id="feat-grid">
+          <!-- populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── How It Works ───────────────────────────────────────────────────── -->
+    <section id="how">
+      <div class="container">
+        <div class="how-head">
+          <div
+            class="section-badge"
+            style="background: rgba(201, 160, 68, 0.09); color: var(--gold-l)"
+          >
+            How It Works
+          </div>
+          <h2>AI-Driven Recommendations</h2>
+          <p>Four steps from your idea to your perfect Vietnamese adventure</p>
+        </div>
+        <div class="how-grid">
+          <div class="how-step">
+            <div class="how-num">01</div>
+            <div class="how-icon">✍️</div>
+            <h4>Tell Us Your Vibe</h4>
+            <p>
+              Type anything in plain language — "peaceful beach for a family" or
+              "street food adventure up north". No special keywords needed.
+            </p>
+          </div>
+          <div class="how-step">
+            <div class="how-num">02</div>
+            <div class="how-icon">🧠</div>
+            <h4>NLP Understands You</h4>
+            <p>
+              Our TF-IDF and multi-label NLP engine parses your intent and maps
+              it to 8 travel preference categories automatically.
+            </p>
+          </div>
+          <div class="how-step">
+            <div class="how-num">03</div>
+            <div class="how-icon">📊</div>
+            <h4>AI-Ranked Results</h4>
+            <p>
+              Places are scored by semantic match, category fit, average rating,
+              and location — then ranked and surfaced just for you.
+            </p>
+          </div>
+          <div class="how-step">
+            <div class="how-num">04</div>
+            <div class="how-icon">♻️</div>
+            <h4>Review the Match</h4>
+            <p>
+              Check the match score, category fit, average rating, and details
+              before choosing the destination that fits your trip.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ─────────────────────────────────────────────────────────── -->
+    <footer>
+      <div class="container">
+        <div class="foot-inner">
+          <div class="foot-brand">
+            S-Shape Explorer <span>· AI Travel</span>
+          </div>
+          <ul class="foot-links">
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#featured">Destinations</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#cta">Recommend</a></li>
+          </ul>
+        </div>
+        <p class="foot-copy">
+          © 2025 S-Shape Explorer — AI-powered Vietnam travel discovery · 315
+          real destinations
+        </p>
+      </div>
+    </footer>
+
+    <!-- ── Modal ──────────────────────────────────────────────────────────── -->
+    <div
+      class="modal-backdrop"
+      id="modal-bd"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Place details"
+    >
+      <div class="modal" id="modal">
+        <div id="modal-content">
+          <div class="modal-loading">Loading place details…</div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- ── Footer ─────────────────────────────────────────────────────────── -->
-<footer>
-  <div class="container">
-    <div class="foot-inner">
-      <div class="foot-brand">S-Shape Explorer <span>· AI Travel</span></div>
-      <ul class="foot-links">
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#featured">Destinations</a></li>
-        <li><a href="#categories">Categories</a></li>
-        <li><a href="#cta">Recommend</a></li>
-      </ul>
-    </div>
-    <p class="foot-copy">© 2025 S-Shape Explorer — AI-powered Vietnam travel discovery · 315 real destinations</p>
-  </div>
-</footer>
+    <!-- ── Toast Container ────────────────────────────────────────────────── -->
+    <div id="toasts"></div>
 
-<!-- ── Modal ──────────────────────────────────────────────────────────── -->
-<div class="modal-backdrop" id="modal-bd" role="dialog" aria-modal="true" aria-label="Place details">
-  <div class="modal" id="modal">
-    <div id="modal-content">
-      <div class="modal-loading">Loading place details…</div>
-    </div>
-  </div>
-</div>
+    <!-- ── JavaScript ─────────────────────────────────────────────────────── -->
+    <script>
+      "use strict";
 
-<!-- ── Toast Container ────────────────────────────────────────────────── -->
-<div id="toasts"></div>
+      /* ─── Config ─────────────────────────────────────────────────────────── */
+      const API_BASE = "http://localhost:8000";
+      const GUEST_ID = "guest_user";
 
-<!-- ── JavaScript ─────────────────────────────────────────────────────── -->
-<script>
-'use strict';
+      /* ─── Category → API preference mapping ─────────────────────────────── */
+      const CAT_PREFS = {
+        All: [],
+        Beach: ["Relax"],
+        Mountain: ["Mountain"],
+        Heritage: ["Historical"],
+        Nature: ["Nature"],
+        Food: ["Food"],
+        Outdoor: ["Adventure"],
+        City: ["Urban"],
+      };
 
-/* ─── Config ─────────────────────────────────────────────────────────── */
-const API_BASE  = 'http://localhost:8000';
-const GUEST_ID  = 'guest_user';
+      /* Label field → display name */
+      const LABEL_NAME = {
+        adventure: "Outdoor",
+        relax: "Beach & Relax",
+        rural: "Rural",
+        urban: "City",
+        mountain: "Mountain",
+        historical: "Heritage",
+        food: "Food & Culture",
+        nature: "Nature",
+      };
 
-/* ─── Category → API preference mapping ─────────────────────────────── */
-const CAT_PREFS = {
-  All:      [],
-  Beach:    ['Relax'],
-  Mountain: ['Mountain'],
-  Heritage: ['Historical'],
-  Nature:   ['Nature'],
-  Food:     ['Food'],
-  Outdoor:  ['Adventure'],
-  City:     ['Urban'],
-};
+      /* ─── App state ──────────────────────────────────────────────────────── */
+      const S = {
+        activeCat: "All",
+        weights: { semantic: 0.5, rating: 0.2, popularity: 0.2, distance: 0.1 },
+        topK: 6,
+      };
 
-/* Label field → display name */
-const LABEL_NAME = {
-  adventure: 'Outdoor',
-  relax:     'Beach & Relax',
-  rural:     'Rural',
-  urban:     'City',
-  mountain:  'Mountain',
-  historical:'Heritage',
-  food:      'Food & Culture',
-  nature:    'Nature',
-};
+      /* ─── Featured data ──────────────────────────────────────────────────── */
+      const FEATURED = [
+        {
+          name: "Hạ Long Bay",
+          loc: "Quảng Ninh",
+          desc: "A UNESCO World Heritage Site of thousands of limestone karsts rising from emerald waters — one of the world's most iconic seascapes.",
+          tags: ["UNESCO", "Scenic", "Cruise"],
+          rating: 4.9,
+          reviews: "2.4k",
+          price: "Moderate",
+          cat: "Nature",
+          img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Halong_Bay_in_Vietnam.jpg/800px-Halong_Bay_in_Vietnam.jpg",
+          emoji: "🏝",
+        },
+        {
+          name: "Hội An Ancient Town",
+          loc: "Quảng Nam",
+          desc: "A remarkably preserved trading port dating to the 15th century, famous for lantern-lit evenings and timeless street life.",
+          tags: ["Heritage", "Lanterns", "Old Town"],
+          rating: 4.8,
+          reviews: "3.1k",
+          price: "Budget-friendly",
+          cat: "Heritage",
+          img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Hoi_An_night_markets.jpg/800px-Hoi_An_night_markets.jpg",
+          emoji: "🏮",
+        },
+        {
+          name: "Sapa Terraces",
+          loc: "Lào Cai",
+          desc: "Breathtaking hand-carved rice terraces cascading down the Hoàng Liên Sơn mountains, home to colourful ethnic minority villages.",
+          tags: ["Mountain", "Trekking", "Culture"],
+          rating: 4.7,
+          reviews: "1.8k",
+          price: "Budget-friendly",
+          cat: "Mountain",
+          img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Sa_Pa%2C_Vietnam%2C_Muong_Hoa_valley.jpg/800px-Sa_Pa%2C_Vietnam%2C_Muong_Hoa_valley.jpg",
+          emoji: "⛰",
+        },
+        {
+          name: "Old Quarter Hanoi",
+          loc: "Hanoi",
+          desc: "A centuries-old labyrinth of narrow streets packed with artisan workshops, street food stalls, and living history at every corner.",
+          tags: ["City", "Street Food", "History"],
+          rating: 4.6,
+          reviews: "4.2k",
+          price: "Budget-friendly",
+          cat: "City",
+          img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Hanoian_old_quarter_%28cropped%29.jpg/800px-Hanoian_old_quarter_%28cropped%29.jpg",
+          emoji: "🏙",
+        },
+        {
+          name: "Bến Thành Market",
+          loc: "Ho Chi Minh City",
+          desc: "The iconic landmark of Saigon — a vibrant indoor market overflowing with local produce, street food, and handcrafted souvenirs.",
+          tags: ["Food", "Market", "Saigon"],
+          rating: 4.4,
+          reviews: "2.9k",
+          price: "Budget-friendly",
+          cat: "Food & Culture",
+          img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Ben_Thanh_market%2C_HCM_city%2C_Vietnam.jpg/800px-Ben_Thanh_market%2C_HCM_city%2C_Vietnam.jpg",
+          emoji: "🍜",
+        },
+        {
+          name: "Phong Nha Caves",
+          loc: "Quảng Bình",
+          desc: "Home to Sơn Đoòng, the world's largest cave. A UNESCO-listed landscape of prehistoric rivers and awe-inspiring caverns.",
+          tags: ["Cave", "UNESCO", "Adventure"],
+          rating: 4.9,
+          reviews: "1.2k",
+          price: "Moderate",
+          cat: "Adventure",
+          img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Son_Doong_Cave_DB_%282%29-edited.jpg/800px-Son_Doong_Cave_DB_%282%29-edited.jpg",
+          emoji: "🦇",
+        },
+      ];
 
-/* ─── App state ──────────────────────────────────────────────────────── */
-const S = {
-  activeCat: 'All',
-  feedbackDone: new Set(),
-  weights: { semantic: 0.5, rating: 0.2, popularity: 0.2, distance: 0.1 },
-  topK: 6,
-};
+      /* ─── Utilities ──────────────────────────────────────────────────────── */
+      const $ = (id) => document.getElementById(id);
+      function esc(s) {
+        return String(s || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+      function trunc(s, n) {
+        return s && s.length > n ? s.slice(0, n).trimEnd() + "…" : s || "";
+      }
+      function pct(score) {
+        return Math.min(99, Math.max(1, Math.round(score * 100)));
+      }
 
-/* ─── Featured data ──────────────────────────────────────────────────── */
-const FEATURED = [
-  {
-    name: 'Hạ Long Bay',
-    loc: 'Quảng Ninh',
-    desc: 'A UNESCO World Heritage Site of thousands of limestone karsts rising from emerald waters — one of the world\'s most iconic seascapes.',
-    tags: ['UNESCO', 'Scenic', 'Cruise'],
-    rating: 4.9, reviews: '2.4k', price: 'Moderate', cat: 'Nature',
-    img: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80',
-    emoji: '🏝',
-  },
-  {
-    name: 'Hội An Ancient Town',
-    loc: 'Quảng Nam',
-    desc: 'A remarkably preserved trading port dating to the 15th century, famous for lantern-lit evenings and timeless street life.',
-    tags: ['Heritage', 'Lanterns', 'Old Town'],
-    rating: 4.8, reviews: '3.1k', price: 'Budget-friendly', cat: 'Heritage',
-    img: 'https://images.unsplash.com/photo-1583417267826-aebc4d1542e1?w=600&q=80',
-    emoji: '🏮',
-  },
-  {
-    name: 'Sapa Terraces',
-    loc: 'Lào Cai',
-    desc: 'Breathtaking hand-carved rice terraces cascading down the Hoàng Liên Sơn mountains, home to colourful ethnic minority villages.',
-    tags: ['Mountain', 'Trekking', 'Culture'],
-    rating: 4.7, reviews: '1.8k', price: 'Budget-friendly', cat: 'Mountain',
-    img: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&q=80',
-    emoji: '⛰',
-  },
-  {
-    name: 'Old Quarter Hanoi',
-    loc: 'Hanoi',
-    desc: 'A centuries-old labyrinth of narrow streets packed with artisan workshops, street food stalls, and living history at every corner.',
-    tags: ['City', 'Street Food', 'History'],
-    rating: 4.6, reviews: '4.2k', price: 'Budget-friendly', cat: 'City',
-    img: 'https://images.unsplash.com/photo-1561409106-f4b99025b6d8?w=600&q=80',
-    emoji: '🏙',
-  },
-  {
-    name: 'Bến Thành Market',
-    loc: 'Ho Chi Minh City',
-    desc: 'The iconic landmark of Saigon — a vibrant indoor market overflowing with local produce, street food, and handcrafted souvenirs.',
-    tags: ['Food', 'Market', 'Saigon'],
-    rating: 4.4, reviews: '2.9k', price: 'Budget-friendly', cat: 'Food & Culture',
-    img: 'https://images.unsplash.com/photo-1569959220744-ff553533f492?w=600&q=80',
-    emoji: '🍜',
-  },
-  {
-    name: 'Phong Nha Caves',
-    loc: 'Quảng Bình',
-    desc: 'Home to Sơn Đoòng, the world\'s largest cave. A UNESCO-listed landscape of prehistoric rivers and awe-inspiring caverns.',
-    tags: ['Cave', 'UNESCO', 'Adventure'],
-    rating: 4.9, reviews: '1.2k', price: 'Moderate', cat: 'Adventure',
-    img: 'https://images.unsplash.com/photo-1525302220185-c9303e7b6b97?w=600&q=80',
-    emoji: '🦇',
-  },
-];
+      function primaryLabel(place) {
+        const order = [
+          "historical",
+          "mountain",
+          "nature",
+          "food",
+          "adventure",
+          "relax",
+          "urban",
+          "rural",
+        ];
+        for (const k of order) if (place[k] === 1) return LABEL_NAME[k] || k;
+        return "Destination";
+      }
+      function allLabels(place) {
+        return Object.keys(LABEL_NAME)
+          .filter((k) => place[k] === 1)
+          .map((k) => LABEL_NAME[k]);
+      }
 
-/* ─── Utilities ──────────────────────────────────────────────────────── */
-const $ = id => document.getElementById(id);
-function esc(s) {
-  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-function trunc(s, n) { return s && s.length > n ? s.slice(0, n).trimEnd() + '…' : (s || ''); }
-function pct(score) { return Math.min(99, Math.max(1, Math.round(score * 100))); }
+      /* ─── Toast ──────────────────────────────────────────────────────────── */
+      function toast(msg, type = "info") {
+        const icons = { success: "✓", error: "✕", info: "ℹ" };
+        const el = document.createElement("div");
+        el.className = `toast ${type}`;
+        el.innerHTML = `<span>${icons[type] || "ℹ"}</span><span>${esc(msg)}</span>`;
+        $("toasts").appendChild(el);
+        setTimeout(() => el.remove(), 3350);
+      }
 
-function primaryLabel(place) {
-  const order = ['historical','mountain','nature','food','adventure','relax','urban','rural'];
-  for (const k of order) if (place[k] === 1) return LABEL_NAME[k] || k;
-  return 'Destination';
-}
-function allLabels(place) {
-  return Object.keys(LABEL_NAME).filter(k => place[k] === 1).map(k => LABEL_NAME[k]);
-}
+      /* ─── API ────────────────────────────────────────────────────────────── */
+      async function apiRecommend(
+        query,
+        prefs = [],
+        location = "",
+        topK = null,
+      ) {
+        const resp = await fetch(`${API_BASE}/recommend`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: query || "",
+            preferences: prefs,
+            location,
+            top_k: topK !== null ? topK : S.topK,
+            user_id: GUEST_ID,
+            weights: S.weights,
+          }),
+        });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        return resp.json();
+      }
 
-/* ─── Toast ──────────────────────────────────────────────────────────── */
-function toast(msg, type = 'info') {
-  const icons = { success: '✓', error: '✕', info: 'ℹ' };
-  const el = document.createElement('div');
-  el.className = `toast ${type}`;
-  el.innerHTML = `<span>${icons[type] || 'ℹ'}</span><span>${esc(msg)}</span>`;
-  $('toasts').appendChild(el);
-  setTimeout(() => el.remove(), 3350);
-}
+      async function apiPlace(id) {
+        const resp = await fetch(`${API_BASE}/place/${encodeURIComponent(id)}`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        return resp.json();
+      }
 
-/* ─── API ────────────────────────────────────────────────────────────── */
-async function apiRecommend(query, prefs = [], location = '', topK = null) {
-  const resp = await fetch(`${API_BASE}/recommend`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      query:       query || '',
-      preferences: prefs,
-      location,
-      top_k:       topK !== null ? topK : S.topK,
-      user_id:     GUEST_ID,
-      weights:     S.weights,
-    }),
-  });
-  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-  return resp.json();
-}
+      /* ─── Card rendering ─────────────────────────────────────────────────── */
+      function cardHtml(result) {
+        const p = result.place;
+        const score = pct(result.score);
+        const cat =
+          result.matched_labels && result.matched_labels.length
+            ? result.matched_labels[0]
+            : primaryLabel(p);
+        const tags = (p.keywords || []).slice(0, 3);
+        const imgHtml = p.image_url
+          ? `<img class="dest-card-img" src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy" onerror="this.classList.add('err')">`
+          : "";
+        const tagsHtml = tags
+          .map((t) => `<span class="dest-tag">${esc(t)}</span>`)
+          .join("");
 
-async function apiPlace(id) {
-  const resp = await fetch(`${API_BASE}/place/${encodeURIComponent(id)}`);
-  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-  return resp.json();
-}
+        const actionsHtml = `<button class="btn-detail" onclick="openModal('${esc(p.id)}')">Details</button>`;
 
-async function apiFeedback(placeId, type) {
-  const resp = await fetch(`${API_BASE}/feedback`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ place_id: placeId, feedback: type, user_id: GUEST_ID }),
-  });
-  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-  return resp.json();
-}
-
-/* ─── Card rendering ─────────────────────────────────────────────────── */
-function cardHtml(result) {
-  const p      = result.place;
-  const score  = pct(result.score);
-  const cat    = result.matched_labels && result.matched_labels.length
-                   ? result.matched_labels[0] : primaryLabel(p);
-  const tags   = (p.keywords || []).slice(0, 3);
-  const imgHtml = p.image_url
-    ? `<img class="dest-card-img" src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy" onerror="this.classList.add('err')">`
-    : '';
-  const tagsHtml = tags.map(t => `<span class="dest-tag">${esc(t)}</span>`).join('');
-
-  const done = S.feedbackDone.has(p.id);
-  const actionsHtml = done
-    ? `<span class="feedback-note">Thanks — we'll improve your results.</span>`
-    : `<button class="btn-detail" onclick="openModal('${esc(p.id)}')">Details</button>
-       <button class="btn-react like" title="Helpful" onclick="doFeedback('${esc(p.id)}','like',this)">👍</button>
-       <button class="btn-react dislike" title="Not a match" onclick="doFeedback('${esc(p.id)}','dislike',this)">👎</button>`;
-
-  return `
+        return `
     <div class="dest-card" data-id="${esc(p.id)}">
       <div class="dest-card-img-wrap">
         ${imgHtml}
@@ -1184,88 +2222,97 @@ function cardHtml(result) {
         </div>
         <div class="dest-card-loc">${esc(p.location)}</div>
         <div class="dest-card-desc">${esc(trunc(p.description, 145))}</div>
-        ${tagsHtml ? `<div class="dest-card-tags">${tagsHtml}</div>` : ''}
+        ${tagsHtml ? `<div class="dest-card-tags">${tagsHtml}</div>` : ""}
         <div class="dest-card-foot">
           <div class="dest-rating">
-            <span class="star">★</span>${p.rating > 0 ? p.rating.toFixed(1) : '—'}
+            <span class="star">★</span>${p.rating > 0 ? p.rating.toFixed(1) : "—"}
           </div>
           <div class="dest-actions">${actionsHtml}</div>
         </div>
       </div>
     </div>`;
-}
+      }
 
-function loadingHtml() {
-  return `<div class="state-box">
+      function loadingHtml() {
+        return `<div class="state-box">
     <div class="loading-dots"><div class="ld"></div><div class="ld"></div><div class="ld"></div></div>
     <div class="state-title">Finding the best matches…</div>
     <p class="state-sub">Scanning 315 Vietnamese destinations for you</p>
   </div>`;
-}
-function errorHtml(msg) {
-  return `<div class="state-box">
+      }
+      function errorHtml(msg) {
+        return `<div class="state-box">
     <div class="state-icon">⚠️</div>
     <div class="state-title">Could not reach the server</div>
     <p class="state-sub">${esc(msg)}<br><br>Make sure the FastAPI server is running on <code>localhost:8000</code>.</p>
   </div>`;
-}
-function emptyHtml() {
-  return `<div class="state-box">
+      }
+      function emptyHtml() {
+        return `<div class="state-box">
     <div class="state-icon">🔍</div>
     <div class="state-title">No places found</div>
     <p class="state-sub">Try a different query, or browse by category below.</p>
   </div>`;
-}
+      }
 
-/* ─── Search ─────────────────────────────────────────────────────────── */
-async function runSearch(query, cat) {
-  const sec   = $('results');
-  const grid  = $('results-grid');
-  const title = $('results-title');
-  const meta  = $('results-meta');
+      /* ─── Search ─────────────────────────────────────────────────────────── */
+      async function runSearch(query, cat) {
+        const sec = $("results");
+        const grid = $("results-grid");
+        const title = $("results-title");
+        const meta = $("results-meta");
 
-  sec.classList.remove('hidden');
-  title.textContent = 'Finding places…';
-  meta.textContent  = query ? `"${query}"` : `Category: ${cat}`;
-  grid.innerHTML    = loadingHtml();
-  sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        sec.classList.remove("hidden");
+        title.textContent = "Finding places…";
+        meta.textContent = query ? `"${query}"` : `Category: ${cat}`;
+        grid.innerHTML = loadingHtml();
+        sec.scrollIntoView({ behavior: "smooth", block: "start" });
 
-  const prefs = CAT_PREFS[cat] || [];
-  try {
-    const data = await apiRecommend(query, prefs);
-    const recs = data.recommendations || [];
-    title.textContent = recs.length ? `Found ${recs.length} place${recs.length !== 1 ? 's' : ''}` : 'No results';
-    const metaParts = [];
-    if (query) metaParts.push(`"${query}"`);
-    if (data.selected_preferences && data.selected_preferences.length)
-      metaParts.push(data.selected_preferences.join(', '));
-    meta.textContent = metaParts.join(' · ');
-    grid.innerHTML = recs.length ? recs.map(cardHtml).join('') : emptyHtml();
-  } catch (err) {
-    title.textContent = 'Unable to load results';
-    meta.textContent  = '';
-    grid.innerHTML    = errorHtml('Cannot connect to the recommendation server. Please make sure FastAPI is running on port 8000.');
-    toast('Server unavailable — start FastAPI on port 8000', 'error');
-  }
-}
+        const prefs = CAT_PREFS[cat] || [];
+        try {
+          const data = await apiRecommend(query, prefs);
+          const recs = data.recommendations || [];
+          title.textContent = recs.length
+            ? `Found ${recs.length} place${recs.length !== 1 ? "s" : ""}`
+            : "No results";
+          const metaParts = [];
+          if (query) metaParts.push(`"${query}"`);
+          if (data.selected_preferences && data.selected_preferences.length)
+            metaParts.push(data.selected_preferences.join(", "));
+          meta.textContent = metaParts.join(" · ");
+          grid.innerHTML = recs.length
+            ? recs.map(cardHtml).join("")
+            : emptyHtml();
+        } catch (err) {
+          title.textContent = "Unable to load results";
+          meta.textContent = "";
+          grid.innerHTML = errorHtml(
+            "Cannot connect to the recommendation server. Please make sure FastAPI is running on port 8000.",
+          );
+          toast("Server unavailable — start FastAPI on port 8000", "error");
+        }
+      }
 
-/* ─── Modal ──────────────────────────────────────────────────────────── */
-function openModal(placeId) {
-  const bd  = $('modal-bd');
-  const cnt = $('modal-content');
-  bd.classList.add('open');
-  cnt.innerHTML = `<div class="modal-loading">Loading place details…</div>`;
-  document.body.style.overflow = 'hidden';
+      /* ─── Modal ──────────────────────────────────────────────────────────── */
+      function openModal(placeId) {
+        const bd = $("modal-bd");
+        const cnt = $("modal-content");
+        bd.classList.add("open");
+        cnt.innerHTML = `<div class="modal-loading">Loading place details…</div>`;
+        document.body.style.overflow = "hidden";
 
-  apiPlace(placeId).then(p => {
-    const labels = allLabels(p);
-    const cat    = primaryLabel(p);
-    const tags   = (p.keywords || []).map(t => `<span class="modal-tag">${esc(t)}</span>`).join('');
-    const imgHtml = p.image_url
-      ? `<img class="modal-hero" src="${esc(p.image_url)}" alt="${esc(p.name)}" onerror="this.classList.add('err')">`
-      : `<div class="modal-hero-ph">🏞</div>`;
+        apiPlace(placeId)
+          .then((p) => {
+            const labels = allLabels(p);
+            const cat = primaryLabel(p);
+            const tags = (p.keywords || [])
+              .map((t) => `<span class="modal-tag">${esc(t)}</span>`)
+              .join("");
+            const imgHtml = p.image_url
+              ? `<img class="modal-hero" src="${esc(p.image_url)}" alt="${esc(p.name)}" onerror="this.classList.add('err')">`
+              : `<div class="modal-hero-ph">🏞</div>`;
 
-    cnt.innerHTML = `
+            cnt.innerHTML = `
       ${imgHtml}
       <div class="modal-body">
         <div class="modal-top">
@@ -1275,15 +2322,18 @@ function openModal(placeId) {
         <div class="modal-badge">${esc(cat)}</div>
         <div class="modal-meta">
           <span class="modal-meta-item">📍 ${esc(p.location)}</span>
-          ${p.rating > 0 ? `<span class="modal-meta-item"><span style="color:var(--gold)">★</span> ${p.rating.toFixed(1)} / 5.0</span>` : ''}
-          ${labels.length ? `<span class="modal-meta-item">🏷 ${labels.slice(0,3).join(' · ')}</span>` : ''}
+          ${p.rating > 0 ? `<span class="modal-meta-item"><span style="color:var(--gold)">★</span> ${p.rating.toFixed(1)} / 5.0</span>` : ""}
+          ${labels.length ? `<span class="modal-meta-item">🏷 ${labels.slice(0, 3).join(" · ")}</span>` : ""}
         </div>
         <p class="modal-desc">${esc(p.description)}</p>
-        ${tags ? `<div class="modal-tags">${tags}</div>` : ''}
+        ${tags ? `<div class="modal-tags">${tags}</div>` : ""}
       </div>`;
-    cnt.onclick = e => { if (e.target.closest('.modal-close')) closeModal(); };
-  }).catch(() => {
-    cnt.innerHTML = `
+            cnt.onclick = (e) => {
+              if (e.target.closest(".modal-close")) closeModal();
+            };
+          })
+          .catch(() => {
+            cnt.innerHTML = `
       <div class="modal-body">
         <div class="modal-top">
           <h3 class="modal-title">Place Details</h3>
@@ -1291,66 +2341,56 @@ function openModal(placeId) {
         </div>
         <p style="color:var(--text-mu);padding:18px 0;">Could not load details — server may be unavailable.</p>
       </div>`;
-    cnt.onclick = e => { if (e.target.closest('.modal-close')) closeModal(); };
-  });
-}
+            cnt.onclick = (e) => {
+              if (e.target.closest(".modal-close")) closeModal();
+            };
+          });
+      }
 
-/* Open featured card by searching for it by name */
-function openFeaturedModal(name) {
-  const bd  = $('modal-bd');
-  const cnt = $('modal-content');
-  bd.classList.add('open');
-  cnt.innerHTML = `<div class="modal-loading">Loading place details…</div>`;
-  document.body.style.overflow = 'hidden';
+      /* Open featured card by exact name lookup (accent-insensitive) */
+      function openFeaturedModal(name) {
+        const bd = $("modal-bd");
+        const cnt = $("modal-content");
+        bd.classList.add("open");
+        cnt.innerHTML = `<div class="modal-loading">Loading place details…</div>`;
+        document.body.style.overflow = "hidden";
 
-  apiRecommend(name, [], '', 1).then(data => {
-    const recs = data.recommendations || [];
-    if (recs.length) {
-      closeModal();
-      openModal(recs[0].place.id);
-    } else {
-      cnt.innerHTML = `<div class="modal-body">
-        <div class="modal-top"><h3 class="modal-title">${esc(name)}</h3>
-        <button class="modal-close" type="button" aria-label="Close">✕</button></div>
-        <p style="color:var(--text-mu);padding:18px 0;">This destination wasn't found in the current dataset.</p>
-      </div>`;
-      cnt.onclick = e => { if (e.target.closest('.modal-close')) closeModal(); };
-    }
-  }).catch(() => {
-    cnt.innerHTML = `<div class="modal-body">
+        function showError(msg) {
+          cnt.innerHTML = `<div class="modal-body">
       <div class="modal-top"><h3 class="modal-title">${esc(name)}</h3>
       <button class="modal-close" type="button" aria-label="Close">✕</button></div>
-      <p style="color:var(--text-mu);padding:18px 0;">Could not load details. Please start the FastAPI server on port 8000.</p>
+      <p style="color:var(--text-mu);padding:18px 0;">${esc(msg)}</p>
     </div>`;
-    cnt.onclick = e => { if (e.target.closest('.modal-close')) closeModal(); };
-  });
-}
+          cnt.onclick = (e) => { if (e.target.closest(".modal-close")) closeModal(); };
+        }
 
-function closeModal() {
-  $('modal-bd').classList.remove('open');
-  document.body.style.overflow = '';
-}
+        fetch(`${API_BASE}/place/search?q=${encodeURIComponent(name)}`)
+          .then((r) => r.ok ? r.json() : Promise.reject(r.status))
+          .then((place) => {
+            closeModal();
+            openModal(place.id);
+          })
+          .catch((status) => {
+            if (status === 404) {
+              showError("This destination wasn't found in the current dataset.");
+            } else {
+              showError("Could not load details. Please start the FastAPI server on port 8000.");
+            }
+          });
+      }
 
-/* ─── Feedback ───────────────────────────────────────────────────────── */
-function doFeedback(placeId, type, btn) {
-  S.feedbackDone.add(placeId);
-  const card = btn.closest('.dest-card');
-  if (card) {
-    card.querySelector('.dest-actions').innerHTML =
-      `<span class="feedback-note">${type === 'like'
-        ? 'Marked as helpful — recommendations will improve.'
-        : 'Got it — we\'ll show better matches.'}</span>`;
-  }
-  apiFeedback(placeId, type).catch(() => {
-    toast('Feedback noted locally — server unavailable', 'info');
-  });
-}
+      function closeModal() {
+        $("modal-bd").classList.remove("open");
+        document.body.style.overflow = "";
+      }
 
-/* ─── Featured section ───────────────────────────────────────────────── */
-function renderFeatured() {
-  $('feat-grid').innerHTML = FEATURED.map(f => {
-    const tagsHtml = f.tags.map(t => `<span class="feat-tag">${esc(t)}</span>`).join('');
-    return `
+      /* ─── Featured section ───────────────────────────────────────────────── */
+      function renderFeatured() {
+        $("feat-grid").innerHTML = FEATURED.map((f) => {
+          const tagsHtml = f.tags
+            .map((t) => `<span class="feat-tag">${esc(t)}</span>`)
+            .join("");
+          return `
       <div class="feat-card">
         <div class="feat-img-wrap">
           <img class="feat-img" src="${esc(f.img)}" alt="${esc(f.name)}" loading="lazy"
@@ -1373,118 +2413,131 @@ function renderFeatured() {
             </div>
             <div class="feat-actions">
               <button class="btn-detail" onclick="openFeaturedModal('${esc(f.name)}')">Details</button>
-              <button class="btn-react like" onclick="toast('Saved — nice pick!','success')" title="Like">👍</button>
-              <button class="btn-react dislike" onclick="toast('Noted — we\\u2019ll do better','info')" title="Not for me">👎</button>
             </div>
           </div>
         </div>
       </div>`;
-  }).join('');
-}
+        }).join("");
+      }
 
-/* ─── Sync UI helpers ────────────────────────────────────────────────── */
-function syncHeroChips(cat) {
-  document.querySelectorAll('#hero-chips .hero-chip').forEach(c => {
-    c.classList.toggle('active', c.dataset.cat === cat);
-  });
-}
-function syncCatPills(cat) {
-  document.querySelectorAll('#cat-pills .cat-pill').forEach(p => {
-    p.classList.toggle('active', p.dataset.cat === cat);
-  });
-}
+      /* ─── Sync UI helpers ────────────────────────────────────────────────── */
+      function syncHeroChips(cat) {
+        document.querySelectorAll("#hero-chips .hero-chip").forEach((c) => {
+          c.classList.toggle("active", c.dataset.cat === cat);
+        });
+      }
+      function syncCatPills(cat) {
+        document.querySelectorAll("#cat-pills .cat-pill").forEach((p) => {
+          p.classList.toggle("active", p.dataset.cat === cat);
+        });
+      }
 
-/* ─── Event wiring ───────────────────────────────────────────────────── */
-function wire() {
-  /* Hero search button */
-  $('hero-search-btn').addEventListener('click', () => {
-    runSearch($('hero-search').value.trim(), S.activeCat);
-  });
-  $('hero-search').addEventListener('keydown', e => {
-    if (e.key === 'Enter') runSearch($('hero-search').value.trim(), S.activeCat);
-  });
+      /* ─── Event wiring ───────────────────────────────────────────────────── */
+      function wire() {
+        /* Hero search button with validation */
+        $("hero-search-btn").addEventListener("click", () => {
+          const q = $("hero-search").value.trim();
+          if (!q) {
+            toast("Please describe your ideal trip first", "info");
+            return;
+          }
+          runSearch(q, S.activeCat);
+          $("results").scrollIntoView({ behavior: "smooth" });
+        });
+        $("hero-search").addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            $("hero-search-btn").click();
+          }
+        });
 
-  /* Hero chips */
-  $('hero-chips').addEventListener('click', e => {
-    const chip = e.target.closest('.hero-chip');
-    if (!chip) return;
-    S.activeCat = chip.dataset.cat;
-    syncHeroChips(S.activeCat);
-    syncCatPills(S.activeCat);
-    runSearch($('hero-search').value.trim(), S.activeCat);
-  });
+        /* Hero chips */
+        $("hero-chips").addEventListener("click", (e) => {
+          const chip = e.target.closest(".hero-chip");
+          if (!chip) return;
+          S.activeCat = chip.dataset.cat;
+          syncHeroChips(S.activeCat);
+          syncCatPills(S.activeCat);
+          const q = $("hero-search").value.trim();
+          if (q) runSearch(q, S.activeCat);
+        });
 
-  /* Category browse pills */
-  $('cat-pills').addEventListener('click', e => {
-    const pill = e.target.closest('.cat-pill');
-    if (!pill) return;
-    S.activeCat = pill.dataset.cat;
-    syncHeroChips(S.activeCat);
-    syncCatPills(S.activeCat);
-    runSearch('', S.activeCat);
-  });
+        /* Category browse pills */
+        $("cat-pills").addEventListener("click", (e) => {
+          const pill = e.target.closest(".cat-pill");
+          if (!pill) return;
+          S.activeCat = pill.dataset.cat;
+          syncHeroChips(S.activeCat);
+          syncCatPills(S.activeCat);
+          runSearch("", S.activeCat);
+        });
 
-  /* Results close */
-  $('results-close').addEventListener('click', () => $('results').classList.add('hidden'));
+        /* Results close */
+        $("results-close").addEventListener("click", () =>
+          $("results").classList.add("hidden"),
+        );
 
-  /* CTA button */
-  $('cta-btn').addEventListener('click', () => {
-    const q = $('cta-query').value.trim();
-    if (!q) { toast('Please describe your ideal trip first', 'info'); return; }
-    runSearch(q, 'All');
-    $('results').scrollIntoView({ behavior: 'smooth' });
-  });
+        /* Advanced settings toggle */
+        $("adv-toggle").addEventListener("click", () => {
+          const panel = $("adv-panel");
+          const open = panel.classList.toggle("hidden") === false;
+          $("adv-toggle").classList.toggle("open", open);
+        });
 
-  /* Advanced settings toggle */
-  $('adv-toggle').addEventListener('click', () => {
-    const panel = $('adv-panel');
-    const open  = panel.classList.toggle('hidden') === false;
-    $('adv-toggle').classList.toggle('open', open);
-  });
+        /* Sliders */
+        [
+          ["sl-sem", "v-sem", (k) => (S.weights.semantic = k), 2],
+          ["sl-rat", "v-rat", (k) => (S.weights.rating = k), 2],
+          ["sl-pop", "v-pop", (k) => (S.weights.popularity = k), 2],
+          ["sl-dis", "v-dis", (k) => (S.weights.distance = k), 2],
+        ].forEach(([sid, vid, setter, dp]) => {
+          $(sid).addEventListener("input", function () {
+            const v = parseFloat(this.value);
+            $(vid).textContent = v.toFixed(dp);
+            setter(v);
+          });
+        });
+        $("sl-topk").addEventListener("input", function () {
+          S.topK = parseInt(this.value);
+          $("v-topk").textContent = this.value;
+        });
 
-  /* Sliders */
-  [
-    ['sl-sem',  'v-sem',  k => S.weights.semantic    = k, 2],
-    ['sl-rat',  'v-rat',  k => S.weights.rating      = k, 2],
-    ['sl-pop',  'v-pop',  k => S.weights.popularity  = k, 2],
-    ['sl-dis',  'v-dis',  k => S.weights.distance    = k, 2],
-  ].forEach(([sid, vid, setter, dp]) => {
-    $(sid).addEventListener('input', function () {
-      const v = parseFloat(this.value);
-      $(vid).textContent = v.toFixed(dp);
-      setter(v);
-    });
-  });
-  $('sl-topk').addEventListener('input', function () {
-    S.topK = parseInt(this.value);
-    $('v-topk').textContent = this.value;
-  });
+        /* Modal backdrop click */
+        $("modal-bd").addEventListener("click", (e) => {
+          if (e.target === $("modal-bd")) closeModal();
+        });
 
-  /* Modal backdrop click */
-  $('modal-bd').addEventListener('click', e => { if (e.target === $('modal-bd')) closeModal(); });
+        /* Escape key */
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeModal();
+        });
 
-  /* Escape key */
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+        /* Navbar scroll shadow */
+        window.addEventListener(
+          "scroll",
+          () => {
+            $("navbar").classList.toggle("scrolled", window.scrollY > 20);
+          },
+          { passive: true },
+        );
 
-  /* Navbar scroll shadow */
-  window.addEventListener('scroll', () => {
-    $('navbar').classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
+        /* Mobile nav hamburger */
+        $("nav-hamburger").addEventListener("click", () => {
+          $("nav-links").classList.toggle("open");
+        });
+        $("nav-links")
+          .querySelectorAll("a")
+          .forEach((a) => {
+            a.addEventListener("click", () =>
+              $("nav-links").classList.remove("open"),
+            );
+          });
+      }
 
-  /* Mobile nav hamburger */
-  $('nav-hamburger').addEventListener('click', () => {
-    $('nav-links').classList.toggle('open');
-  });
-  $('nav-links').querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => $('nav-links').classList.remove('open'));
-  });
-}
-
-/* ─── Init ───────────────────────────────────────────────────────────── */
-document.addEventListener('DOMContentLoaded', () => {
-  renderFeatured();
-  wire();
-});
-</script>
-</body>
+      /* ─── Init ───────────────────────────────────────────────────────────── */
+      document.addEventListener("DOMContentLoaded", () => {
+        renderFeatured();
+        wire();
+      });
+    </script>
+  </body>
 </html>

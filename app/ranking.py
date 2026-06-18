@@ -22,6 +22,7 @@ from typing import List, Optional, Tuple
 
 from app.models import Place, PlaceResult
 from app.recommender import LABEL_MAP
+from app.nlp_parser import REGION_MAP
 
 logger = logging.getLogger(__name__)
 
@@ -49,17 +50,47 @@ def _label_score(place: Place, preferences: List[str]) -> Tuple[float, List[str]
 
 
 def _location_boost(place: Place, query_location: str) -> float:
-    """Return a multiplier based on how well place.location matches the query location."""
+    """
+    Return a multiplier based on how well place.location matches the query location.
+    
+    Handles both specific province matches and regional matches:
+    - Exact match:     ×1.50
+    - Regional match:  ×1.30 (e.g., "North Vietnam" matches "Hanoi")
+    - Partial match:   ×1.25 (substring match)
+    - No match:        ×0.70 (soft penalty)
+    - Region mismatch: ×0.50 (strong penalty when region specified but not matched)
+    """
     if not query_location:
         return 1.0
 
     p_loc = place.location.lower().strip()
     q_loc = query_location.lower().strip()
 
+    # Exact province match
     if p_loc == q_loc:
         return 1.50
+    
+    # Partial/substring match
     if q_loc in p_loc or p_loc in q_loc:
         return 1.25
+    
+    # Regional matching: check if query is a region (North/Central/South Vietnam)
+    for region, provinces in REGION_MAP.items():
+        region_query = f"{region} vietnam"
+        if region_query in q_loc:
+            # Check if place is in this region
+            if any(prov.lower() in p_loc for prov in provinces):
+                return 1.30  # Strong boost for regional match
+            else:
+                return 0.50  # Strong penalty for region mismatch
+        # Also handle just "north" without "vietnam"
+        elif q_loc == region:
+            if any(prov.lower() in p_loc for prov in provinces):
+                return 1.30
+            else:
+                return 0.50
+    
+    # No match - soft penalty to push off-location results down
     return 0.70
 
 
@@ -113,6 +144,39 @@ def _generate_explanation(
     return opening + body + rating_str + "."
 
 
+def _filter_by_region(
+    candidates: List[Tuple[Place, float]],
+    query_location: str,
+) -> List[Tuple[Place, float]]:
+    """
+    If query_location is a region (e.g., "North Vietnam"), filter candidates
+    to only include places from that region. Otherwise return all candidates.
+    """
+    q_loc = query_location.lower().strip()
+    
+    for region, provinces in REGION_MAP.items():
+        region_query = f"{region} vietnam"
+        if region_query in q_loc or q_loc == region:
+            # Filter: keep only places in this region
+            filtered = [
+                (place, score)
+                for place, score in candidates
+                if any(prov.lower() in place.location.lower() for prov in provinces)
+            ]
+            if filtered:
+                logger.info(
+                    "Filtered %d candidates to %d places in %s region",
+                    len(candidates), len(filtered), region.capitalize()
+                )
+                return filtered
+    
+    # No region filter applied, return all candidates
+    return candidates
+
+
+
+
+
 # ---------------------------------------------------------------------------
 # Public API
 # ---------------------------------------------------------------------------
@@ -135,6 +199,9 @@ def rank(
     top_k          : number of results to return
     has_query      : True if the user typed a text query (affects weights)
     """
+    # Filter candidates by region if a region was specified
+    candidates = _filter_by_region(candidates, query_location)
+    
     results: List[PlaceResult] = []
 
     for place, sem_score in candidates:
