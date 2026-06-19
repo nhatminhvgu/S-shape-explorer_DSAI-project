@@ -26,6 +26,11 @@ S-shape-explorer_DSAI-project/
 ├── tfidf_model.pkl               ← Fitted TF-IDF vectorizer (315 descriptions)
 ├── tfidf_matrix (1).pkl          ← Pre-computed TF-IDF matrix (315 x 1000)
 │
+├── visualization/                ← Chart & matrix generation scripts
+│   ├── visualize_model.py        ← 6 core charts (label dist, TF-IDF, cosine sim, …)
+│   ├── visualize_extra.py        ← 4 exam-topic charts (PCA, keywords, pipeline, …)
+│   └── charts/                   ← Output PNGs (auto-generated, 10 files)
+│
 ├── requirements.txt
 └── .gitignore
 ```
@@ -123,18 +128,51 @@ Valid preference values: `Adventure`, `Relax`, `Rural`, `Urban`, `Mountain`, `Hi
 
 ## How to Run
 
+### Start the chatbot server
+
 ```bash
 # 1. Install dependencies (first time only)
 pip install -r requirements.txt
 
 # 2. Start the server
 python -m uvicorn app.main:app --reload
+
 # 3. Open in browser
 # http://127.0.0.1:8000          <- Main UI
 # http://127.0.0.1:8000/docs     <- Interactive API docs
 ```
 
----
+### Generate visualizations (charts & matrices)
+
+```bash
+# Install visualization dependencies (first time only)
+pip install matplotlib seaborn scikit-learn
+
+# Core charts (6 PNGs) — label distribution, TF-IDF heatmap,
+# cosine similarity matrix, rating histogram, scoring weights
+python visualization/visualize_model.py
+
+# Extra charts (4 PNGs) — PCA clustering, top keywords per category,
+# recommendation score breakdown, system pipeline diagram
+python visualization/visualize_extra.py
+
+# Output is saved to: visualization/charts/
+```
+
+| File                                   | Chart                                  | Exam topic                     |
+| -------------------------------------- | -------------------------------------- | ------------------------------ |
+| `1_label_distribution.png`             | Bar chart — 8 label counts             | ML: Class distribution         |
+| `2_label_cooccurrence_matrix.png`      | Heatmap 8×8 — label pairs              | Numpy: Matrix multiply         |
+| `3_tfidf_heatmap.png`                  | TF-IDF matrix — top terms × places     | Numpy: Indexing, aggregation   |
+| `4_cosine_similarity_matrix.png`       | Cosine similarity between places       | ML: Similarity measure         |
+| `5_rating_distribution.png`            | Histogram — rating spread              | ML: Data distribution          |
+| `6_scoring_weights.png`                | Stacked bar — weight per case          | ML: Supervised scoring         |
+| `7_pca_clustering.png`                 | PCA 2D scatter — unsupervised clusters | ML: Unsupervised / Clustering  |
+| `8_top_keywords_per_category.png`      | Top-8 keywords per label               | Numpy: `np.mean`, `np.argsort` |
+| `9_recommendation_score_breakdown.png` | Score components for sample query      | ML: Model evaluation           |
+| `10_system_pipeline.png`               | Layer-by-layer pipeline diagram        | NN: Layers, forward pass       |
+
+## `
 
 ## Tech Stack
 
