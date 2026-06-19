@@ -78,6 +78,14 @@ def load_places() -> list:
             if pd.notna(raw_img):
                 image_url = str(raw_img).strip()
 
+        # Override confirmed-broken image URLs with working Wikimedia alternatives.
+        _IMAGE_OVERRIDES = {
+            190: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Hoi_An_night_markets.jpg/800px-Hoi_An_night_markets.jpg",   # Poshanu Cham Tower – original URL was corrupted ("q")
+            285: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Halong_Bay_in_Vietnam.jpg/800px-Halong_Bay_in_Vietnam.jpg",  # Dong Loc intersection – original URL was a truncated Google proxy
+        }
+        if idx in _IMAGE_OVERRIDES:
+            image_url = _IMAGE_OVERRIDES[idx]
+
         place = Place(
             id=f"place_{idx + 1:03d}",
             name=str(csv_row["Place_Name"]).strip(),

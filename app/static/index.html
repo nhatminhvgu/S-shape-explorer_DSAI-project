@@ -2068,6 +2068,7 @@
         },
         {
           name: "Sapa Terraces",
+          searchKey: "Mu Cang Chai terraced fields",
           loc: "Lào Cai",
           desc: "Breathtaking hand-carved rice terraces cascading down the Hoàng Liên Sơn mountains, home to colourful ethnic minority villages.",
           tags: ["Mountain", "Trekking", "Culture"],
@@ -2080,6 +2081,7 @@
         },
         {
           name: "Old Quarter Hanoi",
+          searchKey: "Sword Lake",
           loc: "Hanoi",
           desc: "A centuries-old labyrinth of narrow streets packed with artisan workshops, street food stalls, and living history at every corner.",
           tags: ["City", "Street Food", "History"],
@@ -2201,7 +2203,7 @@
             : primaryLabel(p);
         const tags = (p.keywords || []).slice(0, 3);
         const imgHtml = p.image_url
-          ? `<img class="dest-card-img" src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy" onerror="this.classList.add('err')">`
+          ? `<img class="dest-card-img" src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Halong_Bay_in_Vietnam.jpg/800px-Halong_Bay_in_Vietnam.jpg'">`
           : "";
         const tagsHtml = tags
           .map((t) => `<span class="dest-tag">${esc(t)}</span>`)
@@ -2294,7 +2296,7 @@
       }
 
       /* ─── Modal ──────────────────────────────────────────────────────────── */
-      function openModal(placeId) {
+      function openModal(placeId, overrideName) {
         const bd = $("modal-bd");
         const cnt = $("modal-content");
         bd.classList.add("open");
@@ -2303,20 +2305,21 @@
 
         apiPlace(placeId)
           .then((p) => {
+            const displayName = overrideName || p.name;
             const labels = allLabels(p);
             const cat = primaryLabel(p);
             const tags = (p.keywords || [])
               .map((t) => `<span class="modal-tag">${esc(t)}</span>`)
               .join("");
             const imgHtml = p.image_url
-              ? `<img class="modal-hero" src="${esc(p.image_url)}" alt="${esc(p.name)}" onerror="this.classList.add('err')">`
+              ? `<img class="modal-hero" src="${esc(p.image_url)}" alt="${esc(displayName)}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Halong_Bay_in_Vietnam.jpg/800px-Halong_Bay_in_Vietnam.jpg'">`
               : `<div class="modal-hero-ph">🏞</div>`;
 
             cnt.innerHTML = `
       ${imgHtml}
       <div class="modal-body">
         <div class="modal-top">
-          <h3 class="modal-title">${esc(p.name)}</h3>
+          <h3 class="modal-title">${esc(displayName)}</h3>
           <button class="modal-close" type="button" aria-label="Close">✕</button>
         </div>
         <div class="modal-badge">${esc(cat)}</div>
@@ -2347,8 +2350,9 @@
           });
       }
 
-      /* Open featured card by exact name lookup (accent-insensitive) */
-      function openFeaturedModal(name) {
+      /* Open featured card by exact name lookup (accent-insensitive).
+         searchKey overrides the lookup term when the display name isn't in the dataset. */
+      function openFeaturedModal(name, searchKey) {
         const bd = $("modal-bd");
         const cnt = $("modal-content");
         bd.classList.add("open");
@@ -2364,11 +2368,12 @@
           cnt.onclick = (e) => { if (e.target.closest(".modal-close")) closeModal(); };
         }
 
-        fetch(`${API_BASE}/place/search?q=${encodeURIComponent(name)}`)
+        const lookupName = searchKey || name;
+        fetch(`${API_BASE}/place/search?q=${encodeURIComponent(lookupName)}`)
           .then((r) => r.ok ? r.json() : Promise.reject(r.status))
           .then((place) => {
             closeModal();
-            openModal(place.id);
+            openModal(place.id, name);
           })
           .catch((status) => {
             if (status === 404) {
@@ -2394,7 +2399,7 @@
       <div class="feat-card">
         <div class="feat-img-wrap">
           <img class="feat-img" src="${esc(f.img)}" alt="${esc(f.name)}" loading="lazy"
-               onerror="this.classList.add('err')">
+               referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Halong_Bay_in_Vietnam.jpg/800px-Halong_Bay_in_Vietnam.jpg'">
           <div class="feat-overlay">
             <div class="feat-loc">📍 ${esc(f.loc)}</div>
             <div class="feat-tags">${tagsHtml}</div>
@@ -2412,7 +2417,7 @@
               <div class="feat-price">${esc(f.price)}</div>
             </div>
             <div class="feat-actions">
-              <button class="btn-detail" onclick="openFeaturedModal('${esc(f.name)}')">Details</button>
+              <button class="btn-detail" onclick="openFeaturedModal('${esc(f.name)}', '${esc(f.searchKey || '')}')">Details</button>
             </div>
           </div>
         </div>
