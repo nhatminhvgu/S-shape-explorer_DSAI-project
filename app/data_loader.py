@@ -13,7 +13,10 @@ import os
 import re
 import warnings
 from typing import Dict, List, Optional
+
 import pandas as pd
+
+from app.image_utils import clean_image_url, primary_category_from_row
 
 logger = logging.getLogger(__name__)
 
@@ -24,12 +27,6 @@ XLSX_PATH = os.path.join(ROOT_DIR, "Full_Translated_DataSet_V2.xlsx")
 
 def load_places() -> list:
     from app.models import Place
-
-    #try:
-    #except ImportError:
-    #    raise RuntimeError(
-    #        "pandas is required. Run: pip install pandas openpyxl"
-    #    )
 
     if not os.path.exists(CSV_PATH):
         raise FileNotFoundError(f"CSV dataset not found: {CSV_PATH}")
@@ -51,7 +48,7 @@ def load_places() -> list:
         csv_row = csv_df.iloc[idx]
         xlsx_row = xlsx_df.iloc[idx] if idx < len(xlsx_df) else None
 
-        # ── Rating: parse "4.8/5" → 4.8 ──────────────────────────────────
+        # Rating: parse "4.8/5" → 4.8
         rating = 0.0
         if xlsx_row is not None:
             raw_rating = xlsx_row.get("Rating", "")
@@ -60,7 +57,7 @@ def load_places() -> list:
                 if m:
                     rating = min(5.0, float(m.group(1)))
 
-        # ── Keywords: '"sea", "relax", "swim"' → ['sea', 'relax', 'swim'] ──
+        # Keywords: '"sea", "relax", "swim"' → ['sea', 'relax', 'swim']
         keywords: List[str] = []
         if xlsx_row is not None:
             raw_kw = xlsx_row.get("Keywords", "")
@@ -71,20 +68,14 @@ def load_places() -> list:
                     if k.strip().strip('"\'')
                 ]
 
-        # ── Image URL ──────────────────────────────────────────────────────
-        image_url = ""
+        # Image URL: sanitise before sending to the UI.
+        category_key = primary_category_from_row(csv_row)
+        raw_image_url = ""
         if xlsx_row is not None:
             raw_img = xlsx_row.get("Image_URL", "")
             if pd.notna(raw_img):
-                image_url = str(raw_img).strip()
-
-        # Override confirmed-broken image URLs with working Wikimedia alternatives.
-        _IMAGE_OVERRIDES = {
-            190: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Hoi_An_night_markets.jpg/800px-Hoi_An_night_markets.jpg",   # Poshanu Cham Tower – original URL was corrupted ("q")
-            285: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Halong_Bay_in_Vietnam.jpg/800px-Halong_Bay_in_Vietnam.jpg",  # Dong Loc intersection – original URL was a truncated Google proxy
-        }
-        if idx in _IMAGE_OVERRIDES:
-            image_url = _IMAGE_OVERRIDES[idx]
+                raw_image_url = str(raw_img).strip()
+        image_url = clean_image_url(raw_image_url, category_key)
 
         place = Place(
             id=f"place_{idx + 1:03d}",
@@ -105,7 +96,7 @@ def load_places() -> list:
         )
         places.append(place)
 
-    logger.info("Dataset loaded: %d places from real CSV/XLSX files.", len(places))
+    logger.info("Dataset loaded: %d places.", len(places))
     return places
 
 

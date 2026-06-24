@@ -47,12 +47,14 @@ with open(PKL_VEC, "rb") as f:
 with open(PKL_MAT, "rb") as f:
     tfidf_matrix = pickle.load(f)
 
-# Parse ratings
-ratings = []
+# Parse ratings — xlsx may have fewer rows than csv; pad with 0.0 if needed
+ratings_raw = []
 for r in xlsx_df["Rating"]:
     m = re.search(r"(\d+\.?\d*)", str(r))
     val = float(m.group(1)) if m else 0.0
-    ratings.append(min(val, 5.0) if val <= 5.0 else 0.0)
+    ratings_raw.append(min(val, 5.0) if val <= 5.0 else 0.0)
+n = len(csv_df)
+ratings = (ratings_raw + [0.0] * n)[:n]
 csv_df["rating_num"] = ratings
 
 plt.rcParams.update({
@@ -199,50 +201,63 @@ plt.close()
 
 
 # ════════════════════════════════════════════════════════════════════════════════
-# 6. Scoring Weight Breakdown — Stacked bar
+# 6. Scoring Weight Breakdown — Stacked bar (7 cases, 4 components)
 # ════════════════════════════════════════════════════════════════════════════════
 print("6/6  Scoring weight breakdown ...")
+# Columns: (label, w_sem, w_label, w_ai, w_rating)
 cases = [
-    ("Query + Preferences\n(Case A)", 0.35, 0.45, 0.20),
-    ("Preferences only\n(Case B)",    0.00, 0.60, 0.40),
-    ("Query only\n(Case C)",          0.65, 0.00, 0.35),
-    ("No input\n(Case D)",            0.50, 0.00, 0.50),
+    ("Query+Prefs+AI\n(Case 1)", 0.30, 0.30, 0.20, 0.20),
+    ("Query+Prefs\n(Case 2)",    0.35, 0.45, 0.00, 0.20),
+    ("Prefs+AI\n(Case 3)",       0.00, 0.45, 0.25, 0.30),
+    ("Prefs only\n(Case 4)",     0.00, 0.60, 0.00, 0.40),
+    ("Query+AI\n(Case 5)",       0.45, 0.00, 0.30, 0.25),
+    ("Query only\n(Case 6)",     0.65, 0.00, 0.00, 0.35),
+    ("No input\n(Case 7)",       0.50, 0.00, 0.00, 0.50),
 ]
 case_labels = [c[0] for c in cases]
 w_sem   = [c[1] for c in cases]
 w_label = [c[2] for c in cases]
-w_rat   = [c[3] for c in cases]
+w_ai    = [c[3] for c in cases]
+w_rat   = [c[4] for c in cases]
 
 x     = np.arange(len(cases))
-width = 0.5
+width = 0.55
 
-fig, ax = plt.subplots(figsize=(10, 6))
-b1 = ax.bar(x, w_sem,   width, label="TF-IDF Similarity",       color="#2d6147", edgecolor="white")
+fig, ax = plt.subplots(figsize=(14, 6))
+b1 = ax.bar(x, w_sem,   width, label="TF-IDF Similarity",        color="#2d6147", edgecolor="white")
 b2 = ax.bar(x, w_label, width, bottom=w_sem,
-            label="Label Match (8 categories)", color="#c9a044", edgecolor="white")
-b3 = ax.bar(x, w_rat,   width,
+            label="Label Match (8 categories)",  color="#c9a044", edgecolor="white")
+b3 = ax.bar(x, w_ai,    width,
             bottom=[a + b for a, b in zip(w_sem, w_label)],
-            label="Rating Score",               color="#c8561a", edgecolor="white")
+            label="AI Intent Score (ML)",         color="#8e44ad", edgecolor="white")
+b4 = ax.bar(x, w_rat,   width,
+            bottom=[a + b + c for a, b, c in zip(w_sem, w_label, w_ai)],
+            label="Rating Score",                color="#c8561a", edgecolor="white")
 
-for bar_group, weights in [(b1, w_sem), (b2, w_label), (b3, w_rat)]:
+for bar_group, weights in [(b1, w_sem), (b2, w_label), (b3, w_ai), (b4, w_rat)]:
     for bar, w in zip(bar_group, weights):
         if w > 0:
             ax.text(bar.get_x() + bar.get_width() / 2,
                     bar.get_y() + bar.get_height() / 2,
                     f"{int(w * 100)}%", ha="center", va="center",
-                    fontsize=11, fontweight="bold", color="white")
+                    fontsize=9.5, fontweight="bold", color="white")
 
-ax.set_xticks(x); ax.set_xticklabels(case_labels, fontsize=9.5)
+ax.set_xticks(x); ax.set_xticklabels(case_labels, fontsize=8.5)
 ax.set_ylabel("Weight")
-ax.set_ylim(0, 1.12)
-ax.set_title("Recommendation Scoring Formula by Case", fontsize=13, fontweight="bold", pad=14)
-ax.legend(loc="upper right", fontsize=9)
+ax.set_ylim(0, 1.18)
+ax.set_title("Recommendation Scoring Formula — 7 Cases, 4 Components",
+             fontsize=13, fontweight="bold", pad=14)
+ax.legend(loc="upper right", fontsize=9, ncol=2)
 
-ax.text(0.5, -0.17,
-        "* Then multiplied by Location Boost: x1.50 (exact match) | x1.25 (partial) | x0.70 (no match)",
-        transform=ax.transAxes, ha="center", fontsize=8.5, color="gray", style="italic")
+ax.text(0.5, -0.14,
+        "* Location Boost: ×2.00 exact/city  |  ×1.30 regional  |  ×1.00 nearby  |  ×0.55 off-location",
+        transform=ax.transAxes, ha="center", fontsize=8, color="gray", style="italic")
+ax.text(0.5, -0.20,
+        "** Surface-term match: +45% boost  |  ×0.55 penalty (×0.40 without location filter)  "
+        "|  Pref zero-match: ×0.45 penalty",
+        transform=ax.transAxes, ha="center", fontsize=8, color="gray", style="italic")
 
-plt.tight_layout(rect=[0, 0.04, 1, 1])
+plt.tight_layout(rect=[0, 0.08, 1, 1])
 plt.savefig(os.path.join(OUT, "6_scoring_weights.png"))
 plt.close()
 
@@ -254,4 +269,4 @@ print("  2_label_cooccurrence_matrix.png  -- Label co-occurrence matrix")
 print("  3_tfidf_heatmap.png              -- TF-IDF matrix (top keywords x top destinations)")
 print("  4_cosine_similarity_matrix.png   -- Cosine similarity between destinations")
 print("  5_rating_distribution.png        -- Rating distribution histogram")
-print("  6_scoring_weights.png            -- Scoring formula weight breakdown")
+print("  6_scoring_weights.png            -- Scoring formula: 7 cases, 4 components")

@@ -1,0 +1,78 @@
+{
+  "dataset_rows": 315,
+  "train_rows": 189,
+  "validation_rows": 63,
+  "test_rows": 63,
+  "labels": [
+    "Adventure",
+    "Relax",
+    "Rural",
+    "Urban",
+    "Mountain",
+    "Historical",
+    "Food",
+    "Nature"
+  ],
+  "label_distribution": {
+    "Adventure": 43,
+    "Relax": 104,
+    "Rural": 26,
+    "Urban": 58,
+    "Mountain": 60,
+    "Historical": 72,
+    "Food": 22,
+    "Nature": 94
+  },
+  "micro_f1": 0.7425149700598802,
+  "macro_f1": 0.6731765837006309,
+  "weighted_f1": 0.7416776499794389,
+  "samples_f1": 0.6866213151927437,
+  "jaccard_samples": 0.6309523809523809,
+  "hamming_loss": 0.08531746031746032,
+  "decision_thresholds": {
+    "Adventure": 0.5,
+    "Relax": 0.5,
+    "Rural": 0.45,
+    "Urban": 0.4,
+    "Mountain": 0.5,
+    "Historical": 0.55,
+    "Food": 0.35,
+    "Nature": 0.55
+  },
+  "model": "TF-IDF + OneVsRest Logistic Regression",
+  "notes": [
+    "This is a multi-label classifier: one destination can belong to several categories.",
+    "Per-label thresholds are chosen on the validation split to handle label imbalance more honestly than a fixed 0.5 threshold.",
+    "Macro F1 is sensitive to weak minority-label performance, so it is more honest than accuracy for this dataset.",
+    "Food F1 on the test set can reach 0.0 on certain random splits because the Food class has only 22 examples (7% of the dataset). The cross-validation mean gives a more stable estimate of true Food performance.",
+    "Rural has a similar scarcity issue (26 examples). Both classes should be mentioned as limitations in the defense."
+  ],
+  "cross_validation": {
+    "n_splits": 5,
+    "cv_micro_f1_mean": 0.7733291315442692,
+    "cv_micro_f1_std": 0.04203431524252687,
+    "cv_macro_f1_mean": 0.7488855978525019,
+    "cv_macro_f1_std": 0.08277623010860773,
+    "cv_per_label_f1_mean": {
+      "Adventure": 0.7616594516594516,
+      "Relax": 0.7586965150432643,
+      "Rural": 0.8459096459096458,
+      "Urban": 0.7058585858585859,
+      "Mountain": 0.6197714604236343,
+      "Historical": 0.8136111111111111,
+      "Food": 0.6577777777777778,
+      "Nature": 0.8278002350365433
+    },
+    "cv_per_label_f1_std": {
+      "Adventure": 0.10935224124880923,
+      "Relax": 0.10771872280616336,
+      "Rural": 0.16158861355396903,
+      "Urban": 0.08008362122896273,
+      "Mountain": 0.17113493343876635,
+      "Historical": 0.08892108968902707,
+      "Food": 0.3540523780738566,
+      "Nature": 0.06358044633747056
+    },
+    "note": "Cross-validation is more reliable than a single test split for a 315-row dataset. Food and Rural classes have fewer than 30 examples; their per-fold F1 is volatile."
+  }
+}
