@@ -38,6 +38,13 @@ os.makedirs(OUT, exist_ok=True)
 
 sys.path.insert(0, ROOT)
 
+# Try to load the trained ML intent classifier (used for real AI scores in Chart 9)
+try:
+    from app.ml_intent import predict_label_probabilities as _predict_ai
+    HAS_ML = True
+except Exception:
+    HAS_ML = False
+
 CSV_PATH  = os.path.join(ROOT, "Vietnam_Tourism_Final_8Labels.csv")
 XLSX_PATH = os.path.join(ROOT, "Full_Translated_DataSet_V2.xlsx")
 PKL_VEC   = os.path.join(ROOT, "tfidf_model.pkl")
@@ -58,11 +65,14 @@ with open(PKL_VEC, "rb") as f:
 with open(PKL_MAT, "rb") as f:
     tfidf_matrix = pickle.load(f)
 
-ratings = []
+# Parse ratings — xlsx may have fewer rows than csv; pad with 0.0 if needed
+ratings_raw = []
 for r in xlsx_df["Rating"]:
     m = re.search(r"(\d+\.?\d*)", str(r))
     val = float(m.group(1)) if m else 0.0
-    ratings.append(min(val, 5.0) if val <= 5.0 else 0.0)
+    ratings_raw.append(min(val, 5.0) if val <= 5.0 else 0.0)
+n = len(csv_df)
+ratings = (ratings_raw + [0.0] * n)[:n]
 csv_df["rating_num"] = ratings
 
 vocab_inv = {v: k for k, v in tfidf_model.vocabulary_.items()}
@@ -167,11 +177,15 @@ plt.close()
 
 
 # ════════════════════════════════════════════════════════════════════════════════
-# 9. Sample Recommendation Score Breakdown — Supervised scoring
+# 9. Sample Recommendation Score Breakdown — Supervised scoring (4 components)
 #    Query: "mountain trekking adventure"
-#    Show how the 3 components combine for the Top-10 results.
+#    Shows how all 4 components combine under Case 1 (Query + Prefs + AI).
 # ════════════════════════════════════════════════════════════════════════════════
 print("9/10  Sample recommendation score breakdown ...")
+if HAS_ML:
+    print("      (ML classifier available — using real AI intent probabilities)")
+else:
+    print("      (ML classifier unavailable — using heuristic proxy for AI scores)")
 
 QUERY = "mountain trekking adventure"
 PREFS = ["Adventure", "Mountain"]
@@ -180,25 +194,33 @@ PREFS = ["Adventure", "Mountain"]
 q_vec = tfidf_model.transform([QUERY.lower()])
 sims  = cosine_similarity(q_vec, tfidf_matrix)[0]
 
-# --- Label score ---
-def label_score(row, prefs):
-    matched = sum(1 for p in prefs if row[p.lower() if p.lower() in row.index else p] == 1)
-    return matched / len(prefs) if prefs else 0.0
+# --- AI intent probabilities from the trained ML classifier (per-query) ---
+if HAS_ML:
+    query_label_probs = _predict_ai(QUERY)
+else:
+    # Heuristic proxy: assign high probability to the queried preference labels
+    query_label_probs = {lbl: 0.08 for lbl in LABELS}
+    for p in PREFS:
+        query_label_probs[p] = 0.62
 
-# --- Build top-10 results ---
+# --- Build top-10 results using Case 1 formula (Query + Prefs + AI) ---
 top10_idx = np.argsort(sims)[::-1][:10]
 results   = []
 for i in top10_idx:
-    row    = csv_df.iloc[i]
-    s_sem  = float(sims[i])
-    s_lbl  = sum(1 for p in PREFS if row.get(p, 0) == 1) / len(PREFS)
-    s_rat  = min(ratings[i] / 5.0, 1.0) if ratings[i] > 0 else 0.3
-    # Case A weights: query + preferences
-    combined = 0.35 * s_sem + 0.45 * s_lbl + 0.20 * s_rat
+    row   = csv_df.iloc[i]
+    s_sem = float(sims[i])
+    s_lbl = sum(1 for p in PREFS if row.get(p, 0) == 1) / len(PREFS)
+    # AI score: average label probability over the labels this place is tagged with
+    active_probs = [float(query_label_probs.get(lbl, 0)) for lbl in LABELS if row.get(lbl, 0) == 1]
+    s_ai  = sum(active_probs) / len(active_probs) if active_probs else 0.0
+    s_rat = min(ratings[i] / 5.0, 1.0) if ratings[i] > 0 else 0.3
+    # Case 1: query + prefs + AI → 0.30·sem + 0.30·label + 0.20·AI + 0.20·rating
+    combined = 0.30 * s_sem + 0.30 * s_lbl + 0.20 * s_ai + 0.20 * s_rat
     results.append({
         "name":     row["Place_Name"][:25],
-        "sem":      round(s_sem * 0.35, 4),
-        "lbl":      round(s_lbl * 0.45, 4),
+        "sem":      round(s_sem * 0.30, 4),
+        "lbl":      round(s_lbl * 0.30, 4),
+        "ai":       round(s_ai  * 0.20, 4),
         "rat":      round(s_rat * 0.20, 4),
         "combined": round(combined, 4),
     })
@@ -207,25 +229,31 @@ results.sort(key=lambda x: x["combined"], reverse=True)
 names    = [r["name"] for r in results]
 s_sem    = [r["sem"]  for r in results]
 s_lbl    = [r["lbl"]  for r in results]
+s_ai     = [r["ai"]   for r in results]
 s_rat    = [r["rat"]  for r in results]
 combined = [r["combined"] for r in results]
 
-y = np.arange(len(results))
+y     = np.arange(len(results))
+left2 = [a + b     for a, b    in zip(s_sem, s_lbl)]
+left3 = [a + b + c for a, b, c in zip(s_sem, s_lbl, s_ai)]
 
-fig, ax = plt.subplots(figsize=(11, 6))
-b1 = ax.barh(y, s_sem, label="TF-IDF Similarity  (×0.35)", color="#2d6147", alpha=0.9)
-b2 = ax.barh(y, s_lbl, left=s_sem, label="Label Match       (×0.45)", color="#c9a044", alpha=0.9)
-b3 = ax.barh(y, s_rat, left=[a+b for a,b in zip(s_sem,s_lbl)],
-             label="Rating Score      (×0.20)", color="#c8561a", alpha=0.9)
+fig, ax = plt.subplots(figsize=(12, 6))
+ax.barh(y, s_sem,          label="TF-IDF Similarity  (×0.30)", color="#2d6147", alpha=0.9)
+ax.barh(y, s_lbl, left=s_sem,  label="Label Match       (×0.30)", color="#c9a044", alpha=0.9)
+ax.barh(y, s_ai,  left=left2,  label="AI Intent Score   (×0.20)", color="#8e44ad", alpha=0.9)
+ax.barh(y, s_rat, left=left3,  label="Rating Score       (×0.20)", color="#c8561a", alpha=0.9)
 
-for i, (c, n) in enumerate(zip(combined, names)):
+for i, c in enumerate(combined):
     ax.text(c + 0.003, i, f"{c:.3f}", va="center", fontsize=8, fontweight="bold")
 
+ai_tag = "real ML" if HAS_ML else "proxy"
 ax.set_yticks(y); ax.set_yticklabels(names, fontsize=8.5)
-ax.set_xlabel("Combined Score (Case A: query + preferences)")
-ax.set_xlim(0, max(combined) * 1.22)
-ax.set_title(f'Sample Recommendation Score Breakdown\nQuery: "{QUERY}"  |  Preferences: {PREFS}',
-             fontsize=12, fontweight="bold", pad=14)
+ax.set_xlabel(f"Combined Score — Case 1: Query + Prefs + AI ({ai_tag})")
+ax.set_xlim(0, max(combined) * 1.25)
+ax.set_title(
+    f'Sample Recommendation Score Breakdown\nQuery: "{QUERY}"  |  Preferences: {PREFS}',
+    fontsize=12, fontweight="bold", pad=14,
+)
 ax.legend(loc="lower right", fontsize=8.5)
 ax.invert_yaxis()
 
@@ -235,25 +263,27 @@ plt.close()
 
 
 # ════════════════════════════════════════════════════════════════════════════════
-# 10. System Pipeline Diagram — Neural Network "Layers" concept
+# 10. System Pipeline Diagram — Neural Network "Layers" concept (9 layers)
 #     Shows each processing stage as a "layer", analogous to a NN forward pass.
+#     Updated to include the ML AI Intent layer and revised boost multipliers.
 # ════════════════════════════════════════════════════════════════════════════════
 print("10/10  System pipeline diagram ...")
 
-fig, ax = plt.subplots(figsize=(14, 6))
-ax.set_xlim(0, 14); ax.set_ylim(0, 6)
+fig, ax = plt.subplots(figsize=(16, 6))
+ax.set_xlim(0, 16); ax.set_ylim(0, 6)
 ax.axis("off")
 
-# --- Define layers (same concept as NN layers) ---
+# --- 9 layers (same concept as NN layers) ---
 layers = [
-    ("INPUT\nLAYER",      "User Query\n+ Preferences\n+ Location",      0.8,  "#34495e"),
-    ("LAYER 1\n(Parser)", "NLP Parser\nextract intent\n& location",      2.6,  "#2980b9"),
-    ("LAYER 2\n(TF-IDF)", "TF-IDF\nCosine Similarity\n315 docs",         4.4,  "#2d6147"),
-    ("LAYER 3\n(Label)",  "Label Match\n8 categories\nbinary score",     6.2,  "#c9a044"),
-    ("LAYER 4\n(Rating)", "Rating\nNormalise\n÷ 5.0",                   8.0,  "#e67e22"),
-    ("LAYER 5\n(Combine)","Weighted Sum\n35%+45%+20%\n= combined score", 9.8,  "#8e44ad"),
-    ("LAYER 6\n(Boost)",  "Location\nBoost ×1.5\n×1.25 / ×0.70",       11.6,  "#c0392b"),
-    ("OUTPUT\nLAYER",     "Top-K\nRanked\nResults",                     13.2,  "#1abc9c"),
+    ("INPUT\nLAYER",       "User Query\n+ Preferences\n+ Location",        0.9,  "#34495e"),
+    ("LAYER 1\n(Parser)",  "NLP Parser\nextract intent\nlocation & terms",  2.65, "#2980b9"),
+    ("LAYER 2\n(AI)",      "ML Classifier\nlabel probabilities\n8 classes", 4.4,  "#8e44ad"),
+    ("LAYER 3\n(TF-IDF)",  "TF-IDF\nCosine Similarity\n315 docs",           6.15, "#2d6147"),
+    ("LAYER 4\n(Label)",   "Label Match\n8 categories\nbinary score",       7.9,  "#c9a044"),
+    ("LAYER 5\n(Rating)",  "Rating\nNormalise\n÷ 5.0",                      9.65, "#e67e22"),
+    ("LAYER 6\n(Combine)", "Weighted Sum\n7 cases\n= combined score",       11.4, "#16a085"),
+    ("LAYER 7\n(Boost)",   "Surface+Location\n×2.0 exact\n×0.55 penalty",  13.15, "#c0392b"),
+    ("OUTPUT\nLAYER",      "Top-K\nRanked\nResults",                       14.9, "#1abc9c"),
 ]
 
 BOX_W, BOX_H = 1.35, 3.8
@@ -294,21 +324,23 @@ for (layer_title, desc, x_center, color) in layers:
             ha="center", va="center", fontsize=7, color="#2c3e50",
             zorder=4, linespacing=1.5)
 
-    # Arrow to next
+    # Arrow to next layer
     if x_center < layers[-1][2]:
         ax.annotate("", xy=(x_center + BOX_W / 2 + 0.28, Y_CENTER),
                     xytext=(x_center + BOX_W / 2 + 0.02, Y_CENTER),
                     arrowprops=dict(arrowstyle="->", color="#555555",
                                    lw=1.5, mutation_scale=14), zorder=5)
 
-# Weight annotations on combine layer
-ax.text(9.8, Y_CENTER - BOX_H / 2 - 0.38,
-        "35% TF-IDF + 45% Label + 20% Rating",
-        ha="center", fontsize=7, color="#8e44ad",
-        style="italic")
+# Annotation below the Combine layer (Case 1 formula)
+ax.text(11.4, Y_CENTER - BOX_H / 2 - 0.40,
+        "30%·sem + 30%·label + 20%·AI + 20%·rating  (Case 1)",
+        ha="center", fontsize=6.5, color="#16a085", style="italic")
 
-ax.set_title("S-Shape Explorer — Recommendation System Pipeline\n(Analogous to a Neural Network forward pass)",
-             fontsize=13, fontweight="bold", pad=10)
+ax.set_title(
+    "S-Shape Explorer — Recommendation System Pipeline\n"
+    "(Analogous to a Neural Network forward pass — 9 layers)",
+    fontsize=13, fontweight="bold", pad=10,
+)
 
 plt.tight_layout()
 plt.savefig(os.path.join(OUT, "10_system_pipeline.png"), bbox_inches="tight")
@@ -319,5 +351,5 @@ print()
 print("Done. 4 extra charts saved to:", OUT)
 print("  7_pca_clustering.png                 -- Unsupervised ML: PCA 2D scatter")
 print("  8_top_keywords_per_category.png      -- Numpy aggregation: top terms per label")
-print("  9_recommendation_score_breakdown.png -- Supervised scoring: component breakdown")
-print("  10_system_pipeline.png               -- NN layers concept: system pipeline")
+print("  9_recommendation_score_breakdown.png -- Supervised scoring: 4-component breakdown")
+print("  10_system_pipeline.png               -- NN layers concept: 9-layer pipeline")

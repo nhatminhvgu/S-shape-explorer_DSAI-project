@@ -1,136 +1,76 @@
-# S-Shape Explorer — Vietnam Travel Recommender
+# S-Shape Explorer — Vietnam AI Travel Recommender
 
-AI-powered Vietnam tourism chatbot that recommends real destinations based on user preferences and free-text queries.
+A FastAPI + HTML/JS tourism recommendation app for Vietnam using TF-IDF text similarity, multi-label classification, and a multi-signal ranking formula.
 
 ---
 
-## Project Structure
+## What the App Does
+
+1. The user types a free-text query ("beach in south Vietnam", "trekking in Sapa", "food in Hanoi").
+2. A regex-based NLP parser extracts: **location**, **category tags**, **mood**, and **purpose**.
+3. A trained **multi-label classifier** (scikit-learn) predicts probabilities across 8 preference labels.
+4. **TF-IDF cosine similarity** retrieves the most semantically relevant places from 315 real Vietnam destinations.
+5. A **multi-signal ranking formula** combines semantic score, label match, ML confidence, dataset rating, and a location boost multiplier.
+6. The top results are returned with **AI-generated explanations** and a **match confidence score**.
+
+---
+
+## AI / Data Science Pipeline
+
+| Stage                | Method                                                         | File                                       |
+| -------------------- | -------------------------------------------------------------- | ------------------------------------------ |
+| Text preprocessing   | Regex normalisation, typo/plural correction, synonym expansion | `app/nlp_parser.py`, `app/recommender.py`  |
+| Intent detection     | Rule-based keyword extraction                                  | `app/nlp_parser.py`                        |
+| Label classification | Trained OneVsRest + TF-IDF classifier                          | `app/ml_intent.py`, `train_label_model.py` |
+| Similarity retrieval | TF-IDF + cosine similarity                                     | `app/recommender.py`                       |
+| Ranking              | Weighted multi-signal formula                                  | `app/ranking.py`                           |
+| Feedback loop        | Dampened Bayesian rating update                                | `app/main.py`                              |
+
+### Ranking Formula
 
 ```
-S-shape-explorer_DSAI-project/
-│
-├── app/                          ← FastAPI backend
-│   ├── main.py                   ← Entry point, API endpoints
-│   ├── models.py                 ← Pydantic schemas (Place, RecommendRequest, …)
-│   ├── data_loader.py            ← Loads CSV + XLSX into Place objects
-│   ├── recommender.py            ← TF-IDF similarity retrieval (uses pkl files)
-│   ├── ranking.py                ← Multi-signal scorer + explanation generator
-│   ├── nlp_parser.py             ← Location extractor for free-text queries
-│   ├── __init__.py
-│   └── static/
-│       └── index.html            ← Main chat UI (served at /)
-│
-│
-├── Full_Translated_DataSet_V2.xlsx   ← 315 places: ratings, image URLs, keywords
-├── Vietnam_Tourism_Final_8Labels.csv ← 315 places: descriptions + 8 category labels
-├── tfidf_model.pkl               ← Fitted TF-IDF vectorizer (315 descriptions)
-├── tfidf_matrix (1).pkl          ← Pre-computed TF-IDF matrix (315 x 1000)
-│
-├── visualization/                ← Chart & matrix generation scripts
-│   ├── visualize_model.py        ← 6 core charts (label dist, TF-IDF, cosine sim, …)
-│   ├── visualize_extra.py        ← 4 exam-topic charts (PCA, keywords, pipeline, …)
-│   └── charts/                   ← Output PNGs (auto-generated, 10 files)
-│
-├── requirements.txt
-└── .gitignore
+Score = α·semantic + β·label_match + γ·ai_classifier + δ·rating
 ```
+
+Weights adapt to what is available:
+
+| Condition          | α    | β    | γ    | δ    |
+| ------------------ | ---- | ---- | ---- | ---- |
+| Query + prefs + ML | 0.30 | 0.30 | 0.20 | 0.20 |
+| Query + prefs      | 0.35 | 0.45 | —    | 0.20 |
+| Query only         | 0.65 | —    | —    | 0.35 |
+| Prefs only         | —    | 0.60 | —    | 0.40 |
+
+Location boost multipliers: ×2.00 (same city/province), ×1.30 (same region), ×0.55 (off-location penalty).
 
 ---
 
 ## Dataset
 
-| File                                | Rows | Key columns                                                                                           |
-| ----------------------------------- | ---- | ----------------------------------------------------------------------------------------------------- |
-| `Vietnam_Tourism_Final_8Labels.csv` | 315  | Place_Name, Description, Location, Adventure, Relax, Rural, Urban, Mountain, Historical, Food, Nature |
-| `Full_Translated_DataSet_V2.xlsx`   | 315  | ID, Place_Name, Location, Description, Rating, Image_URL, Keywords                                    |
+- **315 real Vietnam destinations** sourced from travel review data
+- **8 binary preference labels**: Adventure, Relax, Rural, Urban, Mountain, Historical, Food, Nature
+- Source files: `Vietnam_Tourism_Final_8Labels.csv` + `Full_Translated_DataSet_V2.xlsx`
 
-Both files are row-aligned (row 0 = same place in both).
+### Label Distribution
 
----
+| Label      | Count |
+| ---------- | ----- |
+| Relax      | 104   |
+| Nature     | 94    |
+| Historical | 72    |
+| Urban      | 58    |
+| Mountain   | 60    |
+| Adventure  | 43    |
+| Food       | 22    |
+| Rural      | 26    |
 
-## API Endpoints
-
-| Method | Path          | Description                     |
-| ------ | ------------- | ------------------------------- |
-| `GET`  | `/`           | Main travel UI                  |
-| `GET`  | `/health`     | Readiness probe                 |
-| `POST` | `/recommend`  | Get destination recommendations |
-| `GET`  | `/place/{id}` | Fetch a single place by ID      |
-| `POST` | `/feedback`   | Submit like/dislike for a place |
-
-### POST /recommend
-
-**Request:**
-
-```json
-{
-  "query": "I want a relaxing beach in Khanh Hoa",
-  "preferences": ["Relax", "Nature"],
-  "location": "Khanh Hoa",
-  "top_k": 5
-}
-```
-
-**Response:**
-
-```json
-{
-  "query": "I want a relaxing beach in Khanh Hoa",
-  "selected_preferences": ["Relax", "Nature"],
-  "recommendations": [
-    {
-      "place": {
-        "id": "place_001",
-        "name": "Cam Ranh Long Beach",
-        "location": "Khanh Hoa",
-        "description": "Pristine beach with natural beauty, ideal for relaxing and swimming",
-        "rating": 4.8,
-        "keywords": ["sea", "play", "take photos", "relax"],
-        "adventure": 0,
-        "relax": 1,
-        "rural": 0,
-        "urban": 0,
-        "mountain": 0,
-        "historical": 0,
-        "food": 0,
-        "nature": 0
-      },
-      "score": 0.977,
-      "matched_labels": ["Relax"],
-      "explanation": "Based on your preference for Relax and Nature, I recommend Cam Ranh Long Beach in Khanh Hoa because it matches your Relax interest: Pristine beach with natural beauty, ideal for relaxing and swimming. (Rating: 4.8/5)."
-    }
-  ]
-}
-```
-
-Valid preference values: `Adventure`, `Relax`, `Rural`, `Urban`, `Mountain`, `Historical`, `Food`, `Nature`
+> **Known limitation**: The dataset has very few Food-labeled places (22/315 = 7%). Queries like "food in Hoi An" may return low-confidence results because there are no food places recorded for that province in the dataset. The system detects this and shows a warning banner.
 
 ---
 
-## Recommendation Logic
+## Quick Start (Windows PowerShell)
 
-**Scoring formula** (weights adjust based on what the user provides):
-
-| Case                | TF-IDF | Label match | Rating |
-| ------------------- | ------ | ----------- | ------ |
-| Query + Preferences | 35%    | 45%         | 20%    |
-| Preferences only    | 0%     | 60%         | 40%    |
-| Query only          | 65%    | 0%          | 35%    |
-| Empty (fallback)    | 50%    | 0%          | 50%    |
-
-**Location boost:**
-
-- Exact province match: x1.50
-- Partial match: x1.25
-- Different location: x0.70
-
----
-
-## How to Run
-
-### Start the chatbot server
-
-```bash
+```execute chatbot
 # 1. Install dependencies (first time only)
 pip install -r requirements.txt
 
@@ -142,9 +82,8 @@ python -m uvicorn app.main:app --reload
 # http://127.0.0.1:8000/docs     <- Interactive API docs
 ```
 
-### Generate visualizations (charts & matrices)
+````visualization
 
-```bash
 # Install visualization dependencies (first time only)
 pip install matplotlib seaborn scikit-learn
 
@@ -157,26 +96,87 @@ python visualization/visualize_model.py
 python visualization/visualize_extra.py
 
 # Output is saved to: visualization/charts/
+---
+
+## Run Tests
+
+```powershell
+# Run all 39 regression tests
+python test_pipeline.py
+
+# Run evaluation metrics
+python evaluate_recommender.py
+````
+
+---
+
+## Project Structure
+
+```
+├── app/
+│   ├── main.py            # FastAPI endpoints
+│   ├── data_loader.py     # Loads CSV + XLSX dataset
+│   ├── models.py          # Pydantic data models
+│   ├── nlp_parser.py      # Regex-based query intent parser
+│   ├── ml_intent.py       # Trained multi-label classifier
+│   ├── recommender.py     # TF-IDF retrieval engine
+│   ├── ranking.py         # Multi-signal ranking formula
+│   ├── location_resolver.py # Location alias and region logic
+│   ├── image_utils.py     # Image URL validation
+│   └── static/
+│       └── index.html     # Frontend UI
+├── Vietnam_Tourism_Final_8Labels.csv
+├── Full_Translated_DataSet_V2.xlsx
+├── tfidf_model.pkl
+├── tfidf_matrix (1).pkl
+├── train_label_model.py   # Retrain the classifier
+├── test_pipeline.py       # 39 regression tests
+├── evaluate_recommender.py
+└── requirements.txt
 ```
 
-| File                                   | Chart                                  | Exam topic                     |
-| -------------------------------------- | -------------------------------------- | ------------------------------ |
-| `1_label_distribution.png`             | Bar chart — 8 label counts             | ML: Class distribution         |
-| `2_label_cooccurrence_matrix.png`      | Heatmap 8×8 — label pairs              | Numpy: Matrix multiply         |
-| `3_tfidf_heatmap.png`                  | TF-IDF matrix — top terms × places     | Numpy: Indexing, aggregation   |
-| `4_cosine_similarity_matrix.png`       | Cosine similarity between places       | ML: Similarity measure         |
-| `5_rating_distribution.png`            | Histogram — rating spread              | ML: Data distribution          |
-| `6_scoring_weights.png`                | Stacked bar — weight per case          | ML: Supervised scoring         |
-| `7_pca_clustering.png`                 | PCA 2D scatter — unsupervised clusters | ML: Unsupervised / Clustering  |
-| `8_top_keywords_per_category.png`      | Top-8 keywords per label               | Numpy: `np.mean`, `np.argsort` |
-| `9_recommendation_score_breakdown.png` | Score components for sample query      | ML: Model evaluation           |
-| `10_system_pipeline.png`               | Layer-by-layer pipeline diagram        | NN: Layers, forward pass       |
+---
 
-## `
+## Known Limitations
 
-## Tech Stack
+1. **Small dataset**: 315 places is enough to demonstrate the system but too few for robust generalisation. Some provinces have only 1–2 entries.
+2. **Imbalanced labels**: Food (22 places) and Rural (26 places) are underrepresented. The classifier performs worse on these.
+3. **Image URL quality**: ~144 of 315 image URLs come from Bing/Google thumbnail proxies or a shared placeholder. These may break without notice. Broken images fall back to local SVG icons.
+4. **No real user click data**: Recommendation evaluation uses proxy relevance (label match + location match), not actual user behaviour.
+5. **TF-IDF vocabulary**: Typos and very rare terms may not appear in the vocabulary. Synonym expansion and regex normalisation mitigate this.
+6. **Static dataset**: Ratings and descriptions reflect the dataset snapshot, not live review data.
 
-- **Backend:** FastAPI + Uvicorn
-- **Recommendation:** scikit-learn TF-IDF, cosine similarity, 8-label matching
-- **Data:** pandas (CSV + XLSX loading)
-- **Frontend:** Vanilla HTML/CSS/JS (no framework)
+---
+
+## Image URL Status
+
+See `image_url_manual_review.csv` for the full list.
+
+- **40 places** used the same shared Unsplash placeholder (`photo-1528127269322-539801943592`) — these now display category SVG fallbacks.
+- **52 places** use Bing thumbnail proxies (may expire without notice).
+- **51 places** use Google search thumbnails (high breakage risk).
+- **1 place** had an invalid URL (`q`) — replaced with SVG fallback.
+- The browser `onerror` handler automatically falls back to SVG icons for any URL that fails to load.
+
+---
+
+## Defense Notes
+
+**"How does the recommendation work?"**
+
+> The user's query goes through three stages: (1) a regex parser extracts location and category signals, (2) a trained multi-label scikit-learn classifier predicts probabilities across 8 labels, (3) TF-IDF cosine similarity retrieves similar places, and (4) a weighted formula combining semantic score, label match, classifier confidence, and rating ranks the final results.
+
+**"Why TF-IDF instead of a neural model?"**
+
+> Our dataset has only 315 entries — too few for fine-tuning a transformer model without overfitting. TF-IDF is interpretable, fast, and produces reasonable results on this scale. It is also easy to explain in a university setting.
+
+**"How did you evaluate the system?"**
+
+> We used proxy relevance (label match + location match) since we have no real user click data. Test cases cover typo handling, regional filtering, anti-contamination (beach queries must not return museums), and low-confidence detection. See `test_pipeline.py` and `evaluate_recommender.py`.
+
+**"What would you improve with more time?"**
+
+> Expand the dataset, add real user feedback collection, replace TF-IDF with a sentence-transformer for better semantic understanding, fix broken image URLs, and add a Vietnamese-language query interface.
+> #   F i n a l - D S A I 
+>  
+>  

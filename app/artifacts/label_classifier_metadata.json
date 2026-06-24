@@ -1,0 +1,25 @@
+{
+  "labels": [
+    "Adventure",
+    "Relax",
+    "Rural",
+    "Urban",
+    "Mountain",
+    "Historical",
+    "Food",
+    "Nature"
+  ],
+  "decision_thresholds": {
+    "Adventure": 0.5,
+    "Relax": 0.5,
+    "Rural": 0.45,
+    "Urban": 0.4,
+    "Mountain": 0.5,
+    "Historical": 0.55,
+    "Food": 0.35,
+    "Nature": 0.55
+  },
+  "model_file": "app/artifacts/label_classifier.joblib",
+  "training_text": "Place_Name + Location + Description",
+  "model_type": "supervised_multi_label_text_classifier"
+}

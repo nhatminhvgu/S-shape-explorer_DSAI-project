@@ -669,6 +669,74 @@
         gap: 5px;
         margin-bottom: 13px;
       }
+      /* ── AI explanation block ───────────────────────────────────────── */
+      .dest-explain {
+        font-size: 0.775rem;
+        color: var(--text-mu);
+        font-style: italic;
+        line-height: 1.45;
+        margin-bottom: 10px;
+        padding: 7px 10px;
+        background: rgba(201, 160, 68, 0.06);
+        border-left: 2px solid var(--gold);
+        border-radius: 0 4px 4px 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      /* ── All label chips ────────────────────────────────────────────── */
+      .dest-labels {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-bottom: 9px;
+      }
+      .label-chip {
+        font-size: 0.65rem;
+        font-weight: 600;
+        padding: 2px 8px;
+        border-radius: 100px;
+        background: rgba(45, 97, 71, 0.09);
+        color: var(--g700);
+        border: 1px solid rgba(45, 97, 71, 0.18);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .label-chip.matched {
+        background: rgba(201, 160, 68, 0.15);
+        color: var(--gold);
+        border-color: var(--border);
+      }
+      /* ── Low-confidence banner ──────────────────────────────────────── */
+      .low-conf-note {
+        margin: 0 0 18px 0;
+        padding: 11px 16px;
+        background: rgba(200, 86, 26, 0.08);
+        border: 1px solid rgba(200, 86, 26, 0.2);
+        border-radius: 8px;
+        font-size: 0.84rem;
+        color: var(--orange);
+        display: flex;
+        gap: 9px;
+        align-items: flex-start;
+      }
+      .low-conf-note .lcn-ico { font-size: 1.1em; flex-shrink: 0; }
+      /* ── Score bar ──────────────────────────────────────────────────── */
+      .score-bar-wrap {
+        height: 3px;
+        background: var(--border-l);
+        border-radius: 2px;
+        margin-bottom: 12px;
+        overflow: hidden;
+      }
+      .score-bar-fill {
+        height: 100%;
+        border-radius: 2px;
+        background: linear-gradient(90deg, var(--g600), var(--gold));
+        transition: width 0.4s ease;
+      }
+
       .dest-tag {
         font-size: 0.7rem;
         padding: 3px 9px;
@@ -712,6 +780,26 @@
       .btn-detail:hover {
         background: var(--g700);
       }
+
+      /* ── Vote buttons ───────────────────────────────────────────────── */
+      .btn-vote {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-mu);
+        font-size: 0.76rem;
+        font-weight: 500;
+        padding: 5px 9px;
+        border-radius: var(--r-sm);
+        transition: background var(--ease), color var(--ease), border-color var(--ease);
+      }
+      .btn-vote:hover { background: var(--gold-pale); border-color: var(--gold); color: var(--gold); }
+      .btn-vote.liked { background: rgba(45,97,71,0.12); border-color: var(--g600); color: var(--g600); font-weight: 600; }
+      .btn-vote.disliked { background: rgba(200,86,26,0.10); border-color: var(--orange); color: var(--orange); font-weight: 600; }
+      .modal-vote-row { display:flex; align-items:center; gap:10px; margin-top:18px; padding-top:16px; border-top:1px solid var(--border-l); }
+      .modal-vote-label { font-size:0.82rem; color:var(--text-mu); margin-right:4px; }
       /* Loading / Error / Empty */
       .state-box {
         grid-column: 1 / -1;
@@ -1585,9 +1673,8 @@
         <ul class="nav-links" id="nav-links">
           <li><a href="#categories">Exploration</a></li>
           <li><a href="#how">How It Works</a></li>
-          <li><a href="#cta">Recommendations</a></li>
-          <li><a href="#featured">Destinations</a></li>
-          <li><a href="#cta" class="nav-cta">Try AI Guide</a></li>
+          <li><a href="#featured">Curated Picks</a></li>
+          <li><a href="#hero" class="nav-cta">Try AI Guide</a></li>
         </ul>
         <button
           class="nav-hamburger"
@@ -1623,7 +1710,7 @@
               type="text"
               id="hero-search"
               class="hero-search-input"
-              placeholder="e.g. 5 days in Northern Vietnam, trekking and local food…"
+              placeholder="e.g. beach in south Vietnam, mountain trek in Sapa, food in Hanoi…"
             />
             <button class="hero-search-btn" id="hero-search-btn">Explore</button>
           </div>
@@ -1683,7 +1770,7 @@
                     font-size: 0.9rem;
                     color: var(--text-m);
                   "
-                  >Semantic Match <span id="v-sem">0.50</span></label
+                  >TF-IDF Semantic Weight <span id="v-sem">0.50</span></label
                 >
                 <input
                   type="range"
@@ -1704,7 +1791,7 @@
                     font-size: 0.9rem;
                     color: var(--text-m);
                   "
-                  >Rating Weight <span id="v-rat">0.20</span></label
+                  >Dataset Rating Weight <span id="v-rat">0.20</span></label
                 >
                 <input
                   type="range"
@@ -1725,7 +1812,7 @@
                     font-size: 0.9rem;
                     color: var(--text-m);
                   "
-                  >Popularity <span id="v-pop">0.20</span></label
+                  >Label Match Weight <span id="v-pop">0.20</span></label
                 >
                 <input
                   type="range"
@@ -1746,7 +1833,7 @@
                     font-size: 0.9rem;
                     color: var(--text-m);
                   "
-                  >Distance <span id="v-dis">0.10</span></label
+                  >Location Boost Factor <span id="v-dis">0.10</span></label
                 >
                 <input
                   type="range"
@@ -1853,6 +1940,7 @@
           </div>
           <button class="results-close" id="results-close">✕ Close</button>
         </div>
+        <div id="results-conf-note"></div>
         <div class="results-grid" id="results-grid"></div>
       </div>
     </section>
@@ -1936,8 +2024,9 @@
             <div class="how-icon">🧠</div>
             <h4>NLP Understands You</h4>
             <p>
-              Our TF-IDF and multi-label NLP engine parses your intent and maps
-              it to 8 travel preference categories automatically.
+              A regex parser and trained multi-label classifier map your query
+              to 8 preference categories: Adventure, Relax, Rural, Urban,
+              Mountain, Historical, Food, and Nature.
             </p>
           </div>
           <div class="how-step">
@@ -1945,8 +2034,9 @@
             <div class="how-icon">📊</div>
             <h4>AI-Ranked Results</h4>
             <p>
-              Places are scored by semantic match, category fit, average rating,
-              and location — then ranked and surfaced just for you.
+              Each place is scored using a weighted formula combining TF-IDF
+              cosine similarity, label match, ML classifier confidence,
+              dataset rating, and location boost — then sorted for you.
             </p>
           </div>
           <div class="how-step">
@@ -1971,9 +2061,9 @@
           </div>
           <ul class="foot-links">
             <li><a href="#how">How It Works</a></li>
-            <li><a href="#featured">Destinations</a></li>
+            <li><a href="#featured">Curated Picks</a></li>
             <li><a href="#categories">Categories</a></li>
-            <li><a href="#cta">Recommend</a></li>
+            <li><a href="#hero">Try AI Guide</a></li>
           </ul>
         </div>
         <p class="foot-copy">
@@ -2154,6 +2244,47 @@
           .map((k) => LABEL_NAME[k]);
       }
 
+      const FALLBACK_IMAGE_BY_LABEL = {
+        adventure: "/static/images/fallback/adventure.svg",
+        relax: "/static/images/fallback/relax.svg",
+        rural: "/static/images/fallback/rural.svg",
+        urban: "/static/images/fallback/urban.svg",
+        mountain: "/static/images/fallback/mountain.svg",
+        historical: "/static/images/fallback/historical.svg",
+        food: "/static/images/fallback/food.svg",
+        nature: "/static/images/fallback/nature.svg",
+        default: "/static/images/fallback/default.svg",
+      };
+
+      function primaryLabelKey(place) {
+        const order = [
+          "historical",
+          "mountain",
+          "nature",
+          "food",
+          "adventure",
+          "relax",
+          "urban",
+          "rural",
+        ];
+        for (const k of order) if (place[k] === 1) return k;
+        return "default";
+      }
+
+      function fallbackImageForPlace(place) {
+        return FALLBACK_IMAGE_BY_LABEL[primaryLabelKey(place)] || FALLBACK_IMAGE_BY_LABEL.default;
+      }
+
+      function imageSrcForPlace(place) {
+        return place.image_url || fallbackImageForPlace(place);
+      }
+
+      function safeImageFallback(img, fallbackSrc) {
+        if (!img || img.dataset.fallbackApplied === "1") return;
+        img.dataset.fallbackApplied = "1";
+        img.src = fallbackSrc || FALLBACK_IMAGE_BY_LABEL.default;
+      }
+
       /* ─── Toast ──────────────────────────────────────────────────────────── */
       function toast(msg, type = "info") {
         const icons = { success: "✓", error: "✕", info: "ℹ" };
@@ -2193,37 +2324,100 @@
         return resp.json();
       }
 
+      async function apiFeedback(placeId, feedback) {
+        const resp = await fetch(`${API_BASE}/feedback`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ place_id: placeId, feedback, user_id: GUEST_ID }),
+        });
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        return resp.json();
+      }
+
+      // Tracks the current user's last vote per place this session.
+      const _userVotes = {};
+
+      async function sendFeedback(placeId, feedback, event) {
+        event.stopPropagation();
+        try {
+          const result = await apiFeedback(placeId, feedback);
+          _userVotes[placeId] = feedback;
+          document.querySelectorAll(`[data-id="${placeId}"]`).forEach((el) => {
+            const likeBtn    = el.querySelector(".btn-like");
+            const dislikeBtn = el.querySelector(".btn-dislike");
+            const ratingEl   = el.querySelector(".dest-rating, .modal-rating-val");
+            if (likeBtn)    { likeBtn.classList.toggle("liked", feedback === "like");       likeBtn.querySelector(".vote-num").textContent    = result.likes; }
+            if (dislikeBtn) { dislikeBtn.classList.toggle("disliked", feedback === "dislike"); dislikeBtn.querySelector(".vote-num").textContent = result.dislikes; }
+            if (ratingEl)   ratingEl.innerHTML = `<span class="star">★</span>${result.rating.toFixed(1)}`;
+          });
+          toast(feedback === "like" ? "👍 Rating updated — ranks this place higher." : "👎 Noted — lowers future ranking.", "success");
+        } catch {
+          toast("Could not save your vote — is the server running?", "error");
+        }
+      }
+
       /* ─── Card rendering ─────────────────────────────────────────────────── */
       function cardHtml(result) {
-        const p = result.place;
-        const score = pct(result.score);
-        const cat =
-          result.matched_labels && result.matched_labels.length
-            ? result.matched_labels[0]
-            : primaryLabel(p);
-        const tags = (p.keywords || []).slice(0, 3);
-        const imgHtml = p.image_url
-          ? `<img class="dest-card-img" src="${esc(p.image_url)}" alt="${esc(p.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Halong_Bay_in_Vietnam.jpg/800px-Halong_Bay_in_Vietnam.jpg'">`
-          : "";
-        const tagsHtml = tags
-          .map((t) => `<span class="dest-tag">${esc(t)}</span>`)
-          .join("");
+        const p       = result.place;
+        const score   = pct(result.score);
+        const imgSrc  = imageSrcForPlace(p);
+        const fbSrc   = fallbackImageForPlace(p);
 
-        const actionsHtml = `<button class="btn-detail" onclick="openModal('${esc(p.id)}')">Details</button>`;
+        // All label chips — matched ones are highlighted in gold
+        const matchedSet = new Set(
+          (result.matched_labels || []).map(l => l.toLowerCase())
+        );
+        const labelsHtml = Object.entries(LABEL_NAME)
+          .filter(([k]) => p[k] === 1)
+          .map(([k, name]) => {
+            const cls = matchedSet.has(name.toLowerCase()) ? "label-chip matched" : "label-chip";
+            return `<span class="${cls}">${esc(name)}</span>`;
+          }).join("");
+
+        // Primary category badge (most relevant match)
+        const cat = result.matched_labels && result.matched_labels.length
+          ? result.matched_labels[0]
+          : primaryLabel(p);
+
+        // Keyword tags (first 3 only)
+        const tags = (p.keywords || []).slice(0, 3);
+        const tagsHtml = tags.map(t => `<span class="dest-tag">${esc(t)}</span>`).join("");
+
+        // AI explanation (shown when available)
+        const explainHtml = result.explanation
+          ? `<div class="dest-explain" title="${esc(result.explanation)}">${esc(result.explanation)}</div>`
+          : "";
+
+        // Score bar
+        const scoreBarHtml = `
+          <div class="score-bar-wrap" title="AI match score: ${score}%">
+            <div class="score-bar-fill" style="width:${score}%"></div>
+          </div>`;
+
+        const userVote = _userVotes[p.id];
+        const likes    = p.likes    || 0;
+        const dislikes = p.dislikes || 0;
+        const actionsHtml = `
+          <button class="btn-vote btn-like ${userVote === 'like' ? 'liked' : ''}" onclick="sendFeedback('${esc(p.id)}','like',event)" title="I recommend this">👍 <span class="vote-num">${likes}</span></button>
+          <button class="btn-vote btn-dislike ${userVote === 'dislike' ? 'disliked' : ''}" onclick="sendFeedback('${esc(p.id)}','dislike',event)" title="Not for me">👎 <span class="vote-num">${dislikes}</span></button>
+          <button class="btn-detail" onclick="openModal('${esc(p.id)}')">Details</button>`;
 
         return `
     <div class="dest-card" data-id="${esc(p.id)}">
       <div class="dest-card-img-wrap">
-        ${imgHtml}
+        <img class="dest-card-img" src="${esc(imgSrc)}" alt="${esc(p.name)}" loading="lazy" referrerpolicy="no-referrer" onerror="safeImageFallback(this,'${esc(fbSrc)}')">
         <div class="dest-card-match">${score}% match</div>
       </div>
       <div class="dest-card-body">
+        ${scoreBarHtml}
         <div class="dest-card-top">
           <div class="dest-card-name">${esc(p.name)}</div>
           <div class="cat-badge">${esc(cat)}</div>
         </div>
         <div class="dest-card-loc">${esc(p.location)}</div>
-        <div class="dest-card-desc">${esc(trunc(p.description, 145))}</div>
+        ${labelsHtml ? `<div class="dest-labels">${labelsHtml}</div>` : ""}
+        <div class="dest-card-desc">${esc(trunc(p.description, 120))}</div>
+        ${explainHtml}
         ${tagsHtml ? `<div class="dest-card-tags">${tagsHtml}</div>` : ""}
         <div class="dest-card-foot">
           <div class="dest-rating">
@@ -2235,7 +2429,7 @@
     </div>`;
       }
 
-      function loadingHtml() {
+            function loadingHtml() {
         return `<div class="state-box">
     <div class="loading-dots"><div class="ld"></div><div class="ld"></div><div class="ld"></div></div>
     <div class="state-title">Finding the best matches…</div>
@@ -2259,35 +2453,44 @@
 
       /* ─── Search ─────────────────────────────────────────────────────────── */
       async function runSearch(query, cat) {
-        const sec = $("results");
-        const grid = $("results-grid");
+        const sec   = $("results");
+        const grid  = $("results-grid");
         const title = $("results-title");
-        const meta = $("results-meta");
+        const meta  = $("results-meta");
+        const confNote = $("results-conf-note");
 
         sec.classList.remove("hidden");
         title.textContent = "Finding places…";
-        meta.textContent = query ? `"${query}"` : `Category: ${cat}`;
-        grid.innerHTML = loadingHtml();
+        meta.textContent  = query ? `"${query}"` : `Category: ${cat}`;
+        grid.innerHTML    = loadingHtml();
+        confNote.innerHTML = "";
         sec.scrollIntoView({ behavior: "smooth", block: "start" });
 
         const prefs = CAT_PREFS[cat] || [];
         try {
           const data = await apiRecommend(query, prefs);
           const recs = data.recommendations || [];
+
           title.textContent = recs.length
             ? `Found ${recs.length} place${recs.length !== 1 ? "s" : ""}`
             : "No results";
+
           const metaParts = [];
           if (query) metaParts.push(`"${query}"`);
           if (data.selected_preferences && data.selected_preferences.length)
-            metaParts.push(data.selected_preferences.join(", "));
+            metaParts.push(`Categories: ${data.selected_preferences.join(", ")}`);
           meta.textContent = metaParts.join(" · ");
-          grid.innerHTML = recs.length
-            ? recs.map(cardHtml).join("")
-            : emptyHtml();
+
+          // Show low-confidence banner when the dataset lacks data for the request
+          if (data.low_confidence_note) {
+            confNote.innerHTML = `<div class="low-conf-note"><span class="lcn-ico">⚠️</span><span>${esc(data.low_confidence_note)}</span></div>`;
+          }
+
+          grid.innerHTML = recs.length ? recs.map(cardHtml).join("") : emptyHtml();
         } catch (err) {
           title.textContent = "Unable to load results";
-          meta.textContent = "";
+          meta.textContent  = "";
+          confNote.innerHTML = "";
           grid.innerHTML = errorHtml(
             "Cannot connect to the recommendation server. Please make sure FastAPI is running on port 8000.",
           );
@@ -2295,7 +2498,7 @@
         }
       }
 
-      /* ─── Modal ──────────────────────────────────────────────────────────── */
+            /* ─── Modal ──────────────────────────────────────────────────────────── */
       function openModal(placeId, overrideName) {
         const bd = $("modal-bd");
         const cnt = $("modal-content");
@@ -2311,9 +2514,9 @@
             const tags = (p.keywords || [])
               .map((t) => `<span class="modal-tag">${esc(t)}</span>`)
               .join("");
-            const imgHtml = p.image_url
-              ? `<img class="modal-hero" src="${esc(p.image_url)}" alt="${esc(displayName)}" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Halong_Bay_in_Vietnam.jpg/800px-Halong_Bay_in_Vietnam.jpg'">`
-              : `<div class="modal-hero-ph">🏞</div>`;
+            const imgSrc = imageSrcForPlace(p);
+            const fallbackSrc = fallbackImageForPlace(p);
+            const imgHtml = `<img class="modal-hero" src="${esc(imgSrc)}" alt="${esc(displayName)}" referrerpolicy="no-referrer" onerror="safeImageFallback(this, '${esc(fallbackSrc)}')">`;
 
             cnt.innerHTML = `
       ${imgHtml}
@@ -2325,11 +2528,16 @@
         <div class="modal-badge">${esc(cat)}</div>
         <div class="modal-meta">
           <span class="modal-meta-item">📍 ${esc(p.location)}</span>
-          ${p.rating > 0 ? `<span class="modal-meta-item"><span style="color:var(--gold)">★</span> ${p.rating.toFixed(1)} / 5.0</span>` : ""}
+          ${p.rating > 0 ? `<span class="modal-meta-item modal-rating-val" data-id="${esc(p.id)}"><span style="color:var(--gold)">★</span> ${p.rating.toFixed(1)} / 5.0</span>` : ""}
           ${labels.length ? `<span class="modal-meta-item">🏷 ${labels.slice(0, 3).join(" · ")}</span>` : ""}
         </div>
         <p class="modal-desc">${esc(p.description)}</p>
         ${tags ? `<div class="modal-tags">${tags}</div>` : ""}
+        <div class="modal-vote-row" data-id="${esc(p.id)}">
+          <span class="modal-vote-label">Was this helpful?</span>
+          <button class="btn-vote btn-like ${_userVotes[p.id] === 'like' ? 'liked' : ''}" onclick="sendFeedback('${esc(p.id)}','like',event)">👍 <span class="vote-num">${p.likes||0}</span></button>
+          <button class="btn-vote btn-dislike ${_userVotes[p.id] === 'dislike' ? 'disliked' : ''}" onclick="sendFeedback('${esc(p.id)}','dislike',event)">👎 <span class="vote-num">${p.dislikes||0}</span></button>
+        </div>
       </div>`;
             cnt.onclick = (e) => {
               if (e.target.closest(".modal-close")) closeModal();
@@ -2350,79 +2558,85 @@
           });
       }
 
-      /* Open featured card by exact name lookup (accent-insensitive).
-         searchKey overrides the lookup term when the display name isn't in the dataset. */
-      function openFeaturedModal(name, searchKey) {
-        const bd = $("modal-bd");
-        const cnt = $("modal-content");
-        bd.classList.add("open");
-        cnt.innerHTML = `<div class="modal-loading">Loading place details…</div>`;
-        document.body.style.overflow = "hidden";
-
-        function showError(msg) {
-          cnt.innerHTML = `<div class="modal-body">
-      <div class="modal-top"><h3 class="modal-title">${esc(name)}</h3>
-      <button class="modal-close" type="button" aria-label="Close">✕</button></div>
-      <p style="color:var(--text-mu);padding:18px 0;">${esc(msg)}</p>
-    </div>`;
-          cnt.onclick = (e) => { if (e.target.closest(".modal-close")) closeModal(); };
-        }
-
-        const lookupName = searchKey || name;
-        fetch(`${API_BASE}/place/search?q=${encodeURIComponent(lookupName)}`)
-          .then((r) => r.ok ? r.json() : Promise.reject(r.status))
-          .then((place) => {
-            closeModal();
-            openModal(place.id, name);
-          })
-          .catch((status) => {
-            if (status === 404) {
-              showError("This destination wasn't found in the current dataset.");
-            } else {
-              showError("Could not load details. Please start the FastAPI server on port 8000.");
-            }
-          });
-      }
-
-      function closeModal() {
+            function closeModal() {
         $("modal-bd").classList.remove("open");
         document.body.style.overflow = "";
       }
 
-      /* ─── Featured section ───────────────────────────────────────────────── */
-      function renderFeatured() {
-        $("feat-grid").innerHTML = FEATURED.map((f) => {
-          const tagsHtml = f.tags
-            .map((t) => `<span class="feat-tag">${esc(t)}</span>`)
-            .join("");
-          return `
-      <div class="feat-card">
-        <div class="feat-img-wrap">
-          <img class="feat-img" src="${esc(f.img)}" alt="${esc(f.name)}" loading="lazy"
-               referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Halong_Bay_in_Vietnam.jpg/800px-Halong_Bay_in_Vietnam.jpg'">
-          <div class="feat-overlay">
-            <div class="feat-loc">📍 ${esc(f.loc)}</div>
-            <div class="feat-tags">${tagsHtml}</div>
-          </div>
-        </div>
-        <div class="feat-body">
-          <div class="feat-title">${esc(f.name)}</div>
-          <div class="feat-desc">${esc(f.desc)}</div>
-          <div class="feat-foot">
-            <div>
-              <div class="feat-rating">
-                <span style="color:var(--gold)">★</span>${f.rating.toFixed(1)}
-                <span class="feat-reviews">(${f.reviews})</span>
-              </div>
-              <div class="feat-price">${esc(f.price)}</div>
-            </div>
-            <div class="feat-actions">
-              <button class="btn-detail" onclick="openFeaturedModal('${esc(f.name)}', '${esc(f.searchKey || '')}')">Details</button>
-            </div>
-          </div>
-        </div>
-      </div>`;
-        }).join("");
+      /* ─── Featured section — curated picks with reliable images ─────── */
+      // Maps the human-readable category string from FEATURED to a label key
+      // so we can pick the right SVG fallback when all image sources fail.
+      const FEAT_CAT_TO_LABEL = {
+        "Nature": "nature",
+        "Heritage": "historical",
+        "Mountain": "mountain",
+        "City": "urban",
+        "Food & Culture": "food",
+        "Adventure": "adventure",
+        "Beach": "relax",
+        "Rural": "rural",
+      };
+
+      async function renderFeatured() {
+        const grid = $("feat-grid");
+        grid.innerHTML = '<div class="state-box"><div class="loading-dots"><div class="ld"></div><div class="ld"></div><div class="ld"></div></div><p class="state-sub">Loading curated picks…</p></div>';
+
+        // For each FEATURED item, search the dataset by name/searchKey.
+        // The Place object the API returns already has image_url set by
+        // data_loader.py — we just use that directly. No external image
+        // calls, no proxies, no Wikipedia. If the URL is broken the
+        // existing onerror → SVG fallback handles it automatically.
+        const resolved = await Promise.all(
+          FEATURED.map(async (f) => {
+            const searchTerm = f.searchKey || f.name;
+            try {
+              const resp = await fetch(
+                `${API_BASE}/place/search?q=${encodeURIComponent(searchTerm)}`
+              );
+              if (resp.ok) {
+                const place = await resp.json();
+                return { f, placeId: place.id, imgSrc: place.image_url || null };
+              }
+            } catch { /* server unavailable */ }
+            return { f, placeId: null, imgSrc: null };
+          })
+        );
+
+        if (!resolved.length) { grid.innerHTML = ""; return; }
+
+        grid.innerHTML = resolved.map(({ f, placeId, imgSrc }) => {
+          const labelKey  = FEAT_CAT_TO_LABEL[f.cat] || "default";
+          const fbSrc     = FALLBACK_IMAGE_BY_LABEL[labelKey] || FALLBACK_IMAGE_BY_LABEL.default;
+          // Use dataset image if we got one, otherwise fall straight to SVG.
+          const cardImg   = imgSrc || fbSrc;
+          const tagsHtml  = (f.tags || []).slice(0, 3)
+            .map(t => `<span class="feat-tag">${esc(t)}</span>`).join("");
+          const detailsBtn = placeId
+            ? `<button class="btn-detail" onclick="openModal('${esc(placeId)}','${esc(f.name)}')">Details</button>`
+            : "";
+          return [
+            '<div class="feat-card">',
+            '  <div class="feat-img-wrap">',
+            `    <img class="feat-img" src="${esc(cardImg)}" alt="${esc(f.name)}" loading="lazy" onerror="safeImageFallback(this,'${esc(fbSrc)}')">`,
+            '    <div class="feat-overlay">',
+            `      <div class="feat-loc">📍 ${esc(f.loc)}</div>`,
+            `      <div class="feat-tags">${tagsHtml}</div>`,
+            '    </div>',
+            '  </div>',
+            '  <div class="feat-body">',
+            `    <div class="feat-title">${esc(f.name)}</div>`,
+            `    <div class="feat-desc">${esc(trunc(f.desc, 110))}</div>`,
+            '    <div class="feat-foot">',
+            '      <div>',
+            `        <div class="feat-rating"><span style="color:var(--gold)">★</span>${typeof f.rating === "number" ? f.rating.toFixed(1) : "—"}</div>`,
+            `        <div class="feat-price">${esc(f.cat)}</div>`,
+            '      </div>',
+            `      <div class="feat-actions">${detailsBtn}</div>`,
+            '    </div>',
+            '  </div>',
+            '</div>',
+          ].join("\n");
+        }).join("\n");
       }
 
       /* ─── Sync UI helpers ────────────────────────────────────────────────── */

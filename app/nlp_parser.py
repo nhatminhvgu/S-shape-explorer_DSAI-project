@@ -1,30 +1,38 @@
 """
 nlp_parser.py — Lightweight regex-based NLP extractor.
 
-Converts a free-text user query into a structured ParsedQuery JSON object:
+Converts a free-text user query into a structured dict:
   { category, mood, budget, purpose, location, tags }
 
-Tuned for Vietnam tourism dataset with 8 labels:
+Tuned for the Vietnam tourism dataset with 8 preference labels:
   Adventure, Relax, Rural, Urban, Mountain, Historical, Food, Nature
 """
 
 import re
+import unicodedata
 
 # ---------------------------------------------------------------------------
-# Lookup tables
+# Category keyword map
+# Maps any recognised keyword to one of: nature, outdoor, historical,
+# restaurant, attraction, relaxing.  These internal categories are later
+# converted to the 8 label names by PARSER_LABEL_MAP.
 # ---------------------------------------------------------------------------
 
 CATEGORY_MAP: dict[str, str] = {
-    # Nature / outdoors
-    "nature": "nature", "beach": "nature", "waterfall": "nature",
-    "forest": "nature", "lake": "nature", "river": "nature",
-    "island": "nature", "cave": "nature", "national park": "nature",
-    "park": "nature", "sea": "nature", "coast": "nature",
+    # Nature / water
+    "nature": "nature", "beach": "nature", "sea": "nature",
+    "ocean": "nature", "coast": "nature", "coastal": "nature",
+    "waterfall": "nature", "forest": "nature", "lake": "nature",
+    "river": "nature", "island": "nature", "cave": "nature",
+    "national park": "nature", "park": "nature", "shore": "nature",
+    "bay": "nature",
     # Mountain / trekking
-    "mountain": "nature", "hill": "nature", "trek": "outdoor",
-    "trekking": "outdoor", "hike": "outdoor", "hiking": "outdoor",
-    "climbing": "outdoor", "bouldering": "outdoor",
-    # Adventure
+    "mountain": "outdoor", "hill": "outdoor", "highland": "outdoor",
+    "peak": "outdoor", "pass": "outdoor",
+    "trek": "outdoor", "trekking": "outdoor",
+    "hike": "outdoor", "hiking": "outdoor",
+    "climbing": "outdoor",
+    # Adventure / sport
     "adventure": "outdoor", "sport": "outdoor", "active": "outdoor",
     "outdoor": "outdoor", "amusement": "outdoor", "zip line": "outdoor",
     # Historical / cultural
@@ -32,20 +40,21 @@ CATEGORY_MAP: dict[str, str] = {
     "pagoda": "historical", "citadel": "historical", "relic": "historical",
     "heritage": "historical", "ancient": "historical", "museum": "historical",
     "monument": "historical", "church": "historical", "cultural": "historical",
-    "culture": "historical",
+    "culture": "historical", "traditional": "historical",
     # Food
     "food": "restaurant", "eat": "restaurant", "restaurant": "restaurant",
     "market": "restaurant", "night market": "restaurant", "cuisine": "restaurant",
     "street food": "restaurant", "specialty": "restaurant", "dining": "restaurant",
+    "culinary": "restaurant",
     # Urban / city
     "city": "attraction", "urban": "attraction", "town": "attraction",
     "shopping": "attraction", "entertainment": "attraction",
     # Relaxation
-    "relax": "nature", "resort": "nature", "spa": "nature",
-    "rest": "nature", "unwind": "nature",
+    "relax": "relaxing", "resort": "relaxing", "spa": "relaxing",
+    "rest": "relaxing", "unwind": "relaxing", "chill": "relaxing",
     # Rural / village
     "village": "nature", "rural": "nature", "countryside": "nature",
-    "ethnic": "nature", "tribe": "nature", "traditional": "historical",
+    "ethnic": "nature", "tribe": "nature",
 }
 
 MOOD_KEYWORDS: dict[str, list[str]] = {
@@ -88,7 +97,7 @@ PURPOSE_KEYWORDS: dict[str, list[str]] = {
     "family":      ["family", "kids", "children", "parents", "family trip"],
 }
 
-# Vietnam provinces and major destinations
+# Vietnam provinces and major city/destination names (lowercase, no diacritics).
 VIETNAM_LOCATIONS: list[str] = [
     "hanoi", "ho chi minh city", "hcmc", "saigon", "da nang", "hoi an",
     "hue", "nha trang", "da lat", "dalat", "phu quoc", "ha long", "halong",
@@ -106,7 +115,7 @@ VIETNAM_LOCATIONS: list[str] = [
     "quang ngai", "binh phuoc",
 ]
 
-# Regional grouping for "northern/southern/central Vietnam" queries
+# Regional grouping — used to expand "North Vietnam" → list of provinces.
 REGION_MAP: dict[str, list[str]] = {
     "north": [
         "hanoi", "ha giang", "cao bang", "lao cai", "sapa", "sa pa",
@@ -137,28 +146,59 @@ LOCATION_PATTERNS: list[str] = [
     r"\bat\s+([\w\s]{3,20})",
 ]
 
+# Surface-level tags extracted from the query.
+# These are used by ranking.py to boost places that actually mention the term.
 GENERIC_TAGS: list[str] = [
-    "beach", "mountain", "waterfall", "cave", "lake", "river", "island",
-    "forest", "temple", "pagoda", "market", "village", "hiking", "trekking",
-    "swimming", "camping", "festival", "night market", "street food",
-    "hot spring", "rice terrace", "rice field", "boat", "cruise",
+    "beach", "sea", "coast", "mountain", "waterfall", "cave", "lake",
+    "river", "island", "forest", "temple", "pagoda", "market", "village",
+    "hiking", "trekking", "swimming", "camping", "festival",
+    "night market", "street food", "hot spring",
+    "rice terrace", "rice field", "boat", "cruise",
     "sunrise", "sunset", "view", "landscape",
+    # Food intent tags
+    "food", "restaurant", "eat", "dining", "cuisine",
 ]
 
 
 # ---------------------------------------------------------------------------
-# Helpers
+# Internal helpers
 # ---------------------------------------------------------------------------
 
-# what is normalisation doing? 
-# It converts the text to lowercase and removes extra whitespace.
-# What is lowercase? 
-# Lowercase is the conversion of all characters in a string to their lowercase equivalents.
 def _normalise(text: str) -> str:
-    return re.sub(r"\s+", " ", text.lower().strip())
+    """
+    Lowercase, strip diacritics, and normalise common plural/typo variants.
+
+    Why we normalise:
+    - "Viet Nam" and "Vietnam" are the same; we collapse them so neither
+      dominates semantic retrieval (the whole dataset is about Vietnam).
+    - Plurals like "beaches", "beachs" (typo), "mountains" all map to
+      their singular form so keyword matching works correctly.
+    - "sea"/"seas"/"ocean"/"coast"/"coastal" are treated as beach synonyms.
+    """
+    text = text.casefold().strip()
+    # Strip diacritics (e.g. Vietnamese tone marks when typed without IME)
+    text = "".join(
+        char for char in unicodedata.normalize("NFD", text)
+        if unicodedata.category(char) != "Mn"
+    )
+    # Normalise country name variants
+    text = re.sub(r"\bviet\s+nam\b", "vietnam", text)
+    # Plural / typo normalisation for common nouns
+    text = re.sub(r"\bbeach(?:es|s)?\b", "beach", text)
+    text = re.sub(r"\bmountains?\b",     "mountain", text)
+    text = re.sub(r"\bislands?\b",       "island", text)
+    text = re.sub(r"\bwaterfalls?\b",    "waterfall", text)
+    text = re.sub(r"\bmarkets?\b",       "market", text)
+    text = re.sub(r"\btemples?\b",       "temple", text)
+    text = re.sub(r"\bpagodas?\b",       "pagoda", text)
+    text = re.sub(r"\bseas?\b",          "sea", text)
+    text = re.sub(r"\boceans?\b",        "sea", text)
+    text = re.sub(r"\bcoasts?\b",        "coast", text)
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def _match_keywords(text: str, keyword_map: dict[str, list[str]]) -> list[str]:
+    """Return every canonical key whose keyword list has a match in text."""
     matched = []
     for canonical, keywords in keyword_map.items():
         for kw in keywords:
@@ -170,40 +210,112 @@ def _match_keywords(text: str, keyword_map: dict[str, list[str]]) -> list[str]:
 
 def _extract_location(text: str) -> str:
     """
-    Extract location from text. Priority order:
-    1. Specific province/city names (hanoi, da nang, etc.)
-    2. Regional keywords (northern, southern, central, mekong)
-    3. Generic "in X / near X / at X" patterns
+    Extract a location hint from the query text.
+
+    Priority order:
+    1. Specific province / city name  ("da nang", "nha trang", …)
+    2. Regional keyword               ("northern", "south vietnam", …)
+    3. Generic positional pattern     ("in X", "near X", "at X")
     """
-    # 1. Specific province / city names
+    # 1. Specific place / province names
     for loc in VIETNAM_LOCATIONS:
         if re.search(r"\b" + re.escape(loc) + r"\b", text):
             return loc.title()
 
-    # 2. Regional keywords — checked BEFORE generic "in X" pattern so that
-    #    "5 days in Northern" correctly maps to "North Vietnam" rather than
-    #    capturing the word "Northern" as an unknown place name.
-    regional_keywords = {
-        "north":   [r"\bnorth(ern)?\s+(vietnam|viet)\b", r"\bnorth(ern)?\b"],
-        "central": [r"\bcentral\s+(vietnam|viet)\b",      r"\bcentral\b"],
-        "south":   [r"\bsouth(ern)?\s+(vietnam|viet)\b",  r"\bsouth(ern)?\b"],
-        "mekong":  [r"\bmekong(\s+(delta|region))?\b"],
+    # 2. Regional keywords — checked before generic "in X" so "in Northern
+    #    Vietnam" maps to a region, not a string starting with "Northern".
+    regional_keywords: dict[str, list[str]] = {
+        "north":   [r"\bnorth(?:ern)?\s+(?:vietnam|viet)\b", r"\bnorth(?:ern)?\b"],
+        "central": [r"\bcentral\s+(?:vietnam|viet)\b",        r"\bcentral\b"],
+        "south":   [r"\bsouth(?:ern)?\s+(?:vietnam|viet)\b",  r"\bsouth(?:ern)?\b"],
+        "mekong":  [r"\bmekong(?:\s+(?:delta|region))?\b"],
     }
-
     for region, patterns in regional_keywords.items():
         for pattern in patterns:
             if re.search(pattern, text, re.IGNORECASE):
-                if region == "mekong":
-                    return "Mekong Delta"
-                return region.capitalize() + " Vietnam"
+                return "Mekong Delta" if region == "mekong" else region.capitalize() + " Vietnam"
 
-    # 3. Generic positional patterns (in X, near X, at X)
+    # 3. Generic positional patterns
     for pattern in LOCATION_PATTERNS:
         m = re.search(pattern, text, re.IGNORECASE)
         if m:
-            return m.group(1).strip().title()
+            captured = m.group(1).strip()
+            # "in Vietnam" is not a useful constraint — the whole dataset is Vietnam.
+            if captured.lower() in {"vietnam", "viet nam", "viet", "nam", "vn"}:
+                return ""
+            return captured.title()
 
     return ""
+
+
+# Maps internal category/mood/purpose keys to the 8 label names.
+PARSER_LABEL_MAP: dict[str, list[str]] = {
+    # Internal category keys
+    "nature":       ["Nature"],
+    "outdoor":      ["Adventure", "Mountain"],
+    "historical":   ["Historical"],
+    "restaurant":   ["Food"],
+    "attraction":   ["Urban"],
+    "relaxing":     ["Relax"],
+    # Mood keys
+    "adventurous":  ["Adventure"],
+    "cultural":     ["Historical"],
+    "scenic":       ["Nature"],
+    "spiritual":    ["Historical"],
+    # Purpose keys
+    "eating":       ["Food"],
+    "trekking":     ["Adventure", "Mountain"],
+    "swimming":     ["Relax", "Nature"],
+    "learning":     ["Historical"],
+    "camping":      ["Adventure", "Nature"],
+    "family":       ["Relax"],
+    # Tag keys
+    "beach":        ["Relax", "Nature"],
+    "sea":          ["Relax", "Nature"],
+    "coast":        ["Relax", "Nature"],
+    "mountain":     ["Mountain", "Adventure"],
+    "waterfall":    ["Nature", "Adventure"],
+    "cave":         ["Nature", "Adventure"],
+    "lake":         ["Nature", "Relax"],
+    "river":        ["Nature", "Relax"],
+    "island":       ["Nature", "Relax"],
+    "forest":       ["Nature"],
+    "temple":       ["Historical"],
+    "pagoda":       ["Historical"],
+    "market":       ["Food", "Urban"],
+    "night market": ["Food", "Urban"],
+    "street food":  ["Food"],
+    "village":      ["Rural"],
+    "rice terrace": ["Rural", "Mountain", "Nature"],
+    "rice field":   ["Rural", "Nature"],
+    "food":         ["Food"],
+    "eat":          ["Food"],
+    "dining":       ["Food"],
+    "cuisine":      ["Food"],
+    "restaurant":   ["Food"],
+}
+
+
+def preferences_from_parsed_query(parsed_query: dict) -> list[str]:
+    """
+    Convert deterministic parser signals into the 8 model label names.
+
+    This prevents clear keyword queries (e.g. "food in Hoi An") from being
+    overruled by the statistical ML classifier when the dataset is small.
+    """
+    labels: list[str] = []
+
+    def _add(key: str) -> None:
+        for label in PARSER_LABEL_MAP.get(key, []):
+            if label not in labels:
+                labels.append(label)
+
+    _add(parsed_query["category"])
+    for field in ("mood", "purpose", "tags"):
+        for value in parsed_query[field]:
+            _add(value)
+
+    return labels
 
 
 # ---------------------------------------------------------------------------
@@ -212,23 +324,21 @@ def _extract_location(text: str) -> str:
 
 def parse_query(raw_query: str) -> dict:
     """
-    Extract structured intent from a natural-language Vietnam tourism query.
+    Parse a natural-language Vietnam tourism query into structured intent.
+
     Returns a dict with keys: category, mood, budget, purpose, location, tags.
     """
     text = _normalise(raw_query)
 
-    # --- Category -----------------------------------------------------------
+    # Category — match longest phrase first to prefer "night market" over "market"
     category = ""
     for phrase, canonical in sorted(CATEGORY_MAP.items(), key=lambda x: -len(x[0])):
         if re.search(r"\b" + re.escape(phrase) + r"\b", text):
             category = canonical
             break
 
-    # --- Mood ---------------------------------------------------------------
-    mood = _match_keywords(text, MOOD_KEYWORDS)
-
-    # --- Budget -------------------------------------------------------------
-    budget = ""
+    mood    = _match_keywords(text, MOOD_KEYWORDS)
+    budget  = ""
     for level, keywords in BUDGET_MAP.items():
         for kw in keywords:
             if re.search(r"\b" + re.escape(kw) + r"\b", text):
@@ -237,25 +347,19 @@ def parse_query(raw_query: str) -> dict:
         if budget:
             break
 
-    # --- Purpose ------------------------------------------------------------
-    purpose = _match_keywords(text, PURPOSE_KEYWORDS)
-
-    # --- Location -----------------------------------------------------------
+    purpose  = _match_keywords(text, PURPOSE_KEYWORDS)
     location = _extract_location(text)
 
-    # --- Tags ---------------------------------------------------------------
     tags: list[str] = []
     for tag in GENERIC_TAGS:
         if re.search(r"\b" + re.escape(tag) + r"\b", text):
             tags.append(tag)
 
-    unique_tags = list(dict.fromkeys(tags))
-
     return {
         "category": category,
-        "mood": mood,
-        "budget": budget,
-        "purpose": purpose,
+        "mood":     mood,
+        "budget":   budget,
+        "purpose":  purpose,
         "location": location,
-        "tags": unique_tags,
+        "tags":     list(dict.fromkeys(tags)),  # preserve order, remove duplicates
     }
